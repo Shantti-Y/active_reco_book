@@ -9,6 +9,29 @@
   </head>
 
   <body>
-    <%= yield %>
+   <!--         Header         -->
+   <div id="header">
+      <ul id="header-main">
+         <li id="header-menu" class="header-content"><i class="fa fa-search"></i></li>
+         <li id="header-title" class="header-content"><span>A</span>ctive <span>R</span>eco <span>B</span>ook</li>
+         <li id="header-notify" class="header-content"><i class="fa fa-bars"></i></li>
+      </ul>
+
+   </div>
+   <!--        Contents        -->
+   <div id="container">
+      <%= yield %>
+   </div>
+
+   <!--         Footer         -->
+   <div id="footer">
+      <p id="footer-title"><span>A</span>ctive <span>R</span>eco <span>B</span>ook</p>
+      <ul id="footer-main">
+         <li class="footer-content"><a href="#">Active Reco Book とは</a></li>
+         <li class="footer-content"><a href="#">よくある質問</a></li>
+         <li class="footer-content"><a href="#">利用規約</a></li>
+      </ul>
+      <p id="footer-copyright">© 2017 Shantty_Y</p>
+   </div>
   </body>
 </html>

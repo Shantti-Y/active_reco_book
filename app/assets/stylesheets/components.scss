@@ -1,0 +1,139 @@
+/************************************************
+
+
+                     Variables
+
+
+
+************************************************/
+$media-desktop: 970px;
+$media-tablet: 768px;
+
+#header {
+   background-color: blue;
+   margin-bottom: 20px;
+   .header-content {
+      color: white;
+      display: inline-block;
+      font-size: 17px;
+      padding: 14px;
+      &:hover { cursor: pointer; }
+   }
+   #header-menu {
+      margin-left: 16px;
+   }
+   #header-title {
+      padding: 12px 9px 13px 9px;
+      span { font-size: 21px; }
+   }
+   #header-notify {
+      float: right;
+      margin-right: 16px;
+   }
+}
+
+@media (min-width: $media-desktop){
+   #header {
+      #header-menu { margin-left: 24px; }
+      #header-notify { margin-right: 24px; }
+   }
+}
+
+#container {
+   width: 100%;
+   margin: 0 11px;
+   div { border: 1px solid black; }
+
+   #left {
+      box-sizing: border-box;
+      width: calc(100% - 22px);
+      height: 300px;
+   }
+
+   #right {
+      box-sizing: border-box;
+      width: calc(100% - 22px);
+      height: 300px;
+   }
+}
+
+@media (min-width: $media-tablet){
+   #container {
+      width: 100%;
+      overflow: hidden;
+      margin: auto;
+
+      #left {
+         float: left;
+         width: calc(33% - 11px);
+         margin-left: 11px;
+      }
+
+      #right {
+         float: right;
+         width: calc(67% - 27px);
+         margin-right: 11px;
+      }
+   }
+}
+
+@media (min-width: $media-desktop){
+   #container {
+      width: 950px;
+      margin: 0 auto;
+      overflow: hidden;
+
+      #left {
+         float: left;
+         width: 300px;
+         margin-left: 0;
+      }
+
+      #right {
+         float: right;
+         width: 630px;
+         margin-right: 0;
+      }
+   }
+}
+
+
+#footer {
+   background-color: black;
+   margin-top: 20px;
+   padding: 22px;
+   * { color: white; }
+   #footer-title {
+      font-size: 17px;
+      span { font-size: 21px; }
+   }
+
+   #footer-main {
+      margin-top: 22px;
+      .footer-content {
+         font-size: 12px;
+         margin-top: 9px;
+      }
+   }
+
+   #footer-copyright {
+      font-size: 11px;
+      margin-top: 56px;
+      color: gray;
+   }
+}
+
+@media (min-width: $media-tablet){
+   #footer {
+      padding: 22px 160px;
+
+      #footer-main {
+         .footer-content {
+            display: inline-block;
+            margin-right: 16px;
+         }
+      }
+
+      #footer-copyright { margin-top: 150px; }
+   }
+}
