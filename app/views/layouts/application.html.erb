@@ -6,17 +6,74 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href='//fonts.googleapis.com/css?family=Fascinate' rel='stylesheet'>
   </head>
 
   <body>
    <!--         Header         -->
    <div id="header">
       <ul id="header-main">
-         <li id="header-menu" class="header-content"><i class="fa fa-search"></i></li>
-         <li id="header-title" class="header-content"><span>A</span>ctive <span>R</span>eco <span>B</span>ook</li>
-         <li id="header-notify" class="header-content"><i class="fa fa-bars"></i></li>
+         <li id="header-menu" class="header-content"><i class="fa fa-bars"></i></li>
+         <li id="header-title" class="header-content"><span>A</span>ctive<span>R</span>eco<span>B</span>ook</li>
+         <li id="header-notify" class="header-content">
+            <p id="notify-count">1</p>
+            <i class="fa fa-clipboard"></i>
+         </li>
       </ul>
+   </div>
 
+   <div id="dropdown-menu">
+      <div class="wrapper"></div>
+      <ul id="menu-items">
+         <li class="menu-item"><a href=""><i class="fa fa-plus"></i>新しい投稿</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-heartbeat"></i>こころチェック</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-clock-o"></i>タイムライン</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-laptop"></i>Webラーニング</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-user"></i>ユーザー</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-cog"></i>設定</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-sign-out"></i>ログアウト</a></li>
+      </ul>
+   </div>
+   <div id="dropdown-notify">
+      <div class="wrapper"></div>
+      <ul id="notify-items">
+         <li class="notify-item">
+            <a class="notify-box" href="#">
+               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+               <div class="notify-content">
+                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+                  <p class="notify-created-at">20時間前</p>
+               </div>
+            </a>
+         </li>
+         <li class="notify-item">
+            <a class="notify-box" href="#">
+               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+               <div class="notify-content">
+                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+                  <p class="notify-created-at">20時間前</p>
+               </div>
+            </a>
+         </li>
+         <li class="notify-item">
+            <a class="notify-box" href="#">
+               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+               <div class="notify-content">
+                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+                  <p class="notify-created-at">20時間前</p>
+               </div>
+            </a>
+         </li>
+         <li class="notify-item">
+            <a class="notify-box" href="#">
+               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+               <div class="notify-content">
+                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+                  <p class="notify-created-at">20時間前</p>
+               </div>
+            </a>
+         </li>
+      </ul>
    </div>
    <!--        Contents        -->
    <div id="container">
@@ -25,7 +82,7 @@
 
    <!--         Footer         -->
    <div id="footer">
-      <p id="footer-title"><span>A</span>ctive <span>R</span>eco <span>B</span>ook</p>
+      <p id="footer-title"><span>A</span>ctive<span>R</span>eco<span>B</span>ook</p>
       <ul id="footer-main">
          <li class="footer-content"><a href="#">Active Reco Book とは</a></li>
          <li class="footer-content"><a href="#">よくある質問</a></li>
