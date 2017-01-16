@@ -1,0 +1,28 @@
+<div class="content-box">
+   <h1>User New</h1>
+</div>
+<div class="content-box">
+   <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.text_field :name, placeholder: '氏名(必須)', class: 'form-for form-user' %>
+
+      <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-for form-user' %>
+
+      <%= f.text_field :employee_number, placeholder: '社員番号(必須)', class: 'form-for form-user' %>
+
+      <%= f.text_field :division, placeholder: '所属部署(必須)', class: 'form-for form-user' %>
+
+      <%= f.select :gender, ['男', '女'], { include_blank: '性別(必須)' } %>
+
+      <%= f.label :started_at, '入社年月(必須)' %>
+      <%= f.date_field :started_at, class: 'form-for' %>
+
+      <%= f.label :birthday, '誕生日(必須)' %>
+      <%= f.date_field :birthday, class: 'form-for' %>
+
+      <%= f.select :employee, {'新人' => true, '人事' => false}, { include_blank: '雇用者？(必須)' } %>
+
+      <%= f.submit '登録(ユーザーへメール送信)', class: 'btn btn-submit' %>
+   <% end %>
+</div>

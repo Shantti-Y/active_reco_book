@@ -1,21 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
-  employee_number: 1
-  division: MyString
-  gender: MyString
-  started_at: 2017-01-15 13:39:58
-  birthday: 2017-01-15 13:39:58
-  employee: false
-
-two:
-  name: MyString
-  email: MyString
-  employee_number: 1
-  division: MyString
-  gender: MyString
-  started_at: 2017-01-15 13:39:58
-  birthday: 2017-01-15 13:39:58
-  employee: false
+first_employee:
+  name: 例得 等連
+  email: example@gmail.com
+  employee_number: 12345678
+  division: 技術部開発課
+  gender: 男
+  started_at: 1.year.ago
+  birthday: 24.years.ago
+  employee: true

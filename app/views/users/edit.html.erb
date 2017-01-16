@@ -1,0 +1,31 @@
+<div class="content-box">
+   <h1>User Edit</h1>
+</div>
+<div class="content-box">
+   <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <p>氏名</p>
+      <%= @user.name %>
+
+      <p>Eメール</p>
+      <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-for form-user' %>
+
+      <p>社員番号</p>
+      <%= @user.employee_number %>
+
+      <p>所属部署</p>
+      <%= @user.division %>
+
+      <p>性別</p>
+      <%= @user.gender %>
+
+      <p>入社年月</p>
+      <%= @user.started_at %>
+
+      <p>誕生日</p>
+      <%= @user.birthday %>
+
+      <%= f.submit '登録(ユーザーへメール送信)', class: 'btn btn-submit' %>
+   <% end %>
+</div>
