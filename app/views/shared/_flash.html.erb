@@ -1,0 +1,6 @@
+<% flash.each do |type, msg| %>
+<div id="dropdown-flash" class="flash-<%= type %>">
+   <div class="wrapper"></div>
+   <p id="flash-content"><%= msg %></p>
+</div>
+<% end %>

@@ -39,7 +39,25 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                           employee: true
                                           } }
       end
+      assert flash['success']
       assert_redirected_to home_url
+   end
+
+   test "should be failed to create new user with invalid parameters" do
+      assert_no_difference 'User.count' do
+         post users_path, params: { user: {
+                                          name: "a" * 51,
+                                          email: ("a" * 255)+ "@.mail.jp",
+                                          employee_number: 123456789,
+                                          division: "a" * 51,
+                                          gender: "両",
+                                          started_at: 1.year.ago,
+                                          birthday: 24.years.ago,
+                                          employee: true
+                                          } }
+      end
+      assert flash['danger']
+      assert_response :success
    end
 
    test "should update the user" do
@@ -51,7 +69,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                                    birthday: 24.year.ago
                                                    } }
       assert_equal "営業部企画課", @employee.reload.division
+      assert flash['success']
       assert_redirected_to home_url
+   end
+
+   test "should be failed to update the user with invalid parameters" do
+      patch user_path(@employee), params: { user: {
+                                                   division: "a" * 51,
+                                                   started_at:  1.year.ago,
+                                                   birthday: 24.year.ago
+                                                   } }
+      assert_not_equal "a" * 51, @employee.reload.division
+      assert flash['danger']
+      assert_response :success
    end
 
    test "should destroy the user" do
