@@ -1,31 +1,73 @@
-<div class="content-box">
-   <h1>User Edit</h1>
+<div id="container-left">
+   <div id="user-profile" class="content-box">
+      <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" id="user-thumbnail">
+      <div id="user-information">
+         <p id="user-name">吉岡　隆弘  さん</p>
+         <p id="user-division">滋賀工場技術課</p>
+         <a href="#">編集する</a>
+         <ul id="user-archivements">
+            <li class="user-archivement">
+               <p class="section">投稿</p>
+               <p class="count">12</p>
+            </li>
+            <li class="user-archivement">
+               <p class="section">診断</p>
+               <p class="count">6</p>
+            </li>
+            <li class="user-archivement">
+               <p class="section">学習</p>
+               <p class="count">4</p>
+            </li>
+         </ul>
+      </div>
+   </div>
 </div>
-<div class="content-box">
-   <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
 
-      <p>氏名</p>
-      <%= @user.name %>
+<div id="container-right">
+   <div id="user-form" class="content-box">
+      <div class="content-header">
+         <p>アカウントの編集</p>
+      </div>
+      <%= form_for(@user) do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>
 
-      <p>Eメール</p>
-      <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-for form-user' %>
+         <ul class="form-line">
+            <li class="form-label">氏名</li>
+            <li class="form-value"><%= @user.name %></li>
+         </ul>
 
-      <p>社員番号</p>
-      <%= @user.employee_number %>
+         <div class="form-line">
+            <p class="form-label">Eメール</p>
+            <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-input form-user' %>
+         </div>
 
-      <p>所属部署</p>
-      <%= @user.division %>
+         <div class="form-line">
+            <p class="form-label">社員番号</p>
+            <p class="form-value"><%= @user.employee_number %></p>
+         </div>
 
-      <p>性別</p>
-      <%= @user.gender %>
+         <div class="form-line">
+            <p class="form-label">所属部署</p>
+            <p class="form-value"><%= @user.division %></p>
+         </div>
 
-      <p>入社年月</p>
-      <%= @user.started_at %>
+         <div class="form-line">
+            <p class="form-label">性別</p>
+            <p class="form-value"><%= @user.gender %></p>
+         </div>
 
-      <p>誕生日</p>
-      <%= @user.birthday %>
+         <div class="form-line">
+            <p class="form-label">入社年月</p>
+            <p class="form-value"><%= @user.started_at %></p>
+         </div>
 
-      <%= f.submit '登録(ユーザーへメール送信)', class: 'btn btn-submit' %>
-   <% end %>
+         <div class="form-line">
+            <p class="form-label">誕生日</p>
+            <p class="form-value"><%= @user.birthday %></p>
+         </div>
+
+         <%= f.submit '登録(メール送信)', class: 'btn form-submit' %>
+      <% end %>
+   </div>
+
 </div>

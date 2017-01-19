@@ -83,6 +83,19 @@ $media-phone: 450px;
    background-color: #ffffff;
    border-radius: 4px;
    margin-bottom: 12px;
+
+   .content-header {
+      background-color: #ededed;
+      margin: -12px -12px 29px -12px;
+      padding: 14px 16px;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      border-bottom: 1px solid #cecece;
+      p {
+         font-size: 18px;
+         font-weight: bold;
+      }
+   }
 }
 
 #user-profile {
@@ -267,8 +280,21 @@ $media-phone: 450px;
 /************************************************
 
 
-                     Variables
+                  Parts
 
 
 
 ************************************************/
+.btn {
+   color: #4a4a4a;
+   font-weight: bold;
+   background-color: #ececec;
+   border: 1px solid #acacac;
+   padding: 5px 12px;
+   border-radius: 3px;
+
+   &:hover {
+      cursor: pointer;
+      background-color: #d3d3d3;
+   }
+}

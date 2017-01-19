@@ -1,3 +1,75 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/************************************************
+
+
+                     Variables
+
+
+
+************************************************/
+$media-desktop: 970px;
+$media-tablet: 768px;
+$media-phone: 450px;
+
+/************************************************
+
+
+                  Pages for User
+
+
+
+************************************************/
+
+#user-form {
+   * {
+      font-size: 14px;
+   }
+   .form-line {
+      width: 100%;
+      margin: 29px 0;
+      .form-label {
+         font-weight: bold;
+         margin-bottom: 11px;
+      }
+      .form-value {
+         padding-bottom: 4px;
+         border-bottom: 1px solid #dedede;
+      }
+      .form-input {
+         border-radius: 3px;
+         width: calc(100% - 12px);
+         padding: 2px 4px;
+         border: 1px solid #cdcdcd;
+      }
+
+   }
+}
+
+@media (min-width: $media-phone){
+   #user-form {
+      * {
+         font-size: 14px;
+      }
+      .form-line {
+         .form-label {
+            display: inline-block;
+            width: 25%;
+            margin-bottom: 7px;
+            text-align: right;
+         }
+         .form-value {
+            display: inline-block;
+            margin-left: 12px;
+            width: calc(73% - 12px);
+            text-align: left;
+         }
+         .form-input{
+            margin-left: 12px;
+            width: calc(73% - 22px);
+         }
+         .form-select {
+            margin-left: 12px;
+         }
+      }
+
+   }
+}

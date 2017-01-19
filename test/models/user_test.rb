@@ -10,7 +10,9 @@ class UserTest < ActiveSupport::TestCase
                         gender: "男",
                         started_at: 1.year.ago,
                         birthday: 24.years.ago,
-                        employee: true
+                        employee: true,
+                        password: 'password',
+                        password_confirmation: 'password'
                       )
    end
 
@@ -107,6 +109,23 @@ class UserTest < ActiveSupport::TestCase
    test "employee should be present" do
       @user.employee = ""
       assert_not @user.valid?
+   end
+
+   test "password should be present" do
+      @user.password = @user.password_confirmation = ""
+      assert_not @user.valid?
+   end
+
+   test "password should have more than 8 chars" do
+      @user.password = "f" * 7
+      assert_not @user.valid?
+   end
+
+   test "password should match its expression with the confirmation" do
+      @user.password = "drowssap"
+      assert_not @user.valid?
+      @user.password_confirmation = @user.password
+      assert @user.valid?
    end
 
 end

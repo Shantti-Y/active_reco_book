@@ -1,28 +1,80 @@
-<div class="content-box">
-   <h1>User New</h1>
+<div id="container-left">
+   <div id="user-profile" class="content-box">
+      <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" id="user-thumbnail">
+      <div id="user-information">
+         <p id="user-name">吉岡　隆弘  さん</p>
+         <p id="user-division">滋賀工場技術課</p>
+         <a href="#">編集する</a>
+         <ul id="user-archivements">
+            <li class="user-archivement">
+               <p class="section">投稿</p>
+               <p class="count">12</p>
+            </li>
+            <li class="user-archivement">
+               <p class="section">診断</p>
+               <p class="count">6</p>
+            </li>
+            <li class="user-archivement">
+               <p class="section">学習</p>
+               <p class="count">4</p>
+            </li>
+         </ul>
+      </div>
+   </div>
 </div>
-<div class="content-box">
-   <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.text_field :name, placeholder: '氏名(必須)', class: 'form-for form-user' %>
+<div id="container-right">
+   <div id="user-form" class="content-box">
+      <div class="content-header">
+         <p>アカウントの作成</p>
+      </div>
+      <%= form_for(@user) do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-for form-user' %>
+         <ul class="form-line">
+            <p class="form-label">氏名</p>
+            <%= f.text_field :name, placeholder: '氏名(必須)', class: 'form-input form-user' %>
+         </ul>
 
-      <%= f.text_field :employee_number, placeholder: '社員番号(必須)', class: 'form-for form-user' %>
+         <div class="form-line">
+            <p class="form-label">Eメール</p>
+            <%= f.text_field :email, placeholder: 'Eメール(必須)', class: 'form-input form-user' %>
+         </div>
 
-      <%= f.text_field :division, placeholder: '所属部署(必須)', class: 'form-for form-user' %>
+         <div class="form-line">
+            <p class="form-label">社員番号</p>
+            <%= f.text_field :employee_number, placeholder: '社員番号(必須)', class: 'form-input form-user' %>
+         </div>
 
-      <%= f.select :gender, ['男', '女'], { include_blank: '性別(必須)' } %>
+         <div class="form-line">
+            <p class="form-label">所属部署</p>
+            <%= f.text_field :division, placeholder: '所属部署(必須)', class: 'form-input form-user' %>
+         </div>
 
-      <%= f.label :started_at, '入社年月(必須)' %>
-      <%= f.date_field :started_at, class: 'form-for' %>
+         <div class="form-line">
+            <p class="form-label">性別</p>
+            <%= f.select :gender, ['男', '女'], { include_blank: '性別(必須)' },
+             class: 'form-select form-user' %></p>
+         </div>
 
-      <%= f.label :birthday, '誕生日(必須)' %>
-      <%= f.date_field :birthday, class: 'form-for' %>
+         <div class="form-line">
+            <p class="form-label">入社年月</p>
+            <%= f.date_field :started_at, class: 'form-input form-user' %>
+         </div>
 
-      <%= f.select :employee, {'新人' => true, '人事' => false}, { include_blank: '雇用者？(必須)' } %>
+         <div class="form-line">
+            <p class="form-label">誕生日</p>
+            <%= f.date_field :birthday, class: 'form-input form-user' %>
+         </div>
 
-      <%= f.submit '登録(ユーザーへメール送信)', class: 'btn btn-submit' %>
-   <% end %>
+         <div class="form-line">
+            <p class="form-label">ユーザーの所属</p>
+            <%= f.select :employee, {'新人' => true, '人事' => false}, { include_blank: '雇用者？(必須)' },
+            class: 'form-select form-user' %>
+         </div>
+
+         <%= f.submit '登録(メール送信)', class: 'btn form-submit' %>
+      <% end %>
+   </div>
+
 </div>

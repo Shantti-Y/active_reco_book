@@ -9,3 +9,4 @@ first_employee:
   started_at: 1.year.ago
   birthday: 24.years.ago
   employee: true
+  password_digest: <%= User.digest('password') %>

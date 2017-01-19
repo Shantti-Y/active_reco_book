@@ -1,3 +1,57 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/************************************************
+
+
+                     Variables
+
+
+
+************************************************/
+$media-desktop: 970px;
+$media-tablet: 768px;
+$media-phone: 450px;
+
+
+#container-single {
+   width: calc(100% - 22px);
+   .content-box {
+      width: 100%;
+   }
+}
+@media (min-width: $media-tablet){
+   #container-single {
+      .content-box {
+         width: 690px;
+         margin: 0 auto;
+      }
+   }
+}
+
+/************************************************
+
+
+                     About
+
+
+
+************************************************/
+
+/************************************************
+
+
+                     Help
+
+
+
+************************************************/
+
+/************************************************
+
+
+                     Convention
+
+
+
+************************************************/

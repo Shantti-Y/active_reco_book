@@ -36,7 +36,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                           gender: "女",
                                           started_at: 1.year.ago,
                                           birthday: 24.years.ago,
-                                          employee: true
+                                          employee: true,
+                                          password: "password",
+                                          password_confirmation: "password"
                                           } }
       end
       assert flash['success']
@@ -53,7 +55,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                           gender: "両",
                                           started_at: 1.year.ago,
                                           birthday: 24.years.ago,
-                                          employee: true
+                                          employee: true,
+                                          password: "",
+                                          password_confirmation: ""
                                           } }
       end
       assert flash['danger']
