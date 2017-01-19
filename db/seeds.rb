@@ -16,5 +16,6 @@ User.create!(
             gender: "男",
             started_at: Date.new(2015, 4, 1),
             birthday: Date.new(1992, 1, 1),
-            employee: true
+            employee: true,
+            password_digest: User.digest('password')
             )
