@@ -1,0 +1,25 @@
+<div id="container-single">
+   <div id="login" class="content-box">
+      <div class="content-header">
+         <p>Recobook</p>
+      </div>
+
+      <div id="login-form">
+
+         <%= form_for(:session, url: login_path) do |f| %>
+            <div id="form-inputs">
+               <i class="fa fa-envelope"></i>
+               <%= f.text_field :email, placeholder: 'Eメールアドレス', class: 'form-input form-session'  %>
+
+               <i class="fa fa-key"></i>
+               <%= f.password_field :password, placeholder: 'パスワード', class: 'form-input form-session'  %>
+            </div>
+            <div id="form-submit">
+               <%= f.submit 'ログイン', class: 'btn form-submit' %>
+               <a href="#">パスワードをお忘れの方はこちら</a>
+            </div>
+         <% end %>
+      </div>
+
+   </div>
+</div>

@@ -23,7 +23,6 @@ $danger: #ff3333;
 
 ************************************************/
 #header {
-   z-index: 0;
    position: fixed;
    width: 100%;
    background-color: #0066cc;
@@ -97,7 +96,7 @@ $danger: #ff3333;
    #menu-items {
       border-radius: 4px;
       background-color: #ffffff;
-      box-shadow: #888888 1px 2px 1px 1px;
+      box-shadow: #888888 1px 1px 0 0;
       padding: 7px 0;
       .menu-item {
          a {
@@ -159,48 +158,39 @@ $danger: #ff3333;
 
 }
 
-#dropdown-flash {
-   z-index: 1;
+#flash {
    position: fixed;
-   top: 26px;
-   right: 10px;
-
-   .wrapper { margin-left: 204px; }
+   top: 41px;
+   width: 100%;
 
    #flash-content {
+      box-sizing: border-box;
       display: block;
-      width: 230px;
-      border-radius: 4px;
+      width: calc(100% - 22px);
       font-size: 12px;
       color: #ffffff;
       font-weight: bold;
       box-shadow: #888888 1px 2px 1px 1px;
-      padding: 7px 0;
+      padding: 15px 20px;
+      margin: 0 auto;
       text-align: center;
+      opacity: 0.93;
    }
 }
 .flash-success {
-   .wrapper { border-bottom-color: $success; }
-   #flash-content { background-color: $success;
-   }
+   #flash-content { background-color: $success; }
 }
 
 .flash-info {
-   .wrapper { border-bottom-color: $info; }
-   #flash-content { background-color: $info;
-   }
+   #flash-content { background-color: $info; }
 }
 
 .flash-warning {
-   .wrapper { border-bottom-color: $warning; }
-   #flash-content { background-color: $warning;
-   }
+   #flash-content { background-color: $warning; }
 }
 
 .flash-danger {
-   .wrapper { border-bottom-color: $danger; }
-   #flash-content { background-color: $danger;
-   }
+   #flash-content { background-color: $danger; }
 }
 
 @media (min-width: $media-tablet){
@@ -222,8 +212,10 @@ $danger: #ff3333;
          }
       }
    }
-   #dropdown-flash {
-      .wrapper { margin-left: 193px; }
+   #flash {
+      #flash-content {
+         width: 690px;
+      }
    }
 }
 
@@ -239,9 +231,6 @@ $danger: #ff3333;
    #dropdown-notify {
       .wrapper { margin-left: 266px; }
       right: 22px;
-   }
-   #dropdown-flash {
-      .wrapper { margin-left: 186px; }
    }
 }
 

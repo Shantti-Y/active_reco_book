@@ -15,17 +15,13 @@ $media-phone: 450px;
 
 
 #container-single {
+   box-sizing: border-box;
    width: calc(100% - 22px);
-   .content-box {
-      width: 100%;
-   }
 }
 @media (min-width: $media-tablet){
    #container-single {
-      .content-box {
-         width: 690px;
-         margin: 0 auto;
-      }
+      width: 690px;
+      margin: 0 auto;
    }
 }
 

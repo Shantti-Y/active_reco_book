@@ -19,6 +19,7 @@ $media-phone: 450px;
 
 ************************************************/
 #container {
+   box-sizing: border-box;
    padding-top: 60px;
    width: 100%;
    margin: 0 11px;
@@ -38,7 +39,7 @@ $media-phone: 450px;
    #container {
       width: 100%;
       overflow: hidden;
-      margin: auto;
+      margin: 0 auto;
 
       #container-left {
          float: left;
