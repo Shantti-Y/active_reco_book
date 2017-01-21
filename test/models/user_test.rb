@@ -116,7 +116,7 @@ class UserTest < ActiveSupport::TestCase
       assert_not @user.valid?
    end
 
-   test "password should have more than 8 chars" do
+   test "password should have more than 8 characters" do
       @user.password = "f" * 7
       assert_not @user.valid?
    end

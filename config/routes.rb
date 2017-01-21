@@ -12,7 +12,7 @@ Rails.application.routes.draw do
    #Routes for sessions
    get '/login', to: 'sessions#new'
    post '/login', to: 'sessions#create'
-   delete '/logout', to: 'sessions#destroy'
+   delete '/logout/:id', to: 'sessions#destroy', as: 'logout'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

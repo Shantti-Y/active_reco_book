@@ -11,12 +11,24 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   def is_logged_in?
-    !session[:user_id].nil?
+     if !session[:user_id].nil?
+        user = User.find(session[:user_id])
+        if user.authenticated?('remember_digest', user.remember_token)
+           return true
+        elsif session[:expired_at] <= Time.now
+            logout_as
+            return false
+        else
+            return true
+        end
+     end
   end
 
   def login_as(user)
      session[:user_id] = user.id
+     session[:expired_at] = Time.now + 3.days
   end
+
 
   def logout_as
      session.delete(:user_id)

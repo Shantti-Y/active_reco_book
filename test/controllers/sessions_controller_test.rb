@@ -19,7 +19,8 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
    end
 
    test "should log out" do
-      delete logout_path
+      login_as(@employee)
+      delete logout_path(@employee)
       assert_redirected_to login_url
       assert_not is_logged_in?
    end

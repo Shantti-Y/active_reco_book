@@ -14,6 +14,7 @@
                <i class="fa fa-key"></i>
                <%= f.password_field :password, placeholder: 'パスワード', class: 'form-input form-session'  %>
             </div>
+            <%= f.check_box :remembered %><span>ログイン状態を保存する</span>
             <div id="form-submit">
                <%= f.submit 'ログイン', class: 'btn form-submit' %>
                <a href="#">パスワードをお忘れの方はこちら</a>

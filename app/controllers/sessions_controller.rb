@@ -1,12 +1,15 @@
 class SessionsController < ApplicationController
-   
+
   def new
   end
 
   def create
      user = User.find_by(email: params[:session][:email])
      if user && user.authenticate(params[:session][:password])
-        flash[:info] = "ようこそ、ActiveRecoBookへ！"
+        if params[:session][:remembered] == "1"
+           remember(user)
+        end
+        flash[:info] = "ようこそ、Active Reco Bookへ！"
         login(user)
         redirect_to home_url
      else
@@ -16,7 +19,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+     user = User.find(params[:id])
      logout
+     forget(user)
      redirect_to login_url
   end
 end

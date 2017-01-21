@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-=begin
-   name, email, employee_number, devision, gender,
-   started_at, birthday, employee
-=end
+
+   attr_accessor :remember_token, :activation_token
 
    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[\w\d\-.]+\.[A-z]+\z/
 
@@ -27,11 +25,29 @@ class User < ApplicationRecord
 
    has_secure_password
 
+   def remember
+      self.remember_token = User.new_token
+      self.update_attribute(:remember_digest, User.digest(self.remember_token))
+   end
+
+   def forget
+      self.update_attribute(:remember_digest, nil)
+   end
+
    def User.digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                     BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
    end
 
+   def User.new_token
+      SecureRandom.urlsafe_base64
+   end
+
+   def authenticated?(attribute, token)
+      field = send(attribute)
+      return false if field.nil?
+      BCrypt::Password.new(field).is_password?(token)
+   end
 
 end
