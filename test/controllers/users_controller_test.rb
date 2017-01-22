@@ -26,44 +26,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
    end
 
-   test "should create new user" do
-      assert_difference 'User.count', 1 do
-         post users_path, params: { user: {
-                                          name: "例得　新",
-                                          email: "example@youtube.mail.jp",
-                                          employee_number: 12345678,
-                                          division: "技術部研究開発課",
-                                          gender: "女",
-                                          started_at: 1.year.ago,
-                                          birthday: 24.years.ago,
-                                          employee: true,
-                                          password: "password",
-                                          password_confirmation: "password"
-                                          } }
-      end
-      assert flash['success']
-      assert_redirected_to home_url
-   end
-
-   test "should be failed to create new user with invalid parameters" do
-      assert_no_difference 'User.count' do
-         post users_path, params: { user: {
-                                          name: "a" * 51,
-                                          email: ("a" * 255)+ "@.mail.jp",
-                                          employee_number: 123456789,
-                                          division: "a" * 51,
-                                          gender: "両",
-                                          started_at: 1.year.ago,
-                                          birthday: 24.years.ago,
-                                          employee: true,
-                                          password: "",
-                                          password_confirmation: ""
-                                          } }
-      end
-      assert flash['danger']
-      assert_response :success
-   end
-
    test "should update the user" do
       patch user_path(@employee), params: { user: {
                                                    division: "営業部企画課",

@@ -128,4 +128,9 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?
    end
 
+   test "activation status should be generated as soon as new user created" do
+      @user.save
+      assert_not @user.activate_digest.nil?
+   end
+
 end

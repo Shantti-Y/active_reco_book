@@ -10,3 +10,16 @@ first_employee:
   birthday: 24.years.ago
   employee: true
   password_digest: <%= User.digest('password') %>
+  activated: true
+
+unsubmitted_employee:
+  name: 例得 等連
+  email: example@yahoo.mail.com
+  employee_number: 12345679
+  division: 営業部企画課
+  gender: 男
+  started_at: 1.year.ago
+  birthday: 24.years.ago
+  employee: true
+  password_digest: <%= User.digest('password') %>
+  activated: false

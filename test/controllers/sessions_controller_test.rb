@@ -4,6 +4,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
    def setup
       @employee = users(:first_employee)
+      @unsubmitted_employee = users(:unsubmitted_employee)
    end
 
    test "should get new" do
@@ -16,6 +17,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
                                              password: "password" }}
       assert_redirected_to home_url
       assert is_logged_in?
+   end
+
+   test "should be failed to log in without activation" do
+      post login_path, params: { session: { email: @unsubmitted_employee.email,
+                                             password: "password" }}
+      assert flash['danger']
+      assert_template 'sessions/new'
+      assert_not is_logged_in?
    end
 
    test "should log out" do

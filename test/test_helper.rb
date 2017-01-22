@@ -13,7 +13,8 @@ class ActiveSupport::TestCase
   def is_logged_in?
      if !session[:user_id].nil?
         user = User.find(session[:user_id])
-        if user.authenticated?('remember_digest', user.remember_token)
+        if user.authenticated?('remember', cookies[:remember_token])
+           remember(user)
            return true
         elsif session[:expired_at] <= Time.now
             logout_as

@@ -5,10 +5,8 @@ class SessionsController < ApplicationController
 
   def create
      user = User.find_by(email: params[:session][:email])
-     if user && user.authenticate(params[:session][:password])
-        if params[:session][:remembered] == "1"
-           remember(user)
-        end
+     if user && user.authenticate(params[:session][:password]) && user.activated?
+        params[:session][:remembered] == "1" ? remember(user) : forget(user)
         flash[:info] = "ようこそ、Active Reco Bookへ！"
         login(user)
         redirect_to home_url
@@ -20,8 +18,10 @@ class SessionsController < ApplicationController
 
   def destroy
      user = User.find(params[:id])
-     logout
-     forget(user)
-     redirect_to login_url
+     if user
+        logout
+        forget(user)
+        redirect_to login_url
+     end
   end
 end

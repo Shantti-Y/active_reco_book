@@ -1,8 +1,10 @@
 class User < ApplicationRecord
 
-   attr_accessor :remember_token, :activation_token
+   attr_accessor :remember_token, :activate_token
 
    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[\w\d\-.]+\.[A-z]+\z/
+
+   before_create :generate_activation
 
    validates :name, presence: true,
                     length: { maximum: 20 }
@@ -45,9 +47,21 @@ class User < ApplicationRecord
    end
 
    def authenticated?(attribute, token)
-      field = send(attribute)
+      field = self.send("#{attribute}_digest")
       return false if field.nil?
       BCrypt::Password.new(field).is_password?(token)
    end
+
+   def send_activation_mail
+      UserMailer.account_activation(self).deliver_now
+   end
+
+
+   private
+      def generate_activation
+         self.activate_token = User.new_token
+         self.activate_digest = User.digest(self.activate_token)
+         self.activated = false
+      end
 
 end
