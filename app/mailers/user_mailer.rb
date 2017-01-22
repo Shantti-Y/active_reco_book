@@ -7,7 +7,6 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-
     mail to: user.email,
          subject: "アカウント登録のご案内"
   end
@@ -17,6 +16,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.password_reset.subject
   #
-  def password_reset
+  def password_reset(user)
+     @user = user
+     mail to: user.email,
+          subject: "パスワード再発行のご案内"
   end
 end

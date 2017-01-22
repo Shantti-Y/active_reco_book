@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 20170121101934) do
     t.datetime "started_at"
     t.datetime "birthday"
     t.boolean  "employee"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "activated"
+    t.boolean  "activated",              default: false
     t.string   "activate_digest"
-    t.boolean  "password_reset"
+    t.boolean  "password_reset",         default: true
     t.string   "password_reset_digest"
     t.datetime "password_reset_sent_at"
   end

@@ -6,11 +6,13 @@ first_employee:
   employee_number: 12345678
   division: 技術部開発課
   gender: 男
-  started_at: 1.year.ago
-  birthday: 24.years.ago
+  started_at: <%= 1.year.ago %>
+  birthday: <%= 24.years.ago %>
   employee: true
   password_digest: <%= User.digest('password') %>
   activated: true
+  password_reset: false
+  password_reset_sent_at: <%= Time.now %>
 
 unsubmitted_employee:
   name: 例得 等連
@@ -18,8 +20,10 @@ unsubmitted_employee:
   employee_number: 12345679
   division: 営業部企画課
   gender: 男
-  started_at: 1.year.ago
-  birthday: 24.years.ago
+  started_at: <%= 1.year.ago %>
+  birthday: <%= 24.years.ago %>
   employee: true
   password_digest: <%= User.digest('password') %>
   activated: false
+  password_reset: true
+  password_reset_sent_at: <%= Time.now %>

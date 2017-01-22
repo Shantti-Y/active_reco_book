@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-   attr_accessor :remember_token, :activate_token
+   attr_accessor :remember_token, :activate_token, :password_reset_token
 
    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[\w\d\-.]+\.[A-z]+\z/
 
@@ -56,12 +56,22 @@ class User < ApplicationRecord
       UserMailer.account_activation(self).deliver_now
    end
 
+   def send_password_reset_mail
+      UserMailer.password_reset(self).deliver_now
+   end
+
+   def password_expired?
+      if self.password_reset? && self.password_reset_sent_at + 2.weeks <= Time.now
+         return true
+      else
+         return false
+      end
+   end
 
    private
       def generate_activation
          self.activate_token = User.new_token
          self.activate_digest = User.digest(self.activate_token)
-         self.activated = false
       end
 
 end

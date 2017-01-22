@@ -17,7 +17,7 @@ class ActiveSupport::TestCase
            remember(user)
            return true
         elsif session[:expired_at] <= Time.now
-            logout_as
+            logout_as(user)
             return false
         else
             return true
@@ -31,14 +31,20 @@ class ActiveSupport::TestCase
   end
 
 
-  def logout_as
-     session.delete(:user_id)
+  def logout_as(user)
+    session.delete(:user_id)
+    session.delete(:expired_at)
   end
 
   class ActionDispatch::IntegrationTest
-    def login_as(user, password: 'password')
+    def login_as(user, password="password", remembered="0")
       post login_path, params: { session: { email: user.email,
-                                           password: password } }
+                                           password: password,
+                                           remembered: remembered } }
+    end
+
+    def logout_as(user)
+     delete logout_path(user)
     end
   end
 end

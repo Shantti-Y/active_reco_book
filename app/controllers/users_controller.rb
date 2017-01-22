@@ -19,6 +19,7 @@ class UsersController < ApplicationController
      @user = User.new(user_params)
      if @user.save
         @user.send_activation_mail
+        @user.update_attribute(:password_reset_sent_at, Time.now)
         flash['success'] = "本登録のメールを送信しました。
         届いたメール内に記載されたURLをクリックして登録を完了してください"
         redirect_to home_url
@@ -45,6 +46,30 @@ class UsersController < ApplicationController
          redirect_to home_url
      else
         redirect_to home_url
+     end
+  end
+
+  def edit_password
+     @user = User.find(params[:id])
+  end
+
+  def update_password
+     user = User.find(params[:id])
+     if user && user.authenticate(params[:password][:current_password]) &&
+        params[:password][:new_password] == params[:password][:password_confirmation]
+        if user.update_attribute(:password_digest, User.digest(params[:password][:new_password]))
+           user.update_attribute(:password_reset, false)
+           flash[:success] = "パスワードの変更を完了しました"
+           redirect_to home_url
+        else
+           flash['danger'] = "新しいパスワードが有効ではありません"
+        end
+     else
+        if !user.authenticate(params[:password][:current_password])
+           flash['danger'] = "現在のパスワードが正しく入力されていません"
+        elsif params[:password][:new_password] != params[:password][:password_confirmation]
+           flash['danger'] = "新しいパスワードが正しく入力されていません"
+        end
      end
   end
 
