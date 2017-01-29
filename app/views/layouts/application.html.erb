@@ -11,34 +11,35 @@
 
   <body>
    <!--         Header         -->
-
    <div id="header">
       <ul id="header-main">
-         <li id="header-menu" class="header-content"><i class="fa fa-bars"></i></li>
+         <li id="header-menu" class="header-content header-icon"><i class="fa fa-bars"></i></li>
          <li id="header-title" class="header-content"><span>A</span>ctive<span>R</span>eco<span>B</span>ook</li>
-         <li id="header-notify" class="header-content">
+         <li id="header-user" class="header-content header-icon"><i class="fa fa-home"></i></li>
+         <li id="header-notify" class="header-content header-icon">
             <p id="notify-count">1</p>
             <i class="fa fa-clipboard"></i>
          </li>
       </ul>
+      <ul id="header-menu-contents">
+         <li class="header-menu-content"><a href="">新しい投稿</a></li>
+         <li class="header-menu-content"><a href="">こころチェック</a></li>
+         <li class="header-menu-content"><a href="">タイムライン</a></li>
+         <li class="header-menu-content"><a href="">webラーニング</a></li>
+      </ul>
 
    </div>
-   <!--
-   <div id="dropdown-menu">
-      <div class="wrapper"></div>
 
-      <ul id="menu-items">
+   <div id="dropdown-menu" class="dropdown-content">
+
+      <ul class="menu-items">
          <li class="menu-item"><a href=""><i class="fa fa-plus"></i>新しい投稿</a></li>
          <li class="menu-item"><a href=""><i class="fa fa-heartbeat"></i>こころチェック</a></li>
          <li class="menu-item"><a href=""><i class="fa fa-clock-o"></i>タイムライン</a></li>
          <li class="menu-item"><a href=""><i class="fa fa-laptop"></i>Webラーニング</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-user"></i>ユーザー</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-cog"></i>設定</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-sign-out"></i>ログアウト</a></li>
       </ul>
    </div>
-   <div id="dropdown-notify">
-      <div class="wrapper"></div>
+   <div id="dropdown-notify" class="dropdown-content">
       <ul id="notify-items">
          <li class="notify-item">
             <a class="notify-box" href="#">
@@ -78,9 +79,18 @@
          </li>
       </ul>
    </div>
-   -->
+
+   <div id="dropdown-user" class="dropdown-content">
+
+      <ul class="menu-items">
+         <li class="menu-item"><a href=""><i class="fa fa-user"></i>ユーザーページ</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-cog"></i>設定</a></li>
+         <li class="menu-item"><a href=""><i class="fa fa-sign-out"></i>ログアウト</a></li>
+      </ul>
+   </div>
+
    <%= render 'shared/flash' %>
-   
+
    <!--        Contents        -->
    <div id="container">
       <%= yield %>

@@ -8,11 +8,12 @@
 
 
 ************************************************/
-$media-desktop: 970px;
+$media-desktop: 920px;
 $media-tablet: 768px;
 
 
 body {
+   z-index: 0;
    margin: 0 auto;
    width: 100%;
    overflow-x: hidden;
@@ -22,7 +23,7 @@ body {
       font-size: 13px;
       color: #7373a5; // Keep trying to change until I'm satisfied
    }
-   background-color: #eeeeee;
+   background-color: #e1e8ed;
 }
 
 a {
