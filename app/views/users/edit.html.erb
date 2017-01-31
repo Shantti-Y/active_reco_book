@@ -36,6 +36,11 @@
          </div>
 
          <div class="form-line">
+            <p class="form-label">プロフィール画像</p>
+            <%= f.file_field :uploaded_thumbnail, class: 'form-file form-user' %>
+         </div>
+
+         <div class="form-line">
             <p class="form-label">入社年月</p>
             <p class="form-value"><%= @user.started_at %></p>
          </div>

@@ -70,12 +70,13 @@ class UsersController < ApplicationController
         elsif params[:password][:new_password] != params[:password][:password_confirmation]
            flash['danger'] = "新しいパスワードが正しく入力されていません"
         end
+        render 'users/edit_password'
      end
   end
 
   private
    def user_params
       params.require(:user).permit(:name, :email, :employee_number, :division, :gender,
-       :started_at, :birthday, :employee, :password, :password_confirmation)
+       :started_at, :birthday, :employee, :password, :password_confirmation, :uploaded_thumbnail)
    end
 end

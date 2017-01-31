@@ -1,10 +1,9 @@
 class User < ApplicationRecord
+   before_create :generate_activation
 
    attr_accessor :remember_token, :activate_token, :password_reset_token
 
    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[\w\d\-.]+\.[A-z]+\z/
-
-   before_create :generate_activation
 
    validates :name, presence: true,
                     length: { maximum: 20 }
@@ -24,8 +23,9 @@ class User < ApplicationRecord
    validates :password, presence: true,
                         length: { minimum: 8 },
                         allow_nil: true
-
    has_secure_password
+
+   validate :file_valid?
 
    def remember
       self.remember_token = User.new_token
@@ -68,10 +68,20 @@ class User < ApplicationRecord
       end
    end
 
+   def uploaded_thumbnail=(thumbnail_field)
+     self.thumbnail_ctype = thumbnail_field.content_type
+     self.thumbnail = thumbnail_field.read
+   end
+
    private
       def generate_activation
          self.activate_token = User.new_token
          self.activate_digest = User.digest(self.activate_token)
+      end
+
+      def file_valid?
+        ps = ["image/jpeg", "image/jpg", "image/gif", "image/png"]
+        errors.add(:thumbnail, 'is not an image file') if !self.thumbnail.nil? && !ps.include?(self.thumbnail_ctype)
       end
 
 end

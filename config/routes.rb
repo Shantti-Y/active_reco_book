@@ -21,5 +21,12 @@ Rails.application.routes.draw do
    get '/password_reset', to: 'account_managements#password_reset_new'
    post '/password_reset', to: 'account_managements#password_reset_create'
 
+   # Routes for file uploaders
+   resources 'uploaders', only: [] do
+     member do
+      get :user_thumbnail, as: :user_thumbnail
+     end
+   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

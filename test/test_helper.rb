@@ -36,6 +36,10 @@ class ActiveSupport::TestCase
     session.delete(:expired_at)
   end
 
+  def file_read(name)
+     File.read(Rails.root.to_s + "/test/fixtures/files/#{name}")
+  end
+
   class ActionDispatch::IntegrationTest
     def login_as(user, password="password", remembered="0")
       post login_path, params: { session: { email: user.email,

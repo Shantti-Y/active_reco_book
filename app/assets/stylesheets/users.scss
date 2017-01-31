@@ -40,7 +40,6 @@ $media-phone: 450px;
          padding: 2px 4px;
          border: 1px solid #cdcdcd;
       }
-
    }
 }
 
@@ -64,11 +63,10 @@ $media-phone: 450px;
          }
          .form-input{
             margin-left: 12px;
-            width: calc(73% - 22px);
+            width: 220px;
          }
-         .form-select {
-            margin-left: 12px;
-         }
+         .form-select { margin-left: 12px; }
+         .form-file { margin-left: 12px; }
       }
 
    }

@@ -133,4 +133,14 @@ class UserTest < ActiveSupport::TestCase
       assert_not @user.activate_digest.nil?
    end
 
+   test "thumbnail should be valid with a correct file extension" do
+      @user.thumbnail = file_read("example_thumbnail.png")
+      @user.thumbnail_ctype = "image/png"
+      assert @user.valid?
+
+      @user.thumbnail = file_read("fake.txt")
+      @user.thumbnail_ctype = "text/plain"
+      assert_not @user.valid?
+   end
+
 end
