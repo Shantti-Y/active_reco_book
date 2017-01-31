@@ -1,26 +1,5 @@
 <div id="container-left">
-   <div id="user-profile" class="content-box">
-      <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" id="user-thumbnail">
-      <div id="user-information">
-         <p id="user-name">吉岡　隆弘  さん</p>
-         <p id="user-division">滋賀工場技術課</p>
-         <a href="#">編集する</a>
-         <ul id="user-archivements">
-            <li class="user-archivement">
-               <p class="section">投稿</p>
-               <p class="count">12</p>
-            </li>
-            <li class="user-archivement">
-               <p class="section">診断</p>
-               <p class="count">6</p>
-            </li>
-            <li class="user-archivement">
-               <p class="section">学習</p>
-               <p class="count">4</p>
-            </li>
-         </ul>
-      </div>
-   </div>
+   <%= render('shared/user_status') %>
 </div>
 
 <div id="container-right">

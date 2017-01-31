@@ -328,11 +328,13 @@ $danger: #ff3333;
 
 ************************************************/
 #flash {
-   width: 100%;
-   min-height: 28px;
+   width: calc(100% - 22px);
+   margin: -3px 0 9px 0;
+   display: block;
+   text-align: center;
+   border-radius: 8px;
 
    #flash-content {
-      display: block;
       font-size: 13px;
       color: #ffffff;
       font-weight: bold;
@@ -353,3 +355,14 @@ $danger: #ff3333;
 .flash-warning { background-color: $warning; }
 
 .flash-danger { background-color: $danger; }
+
+@media (min-width: $media-tablet){
+   #flash { margin: -3px auto 9px 11px; }
+}
+
+@media (min-width: $media-desktop){
+   #flash {
+      margin: -3px 0 9px 0;
+      width: 100%;
+   }
+}
