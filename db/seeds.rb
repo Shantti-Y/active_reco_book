@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.delete_all
+Post.delete_all
 
 User.create!(
             name: "例得 升男",
@@ -21,4 +22,11 @@ User.create!(
             activated: true,
             password_reset: false,
             password_reset_sent_at: Time.now
+            )
+
+Post.create!(
+            user_id: User.find_by(name: "例得 升男").id,
+            content: "Active Reco Bookへようこそ",
+            condition: "safe",
+            post_type: "daily"
             )

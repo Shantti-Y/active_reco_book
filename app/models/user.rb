@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+   has_many :posts, dependent: :destroy
+
    before_create :generate_activation
 
    attr_accessor :remember_token, :activate_token, :password_reset_token

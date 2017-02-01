@@ -1,0 +1,105 @@
+<div id="header">
+   <ul id="header-main">
+
+      <% if is_logged? %>
+         <li id="header-menu" class="header-content header-icon"><i class="fa fa-bars"></i></li>
+      <% else %>
+         <li id="header-dummy"></li>
+      <% end %>
+
+      <li id="header-title" class="header-content">
+         <%= link_to home_path do %>
+            <span>A</span>ctive<span>R</span>eco<span>B</span>ook
+         <% end %>
+      </li>
+
+      <% if is_logged?%>
+         <li id="header-user" class="header-content header-icon"><i class="fa fa-home"></i></li>
+         <li id="header-notify" class="header-content header-icon">
+            <p id="notify-count">1</p>
+            <i class="fa fa-clipboard"></i>
+         </li>
+      <% end %>
+
+   </ul>
+   <% if is_logged? %>
+      <ul id="header-menu-contents">
+         <li class="header-menu-content"><a href="">新しい投稿</a></li>
+         <li class="header-menu-content"><a href="">こころチェック</a></li>
+         <li class="header-menu-content"><a href="">webラーニング</a></li>
+      </ul>
+   <% end %>
+
+</div>
+
+<% if is_logged? %>
+<div id="dropdown-menu" class="dropdown-content">
+
+   <ul class="menu-items">
+      <li class="menu-item"><a href=""><i class="fa fa-plus"></i>新しい投稿</a></li>
+      <li class="menu-item"><a href=""><i class="fa fa-heartbeat"></i>こころチェック</a></li>
+      <li class="menu-item"><a href=""><i class="fa fa-laptop"></i>Webラーニング</a></li>
+   </ul>
+</div>
+<div id="dropdown-notify" class="dropdown-content">
+   <ul id="notify-items">
+      <li class="notify-item">
+         <a class="notify-box" href="#">
+            <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+            <div class="notify-content">
+               <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+               <p class="notify-created-at">20時間前</p>
+            </div>
+         </a>
+      </li>
+      <li class="notify-item">
+         <a class="notify-box" href="#">
+            <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+            <div class="notify-content">
+               <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+               <p class="notify-created-at">20時間前</p>
+            </div>
+         </a>
+      </li>
+      <li class="notify-item">
+         <a class="notify-box" href="#">
+            <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+            <div class="notify-content">
+               <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+               <p class="notify-created-at">20時間前</p>
+            </div>
+         </a>
+      </li>
+      <li class="notify-item">
+         <a class="notify-box" href="#">
+            <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
+            <div class="notify-content">
+               <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
+               <p class="notify-created-at">20時間前</p>
+            </div>
+         </a>
+      </li>
+   </ul>
+</div>
+
+<div id="dropdown-user" class="dropdown-content">
+
+   <ul class="menu-items">
+      <li class="menu-item">
+         <%= link_to user_path(current_user) do %>
+            <i class="fa fa-user"></i>ユーザーページ
+         <% end %>
+      </li>
+      <li class="menu-item">
+         <%= link_to edit_user_path(current_user) do %>
+            <i class="fa fa-cog"></i>設定
+         <% end %>
+      </li>
+      <li class="menu-item">
+         <%= button_to logout_path(current_user), method: :delete do %>
+            <i class="fa fa-sign-out"></i>ログアウト
+         <% end %>
+      </li>
+   </ul>
+</div>
+<% end %>

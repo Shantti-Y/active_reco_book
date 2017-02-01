@@ -11,81 +11,7 @@
 
   <body>
    <!--         Header         -->
-   <div id="header">
-      <ul id="header-main">
-         <li id="header-menu" class="header-content header-icon"><i class="fa fa-bars"></i></li>
-         <li id="header-title" class="header-content"><span>A</span>ctive<span>R</span>eco<span>B</span>ook</li>
-         <li id="header-user" class="header-content header-icon"><i class="fa fa-home"></i></li>
-         <li id="header-notify" class="header-content header-icon">
-            <p id="notify-count">1</p>
-            <i class="fa fa-clipboard"></i>
-         </li>
-      </ul>
-      <ul id="header-menu-contents">
-         <li class="header-menu-content"><a href="">新しい投稿</a></li>
-         <li class="header-menu-content"><a href="">こころチェック</a></li>
-         <li class="header-menu-content"><a href="">webラーニング</a></li>
-      </ul>
-
-   </div>
-
-   <div id="dropdown-menu" class="dropdown-content">
-
-      <ul class="menu-items">
-         <li class="menu-item"><a href=""><i class="fa fa-plus"></i>新しい投稿</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-heartbeat"></i>こころチェック</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-laptop"></i>Webラーニング</a></li>
-      </ul>
-   </div>
-   <div id="dropdown-notify" class="dropdown-content">
-      <ul id="notify-items">
-         <li class="notify-item">
-            <a class="notify-box" href="#">
-               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
-               <div class="notify-content">
-                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
-                  <p class="notify-created-at">20時間前</p>
-               </div>
-            </a>
-         </li>
-         <li class="notify-item">
-            <a class="notify-box" href="#">
-               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
-               <div class="notify-content">
-                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
-                  <p class="notify-created-at">20時間前</p>
-               </div>
-            </a>
-         </li>
-         <li class="notify-item">
-            <a class="notify-box" href="#">
-               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
-               <div class="notify-content">
-                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
-                  <p class="notify-created-at">20時間前</p>
-               </div>
-            </a>
-         </li>
-         <li class="notify-item">
-            <a class="notify-box" href="#">
-               <img src="https://www.causes.com/assets/avatar_placeholder-9a2f53db6270aa02b5ae2c5af1ffc72b.svg" class="notify-thumbnail">
-               <div class="notify-content">
-                  <p class="notify-line">酒寄 辰巳さんがあなたの投稿にコメントしました。</p>
-                  <p class="notify-created-at">20時間前</p>
-               </div>
-            </a>
-         </li>
-      </ul>
-   </div>
-
-   <div id="dropdown-user" class="dropdown-content">
-
-      <ul class="menu-items">
-         <li class="menu-item"><a href=""><i class="fa fa-user"></i>ユーザーページ</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-cog"></i>設定</a></li>
-         <li class="menu-item"><a href=""><i class="fa fa-sign-out"></i>ログアウト</a></li>
-      </ul>
-   </div>
+   <%= render 'shared/header' %>
 
    <!--        Contents        -->
    <div id="container">
@@ -94,14 +20,6 @@
    </div>
 
    <!--         Footer         -->
-   <div id="footer">
-      <p id="footer-title"><span>A</span>ctive<span>R</span>eco<span>B</span>ook</p>
-      <ul id="footer-main">
-         <li class="footer-content"><a href="#">Active Reco Book とは</a></li>
-         <li class="footer-content"><a href="#">よくある質問</a></li>
-         <li class="footer-content"><a href="#">利用規約</a></li>
-      </ul>
-      <p id="footer-copyright">© 2017 Shantty_Y</p>
-   </div>
+   <%= render 'shared/footer' %>
   </body>
 </html>

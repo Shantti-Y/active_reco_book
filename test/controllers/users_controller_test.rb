@@ -4,6 +4,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
    def setup
       @employee = users(:first_employee)
+      login_as(@employee)
    end
 
    test "should get index" do

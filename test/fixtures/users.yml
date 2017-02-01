@@ -1,29 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 first_employee:
-  name: 例得 等連
-  email: example@gmail.com
-  employee_number: 12345678
-  division: 技術部開発課
-  gender: 男
-  started_at: <%= 1.year.ago %>
-  birthday: <%= 24.years.ago %>
-  employee: true
-  password_digest: <%= User.digest('password') %>
-  activated: true
-  password_reset: false
-  password_reset_sent_at: <%= Time.now %>
+   name: 例得 等連
+   email: example@gmail.com
+   employee_number: 12345678
+   division: 技術部開発課
+   gender: 男
+   started_at: <%= 1.year.ago %>
+   birthday: <%= 24.years.ago %>
+   employee: true
+   password_digest: <%= User.digest('password') %>
+   activated: true
+   password_reset: false
+   password_reset_sent_at: <%= Time.now %>
 
 unsubmitted_employee:
-  name: 例得 等連
-  email: example@yahoo.mail.com
-  employee_number: 12345679
-  division: 営業部企画課
-  gender: 男
-  started_at: <%= 1.year.ago %>
-  birthday: <%= 24.years.ago %>
-  employee: true
-  password_digest: <%= User.digest('password') %>
-  activated: false
-  password_reset: true
-  password_reset_sent_at: <%= Time.now %>
+   name: 例得 等連
+   email: example@yahoo.mail.com
+   employee_number: 12345679
+   division: 営業部企画課
+   gender: 男
+   started_at: <%= 1.year.ago %>
+   birthday: <%= 24.years.ago %>
+   employee: true
+   password_digest: <%= User.digest('password') %>
+   activated: false
+   password_reset: true
+   password_reset_sent_at: <%= Time.now %>
+
+employer:
+   name: 例得 野棟
+   email: jinji@yahoo.mail.com
+   employee_number: 12345689
+   division: 人事部採用課
+   gender: 男
+   started_at: <%= 10.year.ago %>
+   birthday: <%= 40.years.ago %>
+   employee: false
+   password_digest: <%= User.digest('password') %>
+   activated: true
+   password_reset: false
+   password_reset_sent_at: <%= Time.now %>
