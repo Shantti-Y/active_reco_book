@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'posts/new'
+
+  get 'posts/show'
+
+  get 'posts/edit'
+
    # Routes for static pages
    get '/home', to: 'static_pages#home'
    get '/help', to: 'static_pages#help'
@@ -27,6 +33,9 @@ Rails.application.routes.draw do
       get :user_thumbnail, as: :user_thumbnail
      end
    end
+
+   # Routes for posts
+   resources 'posts'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-
+   before_action :is_logged_in?, only: [:destroy]
+   
   def new
   end
 

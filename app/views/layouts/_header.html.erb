@@ -24,7 +24,7 @@
    </ul>
    <% if is_logged? %>
       <ul id="header-menu-contents">
-         <li class="header-menu-content"><a href="">新しい投稿</a></li>
+         <li class="header-menu-content"><%= link_to "新しい投稿", new_post_path %></li>
          <li class="header-menu-content"><a href="">こころチェック</a></li>
          <li class="header-menu-content"><a href="">webラーニング</a></li>
       </ul>
@@ -36,7 +36,7 @@
 <div id="dropdown-menu" class="dropdown-content">
 
    <ul class="menu-items">
-      <li class="menu-item"><a href=""><i class="fa fa-plus"></i>新しい投稿</a></li>
+      <li class="menu-item"><%= link_to new_post_path do %><i class="fa fa-plus"></i>新しい投稿<% end %></li>
       <li class="menu-item"><a href=""><i class="fa fa-heartbeat"></i>こころチェック</a></li>
       <li class="menu-item"><a href=""><i class="fa fa-laptop"></i>Webラーニング</a></li>
    </ul>
@@ -86,19 +86,13 @@
 
    <ul class="menu-items">
       <li class="menu-item">
-         <%= link_to user_path(current_user) do %>
-            <i class="fa fa-user"></i>ユーザーページ
-         <% end %>
+         <%= link_to user_path(current_user) do %><i class="fa fa-user"></i>ユーザーページ<% end %>
       </li>
       <li class="menu-item">
-         <%= link_to edit_user_path(current_user) do %>
-            <i class="fa fa-cog"></i>設定
-         <% end %>
+         <%= link_to edit_user_path(current_user) do %><i class="fa fa-cog"></i>設定<% end %>
       </li>
       <li class="menu-item">
-         <%= button_to logout_path(current_user), method: :delete do %>
-            <i class="fa fa-sign-out"></i>ログアウト
-         <% end %>
+         <%= button_to logout_path(current_user), method: :delete do %><i class="fa fa-sign-out"></i>ログアウト<% end %>
       </li>
    </ul>
 </div>

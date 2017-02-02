@@ -1,0 +1,34 @@
+<div id="container-left">
+   <%= render('shared/user_status') %>
+</div>
+
+<div id="container-right">
+   <div id="post-form" class="content-box">
+      <div class="content-header">
+         <p>新しい投稿</p>
+      </div>
+      <%= form_for(@post) do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>
+
+         <div class="form-line">
+            <p class="content-section"><%= "#{Date.today}時のあなたの記録"%></p>
+            <%= f.text_area :content, placeholder: "#{Date.today}を振り返って記録しよう", class: 'form-input form-post' %>
+         </div>
+
+         <div class="form-line">
+            <p class="content-section">今の仕事状況</p>
+            <ul class="form-condition">
+               <li><%= f.radio_button :condition, 'blank', class: "condition-button button-blank" %><p class="condition-label">未入力</p></li>
+               <li><%= f.radio_button :condition, 'comfort', class: "condition-button button-comfort" %><p class="condition-label">余力あり</p></li>
+               <li><%= f.radio_button :condition, 'safe', class: "condition-button button-safe" %><p class="condition-label">ちょうど</p></li>
+               <li><%= f.radio_button :condition, 'caution', class: "condition-button button-caution" %><p class="condition-label">溜め気味</p></li>
+               <li><%= f.radio_button :condition, 'danger', class: "condition-button button-danger" %><p class="condition-label">手一杯</p></li>
+            </ul>
+         </div>
+
+         <%= f.hidden_field :post_type, value: "daily" %>
+
+         <%= f.submit '投稿する', class: 'btn form-submit'%>
+      <% end %>
+   </div>
+</div>
