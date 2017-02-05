@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
    belongs_to :user
+   has_many :comments, dependent: :destroy
 
    validates :user_id, presence: true
    validates :content, presence: true,
@@ -7,5 +8,5 @@ class Post < ApplicationRecord
    validates :condition, format: { with: /blank|comfort|safe|caution|danger/ }
    validates :post_type, format: { with: /daily|condition|learning/ }
 
-   
+
 end

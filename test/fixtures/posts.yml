@@ -1,1 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+morning:
+   user_id: first_employee
+   content: Good morning
+   condition: comfort
+   post_type: daily

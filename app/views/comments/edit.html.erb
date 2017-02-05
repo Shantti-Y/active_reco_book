@@ -8,39 +8,32 @@
    </div>
 
    <div id="posts">
-      <% @posts.each do |post| %>
       <div class="post content-box">
          <div class="post-main">
             <div class="post-imgs">
-               <%= image_tag(show_user_thumbnail(post.user), class: 'post-thumbnail') %>
+               <%= image_tag(show_user_thumbnail(@post.user), class: 'post-thumbnail') %>
                <div class="post-condition">
-                  <p class="post-condition-about post-about-<%= post_class(post) %>"><%= post_category(post)%></p>
-                  <%= image_tag(post_icon(post), class: 'post-icon') %>
-                  <% if post.post_type == "daily" %>
-                  <p class="post-condition-result post-result-<%= post_class(post) %>"><%= post_condition(post)%></p>
+                  <p class="post-condition-about post-about-<%= post_class(@post) %>"><%= post_category(@post)%></p>
+                  <%= image_tag(post_icon(@post), class: 'post-icon') %>
+                  <% if @post.post_type == "daily" %>
+                  <p class="post-condition-result post-result-<%= post_class(@post) %>"><%= post_condition(@post)%></p>
                   <% end %>
                </div>
             </div>
             <div class="post-contents">
                <ul class="post-header">
-                  <li class="post-user"><%= post.user.name %>の投稿</li>
-                  <li class="post-posted-at"><%= post.updated_at %> 更新</li>
-                  <% if post.user == current_user %>
-                     <li class="post-command">
-                        <%= link_to edit_post_path(post) do %><i class="fa fa-pencil"></i><% end %>
-                        <%= link_to post_path(post), method: :delete do %><i class="fa fa-trash-o"></i><% end %>
-                     </li>
-                  <% end %>
+                  <li class="post-user"><%= @post.user.name %>の投稿</li>
+                  <li class="post-posted-at"><%= @post.updated_at %> 更新</li>
                </ul>
-               <p class="post-line"><%= post.content %></p>
+               <p class="post-line"><%= @post.content %></p>
             </div>
          </div>
          <div class="post-reaction">
             <a href="#"><i class="fa fa-thumbs-o-up"></i>いいね<span>2</span></a>
             <a href="#"><i class="fa fa-flag-o"></i>見たよ<span>2</span></a>
-            <a href="#"><i class="fa fa-comment-o"></i>コメント<span><%= post.comments.count %></span></a>
+            <a href="#"><i class="fa fa-comment-o"></i>コメント<span><%= @post.comments.count %></span></a>
          </div>
-         <% post.comments.each do |comment| %>
+         <% @post.comments.each do |comment| %>
             <div class="comment">
                <%= image_tag(show_user_thumbnail(comment.user), class: "comment-thumbnail") %>
                <div class="comment-information">
@@ -54,13 +47,20 @@
                   </ul>
                   <p class="comment-content"><%= comment.content %></p>
                </div>
-               <button><%= link_to "コメントする", new_comment_path(post) %></button>
             </div>
          <% end %>
          <div class="comment-form">
+            <%= form_for(@comment) do |f| %>
+               <%= render 'shared/error_messages', object: f.object %>
+               <div class="form-line">
+                  <%= f.text_area :content, placeholder: "#{Date.today}を振り返って記録しよう", class: 'form-input form-comment' %>
+               </div>
 
+               <%= f.hidden_field :post_id, value: @post.id %>
+
+               <%= f.submit '投稿する', class: 'btn form-submit'%>
+            <% end %>
          </div>
       </div>
-      <% end %>
    </div>
 </div>

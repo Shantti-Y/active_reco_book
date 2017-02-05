@@ -1,0 +1,52 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/************************************************
+
+
+                     Variables
+
+
+
+************************************************/
+$media-desktop: 920px;
+$media-tablet: 768px;
+$media-phone: 450px;
+
+$success: #07d26c;
+$info: #80ccff;
+$warning: #ffcc00;
+$danger: #ff3333;
+
+
+/************************************************
+
+
+                  Input forms
+
+
+
+************************************************/
+
+.comment-form {
+   border-top: 1px solid #dedede;
+   padding-top: 4px;
+
+   .form-line {
+      margin: 12px 0;
+      .form-input {
+         width: calc(100% - 20px);
+         padding: 4px 9px;
+         min-height: 60px;
+      }
+   }
+}
+
+@media (min-width: $media-phone){
+   .comment-form {
+      .form-line {
+      }
+   }
+}

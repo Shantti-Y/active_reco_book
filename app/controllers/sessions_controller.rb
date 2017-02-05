@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
    before_action :is_logged_in?, only: [:destroy]
-   
+
   def new
+     if is_logged?
+        user = current_user
+        logout
+        forget(user)
+     end
   end
 
   def create

@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
    before_action :is_logged_in?
-   
+
   def index
      @users = User.all
   end
 
   def show
      @user = User.find(params[:id])
+     @posts = Post.where(user_id: @user.id).reverse_order
+     @comments = Comment.all
+     @comment = Comment.new
   end
 
   def new

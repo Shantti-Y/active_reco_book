@@ -37,5 +37,9 @@ Rails.application.routes.draw do
    # Routes for posts
    resources 'posts'
 
+   # Routes for comments
+   resources 'comments', only: [:edit, :create, :update, :destroy]
+   get '/comments/:id', to: 'comments#new', as: 'new_comment'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

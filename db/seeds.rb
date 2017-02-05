@@ -8,6 +8,7 @@
 
 User.delete_all
 Post.delete_all
+Comment.delete_all
 
 User.create!(
             name: "例得 升男",
@@ -30,3 +31,9 @@ Post.create!(
             condition: "safe",
             post_type: "daily"
             )
+
+Comment.create!(
+               user_id: User.find_by(name: "例得 升男").id,
+               post_id: Post.last.id,
+               content: "Active Reco Bookへようこそ",
+               )

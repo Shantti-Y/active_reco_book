@@ -3,7 +3,9 @@ class StaticPagesController < ApplicationController
 
   def home
      @user = current_user
-     @posts = Post.all
+     @posts = Post.order(:created_at).reverse_order
+     @comments = Comment.all
+     @comment = Comment.new
   end
 
   def help
