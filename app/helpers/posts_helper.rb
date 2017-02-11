@@ -73,4 +73,8 @@ module PostsHelper
       end
    end
 
+   def post_content(post)
+      return post.content.slice(0, 140)
+   end
+
 end

@@ -23,7 +23,12 @@
                   </li>
                <% end %>
             </ul>
-            <p class="post-line"><%= post.content %></p>
+            <p class="post-line">
+               <%= post_content(post) %>
+               <% if post.content.length >= 140 %>
+                  <%= link_to post_path(post), remote: true do %><i class="fa fa-angle-double-right"></i>続きを読む<% end %>
+               <% end %>
+            </p>
          </div>
       </div>
       <div class="post-reaction">

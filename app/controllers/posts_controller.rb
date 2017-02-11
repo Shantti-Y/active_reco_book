@@ -9,6 +9,14 @@ class PostsController < ApplicationController
      end
   end
 
+  def show
+     @user = current_user
+     @post = Post.find(params[:id])
+     respond_to do |format|
+      format.js {}
+     end
+  end
+
   def edit
      @user = current_user
      @post = Post.find(params[:id])

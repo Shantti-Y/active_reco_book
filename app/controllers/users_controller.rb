@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
-     @posts = Post.where(user_id: @user.id).reverse_order
+     @posts = Post.page(params[:page]).where(user_id: @user.id).order(:created_at).reverse_order
      @comments = Comment.all
      @comment = Comment.new
   end

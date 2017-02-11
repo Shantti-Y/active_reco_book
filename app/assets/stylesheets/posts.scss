@@ -65,7 +65,7 @@ $danger: #ff3333;
                }
                .post-condition-result {
                   font-size: 9px;
-                  margin-top: 3px;
+                  margin: 3px 0;
                }
                .post-result-success { color: $success; }
                .post-result-info { color: $info; }
@@ -123,11 +123,18 @@ $danger: #ff3333;
 
             .post-line {
                margin-top: 7px;
+               a {
+                  display: block;
+                  &:hover {
+                     color: #b3d9ff;
+                     text-decoration: underline;
+                  }
+               }
             }
          }
       }
       .post-reaction {
-         margin: 15px 0 0 14px;
+         margin: 4px 0 0 14px;
          a {
             margin-right: 15px;
             font-size: 11px;
