@@ -2,8 +2,12 @@ class CommentsController < ApplicationController
 
    def new
       @user = current_user
-      @comment = Comment.new
       @post = Post.find(params[:id])
+      @comments = @post.comments
+      @comment = Comment.new
+      respond_to do |format|
+         format.js {}
+      end
    end
 
    def edit

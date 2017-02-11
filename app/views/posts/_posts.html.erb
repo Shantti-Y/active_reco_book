@@ -34,7 +34,7 @@
       <div class="post-reaction">
          <a href="#"><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span>2</span></a>
          <a href="#"><i class="fa fa-flag-o"></i><span class="reaction-str">見たよ</span><span>2</span></a>
-         <%= link_to post_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
+         <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
       </div>
    </div>
    <% end %>
