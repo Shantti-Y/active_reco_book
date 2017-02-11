@@ -17,14 +17,9 @@
                <li class="post-user"><%= post.user.name %>の投稿</li>
                <li class="post-posted-at"><%= post.updated_at.strftime("%Y/%m/%d %H:%M") %> 更新</li>
                <% if post.user == current_user %>
-                  <li class="post-command post-direct-action">
+                  <li class="post-command">
                      <%= link_to edit_post_path(post), remote: true do %><i class="fa fa-pencil"></i><% end %>
                      <%= link_to post_path(post), method: :delete do %><i class="fa fa-trash-o"></i><% end %>
-                  </li>
-                  <li class="post-command post-menu"><i class="fa fa-ellipsis-v"></i></li>
-                  <li class="post-dropdown">
-                     <%= link_to edit_post_path(post), remote: true do %><i class="fa fa-pencil"></i>投稿の編集<% end %>
-                     <%= link_to post_path(post), method: :delete do %><i class="fa fa-trash-o"></i>投稿の削除<% end %>
                   </li>
                <% end %>
             </ul>
