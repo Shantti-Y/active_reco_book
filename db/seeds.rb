@@ -43,15 +43,28 @@ User.create!(
 Post.create!(
             user_id: User.find_by(name: "例得 升男").id,
             content: "Active Reco Bookへようこそ",
-            condition: "safe",
+            condition: "info",
             post_type: "daily"
             )
 
 User.where(employee: true).each do |user|
   100.times do |n|
+     condition = String.new
+     rand_value = Random.rand(4)
+     case rand_value
+     when 0 then
+        condition = "success"
+     when 1 then
+        condition = "info"
+     when 2 then
+        condition = "warning"
+     when 3 then
+        condition = "danger"
+     else
+     end
     Post.create!( user_id: user.id,
                   content: Faker::Lorem.sentence(40),
-                  condition: 'comfort',
+                  condition: condition,
                   post_type: 'daily'
                   )
   end

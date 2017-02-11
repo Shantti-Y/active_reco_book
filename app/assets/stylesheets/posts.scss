@@ -54,8 +54,8 @@ $danger: #ff3333;
                   padding: 3px 2px;
                   color: #ffffff;
                }
-               .post-about-blank, .post-about-comfort, .post-about-safe,
-               .post-about-caution, .post-about-danger { background-color: #00b359; }
+               .post-about-blank, .post-about-success, .post-about-info,
+               .post-about-warning, .post-about-danger { background-color: #00b359; }
                .post-about-condition { background-color: #005ce6; }
                .post-about-learning { background-color: #ff8000; }
                .post-icon {
@@ -67,10 +67,10 @@ $danger: #ff3333;
                   font-size: 9px;
                   margin-top: 3px;
                }
-               .post-result-comfort { color: $success; }
-               .post-result-safe { color: $info; }
-               .post-result-caution { color: $warning; }
-               .post-result-sanger { color: $danger; }
+               .post-result-success { color: $success; }
+               .post-result-info { color: $info; }
+               .post-result-warning { color: $warning; }
+               .post-result-danger { color: $danger; }
             }
          }
          .post-contents {
@@ -353,9 +353,9 @@ $danger: #ff3333;
                }
             }
             .button-blank { background-image: url('blank.png') }
-            .button-comfort { background-image: url('comfort.png') }
-            .button-safe { background-image: url('safe.png') }
-            .button-caution { background-image: url('caution.png') }
+            .button-success { background-image: url('success.png') }
+            .button-info { background-image: url('info.png') }
+            .button-warning { background-image: url('warning.png') }
             .button-danger { background-image: url('danger.png') }
 
             .condition-label {
