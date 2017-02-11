@@ -14,6 +14,10 @@ class CommentsController < ApplicationController
       @user = current_user
       @comment = Comment.find(params[:id])
       @post = @comment.post
+      @comments = @post.comments
+      respond_to do |format|
+         format.js {}
+      end
    end
 
    def create
@@ -36,12 +40,15 @@ class CommentsController < ApplicationController
       @user = current_user
       @comment = Comment.find(params[:id])
       @post = @comment.post
-      if @comment.update_attributes(comment_params)
-         flash[:success] = "コメントを編集しました"
-         redirect_to home_url
-      else
-         flash[:danger] = "入力情報に不備があります"
-         render 'comments/edit'
+      respond_to do |format|
+         if @comment.update_attributes(comment_params)
+            flash[:success] = "コメントを再投稿しました。"
+            format.html { redirect_to home_url }
+            format.js { render 'comments/update' }
+         else
+            format.html { redirect_to home_url }
+            format.js { render 'comments/update' }
+         end
       end
    end
 

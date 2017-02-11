@@ -2,6 +2,7 @@ var targeted_id = document.getElementById('#post-<%= @post.id %>');
 if (targeted_id == null) {
    $(".ajax-content").remove();
    $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/comments')) %>");
+   $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/form')) %>");
 } else {
    $(".ajax-content").remove();
 }

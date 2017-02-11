@@ -1,12 +1,12 @@
 <% @comments.each do |comment| %>
-   <div class="comment ajax-content">
+   <div id="comment-<%= comment.id %>" class="comment ajax-content">
       <%= image_tag(show_user_thumbnail(comment.user), class: "comment-thumbnail") %>
       <div class="comment-information">
          <ul class="comment-header">
             <li class="comment-user"><%= comment.user.name %></li>
             <li class="comment-posted-at"><%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>更新</li>
             <li class="comment-command">
-               <%= link_to edit_comment_path(comment) do %><i class="fa fa-pencil"></i><% end %>
+               <%= link_to edit_comment_path(comment), remote: true do %><i class="fa fa-pencil"></i><% end %>
                <%= link_to comment_path(comment), method: :delete do %><i class="fa fa-trash-o"></i><% end %>
             </li>
          </ul>
@@ -14,4 +14,3 @@
       </div>
    </div>
 <% end %>
-<%= render('comments/form') %>

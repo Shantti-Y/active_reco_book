@@ -1,5 +1,5 @@
 <div class="comment-form ajax-content">
-   <%= form_for(@comment, remote: true ) do|f| %>
+   <%= form_for(@comment, remote: true) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form-line">
          <%= f.text_area :content, placeholder: "コメントをする", class: 'form-input form-comment' %>
