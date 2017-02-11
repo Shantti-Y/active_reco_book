@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+   hello: "Hello world"
+
+   views:
+      pagination:
+         first: ""
+         last: ""
+         previous: "<i class='fa fa-chevron-left'></i>"
+         next: "<i class='fa fa-chevron-right'></i>"

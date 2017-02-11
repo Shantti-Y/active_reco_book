@@ -48,7 +48,7 @@ Post.create!(
             )
 
 User.where(employee: true).each do |user|
-  10.times do |n|
+  100.times do |n|
     Post.create!( user_id: user.id,
                   content: Faker::Lorem.sentence(40),
                   condition: 'comfort',

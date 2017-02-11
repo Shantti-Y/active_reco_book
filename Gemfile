@@ -18,6 +18,7 @@ gem 'will_paginate', '3.1.0'
 gem 'bootstrap-sass', '3.3.7'
 gem 'react-rails'
 gem 'jquery-turbolinks'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3',                      '~> 1.3.11'

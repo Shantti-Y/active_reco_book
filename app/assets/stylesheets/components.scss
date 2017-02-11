@@ -26,7 +26,7 @@ $media-phone: 450px;
    width: 100%;
    margin: 0 11px;
    position: relative;
-   
+
 
    #container-left {
       box-sizing: border-box;
@@ -218,4 +218,50 @@ $media-phone: 450px;
 
 #mailer {
    p { font-size: 11px; }
+}
+
+/************************************************
+
+
+                  Pagination
+
+
+
+************************************************/
+
+#pagination {
+   text-align: center;
+   margin-top: 4px;
+   cursor: context-menu;
+   .page, .prev, .next {
+      display: inline-block;
+      background-color: #ffffff;
+      padding: 7px;
+      border-radius: 4px;
+      border: 1px solid #dedede;
+      * {
+         font-size: 11px;
+         color: #0066cc;
+      }
+      &:hover {
+         background-color: #0066cc;
+         cursor: pointer;
+         * { color: #ffffff; }
+      }
+   }
+   .gap {
+      &:hover {
+         background-color: #ffffff;
+         cursor: context-menu;
+         * { color: #0066cc; }
+      }
+   }
+   .current {
+      background-color: #0066cc;
+      color: #ffffff;
+      &:hover {
+         cursor: context-menu;
+         * { cursor: context-menu; }
+      }
+   }
 }
