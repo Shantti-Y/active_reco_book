@@ -14,10 +14,9 @@
          <div class="form-line">
             <p class="content-section">今の仕事状況</p>
             <ul class="form-condition">
-               <li><%= f.radio_button :condition, 'blank', class: "condition-button button-blank" %><p class="condition-label">未入力</p></li>
-               <li><%= f.radio_button :condition, 'comfort', class: "condition-button button-comfort" %><p class="condition-label">余力あり</p></li>
-               <li><%= f.radio_button :condition, 'safe', class: "condition-button button-safe" %><p class="condition-label">ちょうど</p></li>
-               <li><%= f.radio_button :condition, 'caution', class: "condition-button button-caution" %><p class="condition-label">溜め気味</p></li>
+               <li><%= f.radio_button :condition, 'success', class: "condition-button button-success" %><p class="condition-label">余力あり</p></li>
+               <li><%= f.radio_button :condition, 'info', class: "condition-button button-info" %><p class="condition-label">ちょうど</p></li>
+               <li><%= f.radio_button :condition, 'warning', class: "condition-button button-warning" %><p class="condition-label">溜め気味</p></li>
                <li><%= f.radio_button :condition, 'danger', class: "condition-button button-danger" %><p class="condition-label">手一杯</p></li>
             </ul>
          </div>

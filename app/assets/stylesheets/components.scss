@@ -233,35 +233,71 @@ $media-phone: 450px;
    text-align: center;
    margin-top: 4px;
    cursor: context-menu;
-   .page, .prev, .next {
+   .page {
       display: inline-block;
-      background-color: #ffffff;
-      padding: 7px;
-      border-radius: 4px;
-      border: 1px solid #dedede;
-      * {
+      a {
+         background-color: #ffffff;
+         padding: 7px;
+         border-radius: 4px;
+         border: 1px solid #dedede;
          font-size: 11px;
          color: #0066cc;
       }
       &:hover {
-         background-color: #0066cc;
-         cursor: pointer;
-         * { color: #ffffff; }
+         a {
+            background-color: #0066cc;
+            cursor: pointer;
+            color: #ffffff;
+         }
+      }
+   }
+   .next, .prev {
+      display: inline-block;
+      a {
+         i {
+            background-color: #ffffff;
+            padding: 7px;
+            border-radius: 4px;
+            border: 1px solid #dedede;
+            font-size: 11px;
+            color: #0066cc;
+         }
+      }
+      &:hover {
+         a {
+            i {
+               background-color: #0066cc;
+               cursor: pointer;
+               color: #ffffff;
+            }
+         }
       }
    }
    .gap {
-      &:hover {
+      display: inline-block;
+      i {
          background-color: #ffffff;
-         cursor: context-menu;
-         * { color: #0066cc; }
+         padding: 7px;
+         border-radius: 4px;
+         border: 1px solid #dedede;
+         font-size: 11px;
+         color: #0066cc;
+      }
+      &:hover {
+         i {
+            background-color: #ffffff;
+            cursor: context-menu;
+            color: #0066cc;
+         }
       }
    }
    .current {
-      background-color: #0066cc;
-      color: #ffffff;
-      &:hover {
-         cursor: context-menu;
-         * { cursor: context-menu; }
-      }
+         padding: 10px 7px;
+         border-radius: 4px;
+         border: 1px solid #dedede;
+         font-size: 11px;
+         background-color: #0066cc;
+         color: #ffffff;
+         &:hover { cursor: context-menu; }
    }
 }

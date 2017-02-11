@@ -1,8 +1,13 @@
-var targeted_id = document.getElementById('#post-<%= @post.id %>');
-if (targeted_id == null) {
-   $(".ajax-content").remove();
-   $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/comments')) %>");
-   $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/form')) %>");
+var targeted_id = document.getElementById('post-<%= @post.id %>');
+if (targeted_id != undefined) {
+   var target_form = targeted_id.getElementsByClassName('comment-form');
+   if(target_form.length == 0){
+      $(".ajax-content").remove();
+      $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/comments')) %>");
+      $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/form')) %>");
+   } else {
+      $(".ajax-content").remove();
+   }
 } else {
    $(".ajax-content").remove();
 }
