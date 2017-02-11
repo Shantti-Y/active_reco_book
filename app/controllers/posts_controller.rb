@@ -4,37 +4,57 @@ class PostsController < ApplicationController
   def new
      @user = current_user
      @post = Post.new
+     respond_to do |format|
+        format.js {}
+     end
   end
 
   def show
      @user = current_user
      @post = Post.find(params[:id])
+     @comments = @post.comments
+     @comment = Comment.new
+     respond_to do |format|
+      format.js {}
+     end
   end
 
   def edit
      @user = current_user
      @post = Post.find(params[:id])
+     respond_to do |format|
+       format.js {}
+     end
   end
 
   def create
      @user = current_user
      @post = current_user.posts.build(post_params)
-     if @post.save
-        flash[:success] = "新しい記録を投稿しました。"
-        redirect_to home_url
-     else
-        render 'posts/new'
+     respond_to do |format|
+        if @post.save
+           flash[:success] = "新しい記録を投稿しました。"
+           format.html { redirect_to home_url }
+           format.js { render 'posts/create' }
+        else
+           format.html { redirect_to home_url }
+           format.js { render 'posts/create' }
+        end
      end
+
   end
 
   def update
      @user = current_user
      @post = Post.find(params[:id])
-      if @post.update_attributes(post_params)
-          flash[:success] = "新しい記録を投稿しました。"
-          redirect_to home_url
-      else
-          render 'posts/new'
+      respond_to do |format|
+         if @post.update_attributes(post_params)
+            flash[:success] = "記録を再投稿しました。"
+            format.html { redirect_to home_url }
+            format.js { render 'posts/update' }
+         else
+            format.html { redirect_to home_url }
+            format.js { render 'posts/update' }
+         end
       end
   end
 

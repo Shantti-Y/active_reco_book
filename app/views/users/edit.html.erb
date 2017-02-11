@@ -42,12 +42,12 @@
 
          <div class="form-line">
             <p class="form-label">入社年月</p>
-            <p class="form-value"><%= @user.started_at %></p>
+            <p class="form-value"><%= @user.started_at.strftime("%Y年%m月%d日") %></p>
          </div>
 
          <div class="form-line">
             <p class="form-label">誕生日</p>
-            <p class="form-value"><%= @user.birthday %></p>
+            <p class="form-value"><%= @user.birthday.strftime("%Y年%m月%d日") %></p>
          </div>
 
          <%= f.submit '登録(メール送信)', class: 'btn form-submit' %>

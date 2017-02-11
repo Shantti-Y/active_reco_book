@@ -1,0 +1,7 @@
+var targeted_id = document.getElementById('#post-<%= @post.id %>');
+if (targeted_id == null) {
+   $(".ajax-content").remove();
+   $("#post-<%= @post.id %>").append("<%= escape_javascript(render('comments/comments')) %>");
+} else {
+   $(".ajax-content").remove();
+}

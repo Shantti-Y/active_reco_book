@@ -25,12 +25,37 @@ User.create!(
             password_reset_sent_at: Time.now
             )
 
+User.create!(
+            name: "例得 等",
+            email: "another@mail.co.jp",
+            employee_number: 23456789,
+            division: "営業部企画課",
+            gender: "男",
+            started_at: Date.new(2015, 4, 1),
+            birthday: Date.new(1992, 1, 1),
+            employee: true,
+            password_digest: User.digest('password'),
+            activated: true,
+            password_reset: false,
+            password_reset_sent_at: Time.now
+            )
+
 Post.create!(
             user_id: User.find_by(name: "例得 升男").id,
             content: "Active Reco Bookへようこそ",
             condition: "safe",
             post_type: "daily"
             )
+
+User.where(employee: true).each do |user|
+  10.times do |n|
+    Post.create!( user_id: user.id,
+                  content: Faker::Lorem.sentence(40),
+                  condition: 'comfort',
+                  post_type: 'daily'
+                  )
+  end
+end
 
 Comment.create!(
                user_id: User.find_by(name: "例得 升男").id,

@@ -1,13 +1,9 @@
-<div id="container-left">
-   <%= render('shared/user_status') %>
-</div>
 
-<div id="container-right">
-   <div id="post-form" class="content-box">
+   <div id="post-form" class="content-box ajax-content">
       <div class="content-header">
          <p>新しい投稿</p>
       </div>
-      <%= form_for(@post) do |f| %>
+      <%= form_for(@post, remote: true) do |f| %>
          <%= render 'shared/error_messages', object: f.object %>
 
          <div class="form-line">
@@ -31,4 +27,3 @@
          <%= f.submit '投稿する', class: 'btn form-submit'%>
       <% end %>
    </div>
-</div>

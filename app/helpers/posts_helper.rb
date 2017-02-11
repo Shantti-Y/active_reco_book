@@ -72,4 +72,5 @@ module PostsHelper
          return "手一杯"
       end
    end
+
 end

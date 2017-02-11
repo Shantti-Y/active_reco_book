@@ -34,10 +34,10 @@ $danger: #ff3333;
          overflow: hidden;
          .post-imgs {
             float: left;
-            width: 45px;
+            width: 40px;
             .post-thumbnail {
-               width: 43px;
-               height: 43px;
+               width: 38px;
+               height: 38px;
                border: 1px solid #eeeeee;
                margin-bottom: 10px;
             }
@@ -50,7 +50,7 @@ $danger: #ff3333;
                .post-condition-about {
                   display: block;
                   border-radius: 6px;
-                  width: 41px;
+                  width: 34px;
                   padding: 3px 2px;
                   color: #ffffff;
                }
@@ -63,7 +63,10 @@ $danger: #ff3333;
                   height: 32px;
                   border: 1px solid #eeeeee;
                }
-               .post-condition-result { margin-top: 3px; }
+               .post-condition-result {
+                  font-size: 9px;
+                  margin-top: 3px;
+               }
                .post-result-comfort { color: $success; }
                .post-result-safe { color: $info; }
                .post-result-caution { color: $warning; }
@@ -72,22 +75,24 @@ $danger: #ff3333;
          }
          .post-contents {
             float: left;
-            width: calc(100% - 45px - 12px);
+            width: calc(100% - 40px - 12px);
             margin-left: 12px;
 
             .post-header {
-               li { display: inline-block; }
+               position: relative;
+               li { display: block; }
                .post-user {
-                  font-size: 15px;
+                  margin-top: 3px;
+                  font-size: 13px;
                   font-weight: bold;
                }
                .post-posted-at {
-                  margin-left: 6px;
+                  margin: 5px 0;
                   font-size: 10px;
                   color: #595959;
                }
                .post-command {
-                  a {
+                  * {
                      width: 20px;
                      text-align: center;
                      display: inline-block;
@@ -96,9 +101,33 @@ $danger: #ff3333;
                      font-size: 16px;
                      border-radius: 3px;
                      &:hover {
+                        cursor: pointer;
+                        color: #b3d9ff;
                         * { color: #b3d9ff; }
-
                      }
+                  }
+               }
+               .post-direct-action { display: none; }
+               .post-menu {
+                  position: absolute;
+                  top: -3px;
+                  right: -1px;
+               }
+               .post-dropdown {
+                  display: none;
+                  position: absolute;
+                  top: 16px;
+                  right: 2px;
+                  background-color: #ffffff;
+                  padding: 4px;
+                  border: 1px solid #dedede;
+                  border-radius: 4px;
+                  box-shadow: #eeeeee 1px 1px 1px 0;
+                  a {
+                     display: block;
+                     padding: 6px;
+                     i { margin-right: 4px; }
+                     &:hover { background-color: #eeeeee; }
                   }
                }
             }
@@ -122,7 +151,6 @@ $danger: #ff3333;
       .post-reaction {
          margin: 15px 0 0 14px;
          a {
-            display: block;
             margin-right: 15px;
             font-size: 11px;
             i {
@@ -133,11 +161,16 @@ $danger: #ff3333;
                margin-left: 4px;
                text-decoration: underline;
             }
+            .reaction-str {
+               text-decoration: none;
+               display: none;
+            }
             &:hover {
                color: #b3d9ff;
                *{ color: #b3d9ff; }
             }
          }
+
       }
 
       .comment {
@@ -202,6 +235,9 @@ $danger: #ff3333;
                   .post-condition-about {
                      width: 57px;
                   }
+                  .post-condition-result {
+                     font-size: 12px;
+                  }
                   img {
                      width: 44px;
                      height: 44px;
@@ -211,10 +247,17 @@ $danger: #ff3333;
             .post-contents {
                width: calc(100% - 62px - 18px);
                margin-left: 18px;
+               .post-header {
+                  li { display: inline-block; }
+                  .post-posted-at { margin: 0 6px; }
+               }
             }
          }
          .post-reaction {
-            a { display: inline-block; }
+            a {
+               display: inline-block;
+               .reaction-str { display: inline; }
+            }
          }
 
          .comment {
@@ -237,6 +280,25 @@ $danger: #ff3333;
    }
 }
 
+@media (min-width: $media-tablet) {
+   #posts {
+      .post {
+         .post-main {
+            .post-contents {
+               .post-header {
+                  .post-direct-action {
+                     display: inline;
+                  }
+                  .post-menu {
+                     display: none;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
 /************************************************
 
 
@@ -247,27 +309,36 @@ $danger: #ff3333;
 ************************************************/
 
 #post-form {
+   position: fixed;
+   z-index: 3;
+   top: 95px;
+   left: 10px;
+
+   width: calc(100% - 22px);
    .form-line {
       margin-top: 12px;
       .form-input {
          width: calc(100% - 20px);
-         min-height: 170px;
+         min-height: 100px;
          padding: 9px;
       }
 
       .form-condition {
+         margin: -7px 0 12px 0;
          li {
             width: 100%;
             display: inline-block;
+            width: 34px;
+            margin-right: 8px;
 
             .condition-button {
                display: inline-block;
                -moz-appearance: none;
                -webkit-appearance: none;
-               background-size: 44px 39px;
+               background-size: 28px 28px;
                background-repeat: no-repeat;
-               width: 55px;
-               height: 49px;
+               width: 39px;
+               height: 36px;
                background-position: center;
                border: 1px solid #ededed;
                border-radius: 3px;
@@ -288,7 +359,7 @@ $danger: #ff3333;
             .button-danger { background-image: url('danger.png') }
 
             .condition-label {
-               display: inline-block;
+               display: none;
                min-height: 10px;
                text-align: center;
                padding: 1px 6px;
@@ -307,12 +378,19 @@ $danger: #ff3333;
 @media (min-width: $media-phone){
    #post-form {
       .form-line {
+         .form-input { min-height: 170px;}
          .form-condition {
             li {
                display: inline-block;
                width: auto;
 
-               .condition-button { display: block; }
+               .condition-button {
+                  display: block;
+                  background-size: 44px 39px;
+                  background-repeat: no-repeat;
+                  width: 55px;
+                  height: 49px;
+               }
 
                .condition-label {
                   display: block;
@@ -321,5 +399,13 @@ $danger: #ff3333;
             }
          }
       }
+   }
+}
+
+@media (min-width: $media-desktop){
+   #post-form {
+      left: 50%;
+      margin-left: -450px;
+      width: 900px;
    }
 }

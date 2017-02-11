@@ -35,7 +35,7 @@ Rails.application.routes.draw do
    end
 
    # Routes for posts
-   resources 'posts'
+   resources 'posts', only: [:new, :show, :edit, :create, :update, :destroy]
 
    # Routes for comments
    resources 'comments', only: [:edit, :create, :update, :destroy]

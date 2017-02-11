@@ -1,0 +1,10 @@
+$('body').prepend('<div id="blackout" class="ajax-content"></div>');
+$('body').prepend("<%= escape_javascript(render('posts/form')) %>");
+$('#blackout').on('click', function(){
+   $('.ajax-content').remove();
+});
+
+$(".condition-button").on('click', function(){
+   $(".condition-button").next().removeClass("label-activated");
+   $(this).next().addClass("label-activated");
+});
