@@ -20,12 +20,15 @@ class CommentsController < ApplicationController
       @user = current_user
       @comment = current_user.comments.build(comment_params)
       @post = Post.find(comment_params[:post_id])
-      if @comment.save
-         flash[:success] = "新しいコメントを投稿しました"
-         redirect_to home_url
-      else
-         flash[:danger] = "入力情報に不備があります"
-         render 'comments/new'
+      respond_to do |format|
+         if @comment.save
+            flash[:success] = "新しいコメントを投稿しました。"
+            format.html { redirect_to home_url }
+            format.js { render 'comments/create' }
+         else
+            format.html { redirect_to home_url }
+            format.js { render 'comments/create' }
+         end
       end
    end
 

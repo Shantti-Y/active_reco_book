@@ -14,15 +14,4 @@
       </div>
    </div>
 <% end %>
-<div class="comment-form ajax-content">
-   <%= form_for(@comment) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="form-line">
-         <%= f.text_area :content, placeholder: "コメントをする", class: 'form-input form-comment' %>
-      </div>
-
-      <%= f.hidden_field :post_id, value: @post.id %>
-
-      <%= f.submit '投稿する', class: 'btn form-submit'%>
-   <% end %>
-</div>
+<%= render('comments/form') %>
