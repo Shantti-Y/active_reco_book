@@ -1,0 +1,21 @@
+var targeted_id = document.getElementById('comment-<%= @comment.id %>');
+if (targeted_id != undefined) {
+   var targeted_content = targeted_id.getElementsByClassName('comment-content');
+   if(targeted_content.length == 0){
+      $('#comment-<%= @comment.id %> .comment-form').remove();
+      $("#comment-<%= @comment.id %> > .comment-information").append("<p class='comment-content'><%= @comment.content %></p>");
+   } else {
+      <% @comments.each do |comment| %>
+         var targeted_form = document.getElementById('comment-<%= comment.id %>');
+         targeted_form = targeted_form.getElementsByClassName('comment-form');
+         if(targeted_form.length > 0){
+            $('#comment-<%= comment.id %> .comment-form').remove();
+            $("#comment-<%= comment.id %> > .comment-information").append("<p class='comment-content'><%= comment.content %></p>");
+         }
+      <% end %>
+      $('#comment-<%= @comment.id %> .comment-content').remove();
+      $("#comment-<%= @comment.id %> > .comment-information").append("<%= escape_javascript(render('comments/form')) %>");
+   }
+} else {
+   $(".ajax-content").remove();
+}
