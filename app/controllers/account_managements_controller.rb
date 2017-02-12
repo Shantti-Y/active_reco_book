@@ -23,7 +23,7 @@ class AccountManagementsController < ApplicationController
 
    def password_reset_create
       user = User.find_by(email: params[:password_reset][:email])
-      if user && user.activated? && user.employee_number == params[:password_reset][:employee_number].to_i
+      if user && user.employee_number == params[:password_reset][:employee_number].to_i
          user.update_attribute(:password_reset, true)
          user.update_attribute(:password_reset_sent_at, Time.now)
          user.send_password_reset_mail
@@ -31,9 +31,7 @@ class AccountManagementsController < ApplicationController
          届いたメール内に記載されたパスワードで再ログインしてください。"
          redirect_to home_url
       else
-         if user.nil? || !user.activated?
-            flash['danger'] = "ユーザーが登録されていません"
-         else
+         if user.nil? || user.employee_number != params[:password_reset][:employee_number].to_i
             flash['danger'] = "入力情報に不備があります"
          end
          render 'account_managements/password_reset_new'

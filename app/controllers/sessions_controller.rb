@@ -17,10 +17,12 @@ class SessionsController < ApplicationController
         login(user)
         redirect_to home_url
      else
-        if user.password_expired?
+        if !user
+           flash[:danger] = "アカウントが登録されていません"
+        elsif user.password_expired?
            flash[:danger] = "パスワードの有効期限が切れています"
         else
-           flash[:danger] = "入力情報に不備があるか、アカウントが登録されていません"
+           flash[:danger] = "入力情報に不備があります"
         end
         render 'sessions/new'
      end

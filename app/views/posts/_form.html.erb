@@ -7,8 +7,8 @@
          <%= render 'shared/error_messages', object: f.object %>
 
          <div class="form-line">
-            <p class="content-section"><%= "#{Date.today}時のあなたの記録"%></p>
-            <%= f.text_area :content, placeholder: "#{Date.today}を振り返って記録しよう", class: 'form-input form-post' %>
+            <p class="content-section"><%= "#{Date.today.strftime("%Y年%m月%d日")}のあなたの記録"%></p>
+            <%= f.text_area :content, placeholder: "#{Date.today.strftime("%Y年%m月%d日")}を振り返って記録しよう", class: 'form-input form-post' %>
          </div>
 
          <div class="form-line">

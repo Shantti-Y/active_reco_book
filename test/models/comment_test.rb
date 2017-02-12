@@ -3,11 +3,11 @@ require 'test_helper'
 class CommentTest < ActiveSupport::TestCase
 
    def setup
-      @employee = users(:first_employee)
+      @submitted_employee = users(:submitted_employee)
       @employer = users(:employer)
       @post = posts(:morning)
       @comment = Comment.new(
-                              user_id: @employer.id,
+                              user_id: @submitted_employee.id,
                               post_id: @post.id,
                               content: "Hello, how are you?"
                             )
@@ -35,5 +35,15 @@ class CommentTest < ActiveSupport::TestCase
    test "content should have less than 100 chars" do
       @comment.content = "a" * 1001
       assert_not @comment.valid?
+   end
+
+   test "comments should be destroyed when relative user deleted" do
+      @submitted_employee.destroy
+      assert_equal 0, @submitted_employee.comments.count
+   end
+
+   test "comments should be destroyed when relative post deleted" do
+      @post.destroy
+      assert_equal 0, @post.comments.count
    end
 end

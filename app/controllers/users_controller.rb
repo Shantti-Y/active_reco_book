@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   def show
      @user = User.find(params[:id])
      @posts = Post.page(params[:page]).where(user_id: @user.id).order(:created_at).reverse_order
-     @comments = Comment.all
-     @comment = Comment.new
   end
 
   def new
@@ -59,20 +57,21 @@ class UsersController < ApplicationController
   end
 
   def update_password
-     user = User.find(params[:id])
-     if user && user.authenticate(params[:password][:current_password]) &&
+     @user = User.find(params[:id])
+     if @user && @user.authenticate(params[:password][:current_password]) && params[:password][:new_password].length >= 8 &&
         params[:password][:new_password] == params[:password][:password_confirmation]
-        if user.update_attribute(:password_digest, User.digest(params[:password][:new_password]))
-           user.update_attribute(:password_reset, false)
+        if @user.update_attribute(:password_digest, User.digest(params[:password][:new_password]))
+           @user.update_attribute(:password_reset, false)
            flash[:success] = "パスワードの変更を完了しました"
            redirect_to home_url
         else
            flash['danger'] = "新しいパスワードが有効ではありません"
+           render 'users/edit_password'
         end
      else
-        if !user.authenticate(params[:password][:current_password])
+        if !@user.authenticate(params[:password][:current_password])
            flash['danger'] = "現在のパスワードが正しく入力されていません"
-        elsif params[:password][:new_password] != params[:password][:password_confirmation]
+        elsif params[:password][:new_password] != params[:password][:password_confirmation] || params[:password][:new_password].length < 8
            flash['danger'] = "新しいパスワードが正しく入力されていません"
         end
         render 'users/edit_password'

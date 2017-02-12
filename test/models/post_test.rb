@@ -3,11 +3,11 @@ require 'test_helper'
 class PostTest < ActiveSupport::TestCase
 
    def setup
-      @employee = users(:first_employee)
+      @submitted_employee = users(:submitted_employee)
       @post = Post.new(
-                        user_id: @employee.id,
+                        user_id: @submitted_employee.id,
                         content: "Welcome and hello world!!",
-                        condition: "comfort",
+                        condition: "success",
                         post_type: "daily"
                       )
    end
@@ -32,7 +32,7 @@ class PostTest < ActiveSupport::TestCase
    end
 
    test "condition should be correct with proper formats" do
-      valid_conditions = %w[blank, comfort, safe, caution, danger]
+      valid_conditions = %w[blank, success, info, warning, danger]
       valid_conditions.each do |condition|
          @post.condition = condition
          assert @post.valid?
@@ -61,5 +61,10 @@ class PostTest < ActiveSupport::TestCase
          @post.post_type = type
          assert_not @post.valid?
       end
+   end
+
+   test "posts should be destroyed when relative user deleted" do
+      @submitted_employee.destroy
+      assert_equal 0, @submitted_employee.posts.count
    end
 end

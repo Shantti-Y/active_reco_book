@@ -134,7 +134,7 @@ class UserTest < ActiveSupport::TestCase
    end
 
    test "thumbnail should be valid with a correct file extension" do
-      @user.thumbnail = file_read("example_thumbnail.png")
+      @user.thumbnail = file_read("default_avatar.png")
       @user.thumbnail_ctype = "image/png"
       assert @user.valid?
 

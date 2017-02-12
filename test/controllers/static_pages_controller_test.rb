@@ -3,12 +3,12 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
    def setup
-      @employee = users(:first_employee)
-      login_as(@employee)
+      @submitted_employee = users(:submitted_employee)
+      login_as(@submitted_employee)
    end
 
    test "should get home" do
-      get home_url
+      get home_path
       assert_response :success
    end
 
