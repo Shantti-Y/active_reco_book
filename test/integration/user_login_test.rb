@@ -3,7 +3,7 @@ require 'test_helper'
 class UserLoginTest < ActionDispatch::IntegrationTest
 
    def setup
-      @employee = users(:first_employee)
+      @employee = users(:employee)
    end
 
    test "session expiration" do

@@ -1,24 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 morning:
-   user: submitted_employee
+   user: employee
    content: Good morning
    condition: success
    post_type: daily
 
 noon:
-   user: submitted_employee
+   user: employee
    content: Good afternoon
    condition: info
    post_type: daily
 
 evening:
-   user: submitted_employee
+   user: employee
    content: Good evening
    condition: warning
    post_type: daily
 
 night:
-   user: submitted_employee
+   user: employee
    content: Good night
    condition: danger
    post_type: daily

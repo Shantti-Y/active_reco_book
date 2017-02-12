@@ -3,11 +3,11 @@ require 'test_helper'
 class CommentTest < ActiveSupport::TestCase
 
    def setup
-      @submitted_employee = users(:submitted_employee)
+      @employee = users(:employee)
       @employer = users(:employer)
       @post = posts(:morning)
       @comment = Comment.new(
-                              user_id: @submitted_employee.id,
+                              user_id: @employee.id,
                               post_id: @post.id,
                               content: "Hello, how are you?"
                             )
@@ -38,8 +38,8 @@ class CommentTest < ActiveSupport::TestCase
    end
 
    test "comments should be destroyed when relative user deleted" do
-      @submitted_employee.destroy
-      assert_equal 0, @submitted_employee.comments.count
+      @employee.destroy
+      assert_equal 0, @employee.comments.count
    end
 
    test "comments should be destroyed when relative post deleted" do

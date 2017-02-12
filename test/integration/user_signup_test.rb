@@ -3,8 +3,8 @@ require 'test_helper'
 class UserSignupTest < ActionDispatch::IntegrationTest
   def setup
      ActionMailer::Base.deliveries.clear
-     @submitted_employee = users(:submitted_employee)
-     login_as(@submitted_employee)
+     @employee = users(:employee)
+     login_as(@employee)
   end
 
   test "unable to sign up with invalid information" do
@@ -49,7 +49,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
      assert_equal 1, ActionMailer::Base.deliveries.size
      user = assigns(:user)
      assert_not user.activated?
-     logout_as(@submitted_employee)  
+     logout_as(@employee)
 
      # Try to login before activated
      login_as(user)

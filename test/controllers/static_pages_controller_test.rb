@@ -3,8 +3,8 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
    def setup
-      @submitted_employee = users(:submitted_employee)
-      login_as(@submitted_employee)
+      @employee = users(:employee)
+      login_as(@employee)
    end
 
    test "should get home" do

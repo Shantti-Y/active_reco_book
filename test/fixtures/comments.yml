@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 re_morning:
-  user: submitted_employee
+  user: employee
   post: morning
   content: How are you?
 
 re_noon:
-  user: submitted_employee
+  user: employee
   post: noon
   content: What are you doing?
 
 re_evening:
-  user: submitted_employee
+  user: employee
   post: evening
   content: When did you come here?
 
 re_night:
-  user: submitted_employee
+  user: employee
   post: night
   content: Who will you tell to?

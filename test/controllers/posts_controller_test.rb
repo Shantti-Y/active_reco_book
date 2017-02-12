@@ -3,9 +3,9 @@ require 'test_helper'
 class PostsControllerTest < ActionDispatch::IntegrationTest
 
    def setup
-      @submitted_employee = users(:submitted_employee)
+      @employee = users(:employee)
       @morning = posts(:morning)
-      login_as(@submitted_employee)
+      login_as(@employee)
    end
 
    test "should get new" do

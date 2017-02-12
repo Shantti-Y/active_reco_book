@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-submitted_employee:
+employee:
    name: 例得 等連
    email: example@gmail.com
    employee_number: 12345678

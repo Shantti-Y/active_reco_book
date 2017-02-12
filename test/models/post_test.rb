@@ -3,9 +3,9 @@ require 'test_helper'
 class PostTest < ActiveSupport::TestCase
 
    def setup
-      @submitted_employee = users(:submitted_employee)
+      @employee = users(:employee)
       @post = Post.new(
-                        user_id: @submitted_employee.id,
+                        user_id: @employee.id,
                         content: "Welcome and hello world!!",
                         condition: "success",
                         post_type: "daily"
@@ -64,7 +64,7 @@ class PostTest < ActiveSupport::TestCase
    end
 
    test "posts should be destroyed when relative user deleted" do
-      @submitted_employee.destroy
-      assert_equal 0, @submitted_employee.posts.count
+      @employee.destroy
+      assert_equal 0, @employee.posts.count
    end
 end
