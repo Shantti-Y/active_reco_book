@@ -4,8 +4,6 @@ module PostsHelper
       case post.post_type
       when "daily"
          case post.condition
-         when "blank"
-            return "blank"
          when "success"
             return "success"
          when "info"
@@ -14,6 +12,8 @@ module PostsHelper
             return "warning"
          when "danger"
             return "danger"
+         else
+            return "blank"
          end
       when "condition"
          return "condition"
@@ -39,8 +39,6 @@ module PostsHelper
       case post.post_type
       when "daily"
          case post.condition
-         when "blank"
-            return "blank.png"
          when "success"
             return "success.png"
          when "info"
@@ -49,6 +47,8 @@ module PostsHelper
             return "warning.png"
          when "danger"
             return "danger.png"
+         else
+            return ""
          end
       when "condition"
          return "condition.png"
@@ -60,8 +60,6 @@ module PostsHelper
 
    def post_condition(post)
       case post.condition
-      when "blank"
-         return ""
       when "success"
          return "余力あり"
       when "info"
@@ -70,6 +68,8 @@ module PostsHelper
          return "溜め気味"
       when "danger"
          return "手一杯"
+      else
+         return ""
       end
    end
 

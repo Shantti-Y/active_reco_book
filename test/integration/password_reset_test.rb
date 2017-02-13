@@ -39,10 +39,10 @@ class PasswordResetTest < ActionDispatch::IntegrationTest
          assert_not is_logged_in?
       end
 
-
       # Change the password in the limited terms
       Timecop.return
       login_as(@employee)
+      get edit_password_path(@employee)
       patch update_password_path(@employee), params: { password: {
                                                                   current_password: "password",
                                                                   new_password: "newpassword",
@@ -56,8 +56,6 @@ class PasswordResetTest < ActionDispatch::IntegrationTest
          login_as(@employee, "newpassword")
          assert is_logged_in?
       end
-
-
    end
 
 end

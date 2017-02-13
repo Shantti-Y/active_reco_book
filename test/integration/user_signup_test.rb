@@ -44,16 +44,23 @@ class UserSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "password"
                                          } }
      end
+     user = assigns(:user)
      assert flash['success']
      assert_redirected_to home_url
+
      assert_equal 1, ActionMailer::Base.deliveries.size
-     user = assigns(:user)
+
      assert_not user.activated?
      logout_as(@employee)
 
      # Try to login before activated
      login_as(user)
      assert_not is_logged_in?
+     assert_select '#header-dammy'
+     header_tags = ['header-menu', 'header-user', 'dropdown-menu', 'dropdown-notify', 'dropdown-user']
+     header_tags.each do |tag|
+       assert_select '#' + tag, 0
+     end
 
      # Invalid activation token
      get account_activation_path(id: 'Invalid token', email: user.email)
@@ -68,5 +75,10 @@ class UserSignupTest < ActionDispatch::IntegrationTest
      assert is_logged_in?
      assert user.reload.activated?
      assert_redirected_to home_url
+     follow_redirect!
+     assert_select '#header-dammy', 0
+     header_tags.each do |tag|
+      assert_select '#' + tag
+     end
   end
 end

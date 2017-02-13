@@ -50,7 +50,12 @@
             <p class="form-value"><%= @user.birthday.strftime("%Y年%m月%d日") %></p>
          </div>
 
-         <%= f.submit '登録(メール送信)', class: 'btn form-submit' %>
+         <div class="form-line">
+            <p class="form-label">パスワード</p>
+            <%= link_to "パスワード変更へ", edit_password_path(@user), class: "form-link form-value" %>
+         </div>
+
+         <%= f.submit '登録', class: 'btn form-submit' %>
       <% end %>
    </div>
 
