@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def home
      @user = current_user
-     @posts = Post.page(params[:page]).all.order(:created_at).reverse_order
+     @posts = Post.page(params[:page]).where(published: true).order(:created_at).reverse_order
   end
 
   def help

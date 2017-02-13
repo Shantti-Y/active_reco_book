@@ -44,7 +44,8 @@ Post.create!(
             user_id: User.find_by(name: "例得 升男").id,
             content: "Active Reco Bookへようこそ",
             condition: "info",
-            post_type: "daily"
+            post_type: "daily",
+            published: false
             )
 
 User.where(employee: true).each do |user|
@@ -65,7 +66,8 @@ User.where(employee: true).each do |user|
     Post.create!( user_id: user.id,
                   content: Faker::Lorem.sentence(40),
                   condition: condition,
-                  post_type: 'daily'
+                  post_type: 'daily',
+                  published: true
                   )
   end
 end

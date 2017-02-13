@@ -7,7 +7,15 @@ class UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
-     @posts = Post.page(params[:page]).where(user_id: @user.id).order(:created_at).reverse_order
+     @published = true
+     if !params[:published].nil? && params[:published] == "0"
+        @published = false
+     end
+     @posts = Post.page(params[:page]).where(user_id: @user.id).where(published: @published).order(:created_at).reverse_order
+     respond_to do |format|
+       format.html {}
+       format.js {}
+     end
   end
 
   def new

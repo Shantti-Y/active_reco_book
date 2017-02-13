@@ -1,0 +1,10 @@
+<% if @published == true %>
+   $('#toggle-draft').html('<a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-book"></i><span>公開中</span></a>' +
+                           '<%= link_to user_path(@user, published: "0"), id: "toggled-draft", class: "toggle-button", remote: true do %>' +
+                           '<i class="fa fa-pencil-square-o"></i><span>下書き</span><% end %>');
+<% else %>
+   $('#toggle-draft').html('<%= link_to user_path(@user), id: "toggled-publish", class: "toggle-button", remote: true do %>' +
+                           '<i class="fa fa-book"></i><span>公開中</span><% end %>' +
+                           '<a href="#" id="toggled-draft" class="toggle-button toggle-active"><i class="fa fa-pencil-square-o"></i><span>下書き</span></a>');
+<% end %>
+$('#posts').html('<%= escape_javascript(render("posts/posts")) %>');

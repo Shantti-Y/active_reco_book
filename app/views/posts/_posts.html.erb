@@ -31,10 +31,12 @@
             </p>
          </div>
       </div>
+      <% if post.published? %>
       <div class="post-reaction">
          <a href="#"><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span>2</span></a>
          <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
       </div>
+      <% end %>
    </div>
    <% end %>
 

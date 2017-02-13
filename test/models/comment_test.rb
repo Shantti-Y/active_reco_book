@@ -6,6 +6,7 @@ class CommentTest < ActiveSupport::TestCase
       @employee = users(:employee)
       @employer = users(:employer)
       @post = posts(:morning)
+      @draft = posts(:draft)
       @comment = Comment.new(
                               user_id: @employee.id,
                               post_id: @post.id,
@@ -34,6 +35,11 @@ class CommentTest < ActiveSupport::TestCase
 
    test "content should have less than 100 chars" do
       @comment.content = "a" * 1001
+      assert_not @comment.valid?
+   end
+
+   test "should not be related to draft" do
+      @comment.post = @draft
       assert_not @comment.valid?
    end
 

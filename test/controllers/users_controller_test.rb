@@ -22,6 +22,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
    end
 
+   test "should get show via ajax" do
+      get user_path(@employee), xhr: true
+      assert_response :success
+   end
+
    test "should get edit" do
       get edit_user_path(@employee)
       assert_response :success

@@ -720,6 +720,93 @@ a { text-decoration: none; }
 
 ************************************************/
 
+#post-option {
+   overflow: hidden;
+   .search {
+      float: left;
+      margin-right: 7px;
+      position: relative;
+      .search-form {
+         width: calc(100% - 26px - 4px);
+         height: 24px;
+         padding-right: 26px;
+      }
+      .search-btn {
+         position: absolute;
+         display: inline-block;
+         top: 12px;
+         right: 12px;
+         width: 27px;
+         padding: 7px 0;
+         border: 1px solid #acacac;
+         font-size: 14px;
+         text-align: center;
+         background-color: #ffffff;
+         color: #bdbdbd;
+         &:hover {
+            cursor: pointer;
+            background-color: #eeeeee;
+            color: #7373a5;
+         }
+      }
+   }
+   #search-own-user { width: calc(100% - 84px - 7px);}
+   #search-another-user { width: 100%; }
+
+   #toggle-draft {
+      float: left;
+      width: 84px;
+      .toggle-button {
+         float: left;
+         display: block;
+         width: 27px;
+         padding: 7px 0;
+         border: 1px solid #cdcdcd;
+         font-size: 14px;
+         text-align: center;
+         background-color: #ffffff;
+         * { color: #bdbdbd; }
+         span { display: none; }
+         &:first-child {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+         }
+         &:last-child {
+            border-left: none;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+         }
+         &:hover {
+            background-color: #05ad59;
+            * { color: #ffffff; }
+         }
+      }
+      .toggle-active {
+         background-color: #07d26c;
+         * { color: #ffffff; }
+         &:hover {
+            cursor: context-menu;
+            background-color: #07d26c;
+            * { color: #ffffff; }
+         }
+      }
+   }
+}
+
+@media (min-width: $media-phone) {
+   #post-option {
+      #search-own-user { width: calc(100% - 173px - 7px); }
+      #toggle-draft {
+         width: 173px;
+         .toggle-button {
+            width: 72px;
+            i { margin-right: 4px; }
+            span { display: inline-block; }
+         }
+      }
+   }
+}
+
 #posts {
    .post {
       .post-main {
@@ -1051,6 +1138,10 @@ a { text-decoration: none; }
                background-color: #1a8cff;
             }
          }
+      }
+      .form-check {
+         margin-bottom: 16px;
+         label { margin-top: -1px; }
       }
    }
 }

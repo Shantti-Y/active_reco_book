@@ -14,18 +14,18 @@ employee:
    password_reset: false
    password_reset_sent_at: <%= Time.now %>
 
-unsubmitted_employee:
-   name: 例得 等連
+another_employee:
+   name: 例得 康
    email: example@yahoo.mail.com
    employee_number: 12345679
    division: 営業部企画課
-   gender: 男
+   gender: 女
    started_at: <%= 1.year.ago %>
    birthday: <%= 24.years.ago %>
    employee: true
    password_digest: <%= User.digest('password') %>
-   activated: false
-   password_reset: true
+   activated: true
+   password_reset: false
    password_reset_sent_at: <%= Time.now %>
 
 employer:

@@ -8,7 +8,8 @@ class PostTest < ActiveSupport::TestCase
                         user_id: @employee.id,
                         content: "Welcome and hello world!!",
                         condition: "success",
-                        post_type: "daily"
+                        post_type: "daily",
+                        published: true
                       )
    end
 

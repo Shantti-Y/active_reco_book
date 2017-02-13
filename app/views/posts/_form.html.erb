@@ -23,6 +23,12 @@
 
          <%= f.hidden_field :post_type, value: "daily" %>
 
+         <% if request.path_info = new_post_path %>
+            <div class="form-line">
+               <%= f.check_box :published, { class: 'form-check form-post' }, false %><label>下書きとして保存する</label>
+            </div>
+         <% end %>
+
          <%= f.submit '投稿する', class: 'btn form-submit'%>
       <% end %>
    </div>

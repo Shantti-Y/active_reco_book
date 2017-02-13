@@ -8,6 +8,6 @@ class Post < ApplicationRecord
                        length: { maximum: 1000 }
    validates :condition, format: { with: /blank|success|info|warning|danger/ }
    validates :post_type, format: { with: /daily|condition|learning/ }
-
+   validates :published, inclusion: { in: [true, false] }
 
 end

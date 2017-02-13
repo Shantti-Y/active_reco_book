@@ -4,21 +4,32 @@ morning:
    content: Good morning
    condition: success
    post_type: daily
+   published: true
 
 noon:
    user: employee
    content: Good afternoon
    condition: info
    post_type: daily
+   published: true
 
 evening:
    user: employee
    content: Good evening
    condition: warning
    post_type: daily
+   published: true
 
 night:
    user: employee
    content: Good night
    condition: danger
    post_type: daily
+   published: true
+
+draft:
+   user: employee
+   content: Good draft
+   condition: success
+   post_type: daily
+   published: false
