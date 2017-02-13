@@ -1,6 +1,7 @@
 class User < ApplicationRecord
    has_many :posts, dependent: :destroy
    has_many :comments, dependent: :destroy
+   has_many :reactions, dependent: :destroy
 
    before_create :generate_activation
 

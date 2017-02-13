@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'posts/new'
-
-  get 'posts/show'
-
-  get 'posts/edit'
 
    # Routes for static pages
    get '/home', to: 'static_pages#home'
@@ -40,6 +35,10 @@ Rails.application.routes.draw do
    # Routes for comments
    resources 'comments', only: [:edit, :create, :update, :destroy]
    get '/comments/:id', to: 'comments#new', as: 'new_comment'
+
+   # Routes for reactions
+   resources 'reactions', only: [:destroy]
+   get '/reactions/:id', to: 'reactions#create', as: "new_reaction"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

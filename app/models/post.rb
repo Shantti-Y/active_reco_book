@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
    belongs_to :user
    has_many :comments, dependent: :destroy
+   has_many :reactions, dependent: :destroy
+
    paginates_per 10
 
    validates :user_id, presence: true

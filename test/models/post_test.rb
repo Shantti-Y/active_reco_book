@@ -64,7 +64,7 @@ class PostTest < ActiveSupport::TestCase
       end
    end
 
-   test "posts should be destroyed when relative user deleted" do
+   test "post should be destroyed when relative user deleted" do
       @employee.destroy
       assert_equal 0, @employee.posts.count
    end

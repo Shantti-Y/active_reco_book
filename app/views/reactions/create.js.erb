@@ -1,0 +1,2 @@
+$("#post-<%= @post.id %> .post-reaction > a:first-child").remove();
+$("#post-<%= @post.id %> .post-reaction").prepend("<%= escape_javascript(render('reactions/reactions'))%>");

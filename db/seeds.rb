@@ -9,6 +9,7 @@
 User.delete_all
 Post.delete_all
 Comment.delete_all
+Reaction.delete_all
 
 User.create!(
             name: "例得 升男",
@@ -77,3 +78,10 @@ Comment.create!(
                post_id: Post.last.id,
                content: "Active Reco Bookへようこそ",
                )
+
+User.where(employee: true).each do |user|
+   Reaction.create!(
+                  user_id: user.id,
+                  post_id: Post.last.id
+                   )
+end

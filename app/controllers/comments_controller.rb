@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+   before_action :is_logged_in?
 
    def new
       @user = current_user
@@ -22,8 +23,8 @@ class CommentsController < ApplicationController
 
    def create
       @user = current_user
+      @post = Post.find(comment_params[:post_id])  
       @comment = current_user.comments.build(comment_params)
-      @post = Post.find(comment_params[:post_id])
       respond_to do |format|
          if @comment.save
             flash[:success] = "新しいコメントを投稿しました。"
