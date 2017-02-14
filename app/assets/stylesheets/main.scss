@@ -1084,7 +1084,7 @@ a { text-decoration: none; }
 #post-form {
    position: fixed;
    z-index: 3;
-   top: 95px;
+   top: 45px;
    left: 10px;
 
    width: calc(100% - 22px);
@@ -1092,7 +1092,7 @@ a { text-decoration: none; }
       margin-top: 12px;
       .form-input {
          width: calc(100% - 20px);
-         min-height: 100px;
+         min-height: 80px;
          padding: 9px;
       }
 
@@ -1144,9 +1144,9 @@ a { text-decoration: none; }
             }
          }
       }
-      .form-check {
-         margin-bottom: 16px;
-         label { margin-top: -1px; }
+      .form-select {
+         margin-top: -10px;
+         margin-bottom: 12px;
       }
    }
 }

@@ -4,10 +4,10 @@ class ReactionTest < ActiveSupport::TestCase
 
    def setup
       @employee = users(:employee)
-      @morning = posts(:morning)
+      @noon = posts(:noon)
       @reaction = Reaction.new(
                               user_id: @employee.id,
-                              post_id: @morning.id
+                              post_id: @noon.id
                               )
    end
 
@@ -29,7 +29,7 @@ class ReactionTest < ActiveSupport::TestCase
       @reaction.save
       @duplicated_reaction = Reaction.new(
                                           user_id: @employee.id,
-                                          post_id: @morning.id
+                                          post_id: @noon.id
                                           )
       assert_not @duplicated_reaction.valid?
    end
@@ -40,8 +40,8 @@ class ReactionTest < ActiveSupport::TestCase
    end
 
    test "reaction should be destroyed when relative post deleted" do
-      @morning.destroy
-      assert_equal 0, @morning.reactions.count
+      @noon.destroy
+      assert_equal 0, @noon.reactions.count
    end
 
 end

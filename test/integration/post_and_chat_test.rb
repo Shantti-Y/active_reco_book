@@ -24,7 +24,8 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
          post posts_path, xhr: true, params: { post: {
                                                     content: "Hello, are you good?",
                                                     condition: "info",
-                                                    post_type: 'daily'
+                                                    post_type: 'daily',
+                                                    published: true
                                                     }}
       end
       post = assigns(:post)

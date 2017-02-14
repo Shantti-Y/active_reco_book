@@ -23,9 +23,10 @@
 
          <%= f.hidden_field :post_type, value: "daily" %>
 
-         <% if request.path_info = new_post_path %>
+         <% unless @post.published? %>
             <div class="form-line">
-               <%= f.check_box :published, { class: 'form-check form-post' }, false %><label>下書きとして保存する</label>
+               <p class="content-section">投稿形態</p>
+               <%= f.select :published, {'投稿する': true, '下書きとして保存': false}, {}, class: 'form-select form-post' %>
             </div>
          <% end %>
 

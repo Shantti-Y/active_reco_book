@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20170213100650) do
     t.text     "content"
     t.string   "condition"
     t.string   "post_type"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.boolean  "published",  default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "published"
   end
 
   create_table "reactions", force: :cascade do |t|
