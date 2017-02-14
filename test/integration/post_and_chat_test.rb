@@ -101,4 +101,35 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       assert_not flash[:success]
       assert_template 'comments/create'
    end
+
+   test "reaction to the post" do
+      # Show number of reactions to one post
+      @post = posts(:morning)
+      login_as(@another_employee)
+      get home_path
+      assert_select "#post-#{@post.id}"
+      reaction_count = Reaction.where(post_id: @post.id).count
+      assert_select "#post-#{@post.id} .reaction-default"
+      assert_select "#post-#{@post.id} .reaction-default span:not(.reaction-str)", reaction_count.to_s
+
+      # Post reaction
+      assert_difference "Reaction.count", 1 do
+         get new_reaction_path(@post), xhr: true
+      end
+      assert_template 'reactions/create'
+      # TODO try to find out selector assertion after ajax request
+      get home_path
+      assert_select "#post-#{@post.id} .reaction-reacted"
+      assert_select "#post-#{@post.id} .reaction-reacted span:not(.reaction-str)", (reaction_count + 1).to_s
+
+      # Delete post
+      assert_difference "Reaction.count", -1 do
+         delete reaction_path(@post), xhr: true
+      end
+      assert_template 'reactions/destroy'
+      # TODO try to find out selector assertion after ajax request
+      get home_path
+      assert_select "#post-#{@post.id} .reaction-default"
+      assert_select "#post-#{@post.id} .reaction-default span:not(.reaction-str)", (reaction_count).to_s
+   end
 end

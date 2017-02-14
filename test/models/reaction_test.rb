@@ -25,6 +25,15 @@ class ReactionTest < ActiveSupport::TestCase
       assert_not @reaction.valid?
    end
 
+   test "should be unique or should not react to the same post" do
+      @reaction.save
+      @duplicated_reaction = Reaction.new(
+                                          user_id: @employee.id,
+                                          post_id: @morning.id
+                                          )
+      assert_not @duplicated_reaction.valid?
+   end
+
    test "reaction should be destroyed when relative user deleted" do
       @employee.destroy
       assert_equal 0, @employee.reactions.count

@@ -34,9 +34,9 @@
       <% if post.published? %>
       <div class="post-reaction">
          <% if post.reactions.find_by(user_id: current_user.id).nil? %>
-            <%= link_to reaction_path(post), remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
+            <%= link_to reaction_path(post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
          <% else %>
-            <%= link_to reaction_path(post), method: :delete, remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
+            <%= link_to reaction_path(post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
          <% end %>
          <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
       </div>

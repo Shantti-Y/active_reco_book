@@ -1,5 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 for_daily:
-  user_id: employee
-  post_id: morning
+  user: employee
+  post: morning

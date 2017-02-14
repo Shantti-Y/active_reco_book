@@ -935,7 +935,12 @@ a { text-decoration: none; }
                *{ color: #b3d9ff; }
             }
          }
-
+         .reaction-reacted {
+            * { color: #ff3333; }
+            &:hover {
+               * { color: #ffb3b3; }
+            }
+         }
       }
 
       .comment {
