@@ -112,6 +112,7 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       reaction_count = Reaction.where(post_id: @post.id).count
       assert_select "#post-#{@post.id} .reaction-default"
       assert_select "#post-#{@post.id} .reaction-default span:not(.reaction-str)", reaction_count.to_s
+      assert_select "#post-#{@post.id} .post-reaction-list > li", reaction_count
 
       # Post reaction
       assert_difference "Reaction.count", 1 do
@@ -122,8 +123,9 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       get home_path
       assert_select "#post-#{@post.id} .reaction-reacted"
       assert_select "#post-#{@post.id} .reaction-reacted span:not(.reaction-str)", (reaction_count + 1).to_s
+      assert_select "#post-#{@post.id} .post-reaction-list > li", reaction_count + 1
 
-      # Delete post
+      # Delete reaction
       assert_difference "Reaction.count", -1 do
          delete reaction_path(@post), xhr: true
       end
@@ -132,5 +134,7 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       get home_path
       assert_select "#post-#{@post.id} .reaction-default"
       assert_select "#post-#{@post.id} .reaction-default span:not(.reaction-str)", (reaction_count).to_s
+      assert_select "#post-#{@post.id} .post-reaction-list > li", reaction_count
+
    end
 end

@@ -914,6 +914,7 @@ a { text-decoration: none; }
          }
       }
       .post-reaction {
+         position :relative;
          margin: 4px 0 0 14px;
          a {
             margin-right: 15px;
@@ -933,12 +934,28 @@ a { text-decoration: none; }
             &:hover {
                color: #b3d9ff;
                *{ color: #b3d9ff; }
+                + .post-reaction-list { display: block; }
             }
          }
          .reaction-reacted {
             * { color: #ff3333; }
             &:hover {
                * { color: #ffb3b3; }
+            }
+         }
+         .post-reaction-list {
+            position: absolute;
+            display: none;
+            background: #454545;
+            opacity: 0.9;
+            bottom: 12px;
+            padding: 6px;
+            border-radius: 3px;
+            li {
+               color: #ffffff;
+               font-size: 11px;
+               margin-bottom: 3px;
+               &:last-child { margin-bottom: 0; }
             }
          }
       }

@@ -38,6 +38,13 @@
          <% else %>
             <%= link_to reaction_path(post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
          <% end %>
+         <% if post.reactions.count >= 1 %>
+         <ul class="post-reaction-list">
+            <% post.reactions.each do |reaction| %>
+            <li><%= reaction.user.name %></li>
+            <% end %>
+         </ul>
+         <% end %>
          <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
       </div>
       <% end %>
