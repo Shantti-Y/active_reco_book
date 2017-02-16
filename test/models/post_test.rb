@@ -48,11 +48,24 @@ class PostTest < ActiveSupport::TestCase
       end
    end
 
+   test "condition should be blank either post type is condition or learning" do
+         @post.post_type = "condition"
+         assert_not @post.valid?
+         @post.condition = "blank"
+         assert @post.valid?
+         @post.condition = "success"
+         @post.post_type = "learning"
+         assert_not @post.valid?
+         @post.condition = "blank"
+         assert @post.valid?
+   end
+
    test "post type should be correct with proper formats" do
       valid_post_type = %w[daily, condition, learning]
       valid_post_type.each do |type|
          @post.post_type = type
          assert @post.valid?
+         @post.condition = "blank"
       end
    end
 
@@ -64,7 +77,7 @@ class PostTest < ActiveSupport::TestCase
       end
    end
 
-   test "post should be destroyed when relative user deleted" do
+   test "should be destroyed when relative user deleted" do
       @employee.destroy
       assert_equal 0, @employee.posts.count
    end

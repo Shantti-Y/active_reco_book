@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+what:
+   content: "What are you doing?"
+   category: 1
+
+who:
+   content: "who do you like to talk with?"
+   category: 2
+
+which:
+   content: "Which do you prefer to eat a sandwich or a cake?"
+   category: 3
