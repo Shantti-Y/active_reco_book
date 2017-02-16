@@ -12,4 +12,5 @@ class Post < ApplicationRecord
    validates :post_type, format: { with: /daily|condition|learning/ }
    validates :published, inclusion: { in: [true, false] }
 
+
 end

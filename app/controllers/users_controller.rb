@@ -8,13 +8,26 @@ class UsersController < ApplicationController
   def show
      @user = User.find(params[:id])
      @published = true
-     if !params[:published].nil? && params[:published] == "0"
+     if !params[:published].nil? || params[:published] == "0"
         @published = false
      end
      @posts = Post.page(params[:page]).where(user_id: @user.id).where(published: @published).order(:created_at).reverse_order
      respond_to do |format|
        format.html {}
        format.js {}
+     end
+  end
+
+  def search_user
+     @user = User.find(params[:id])
+     @published = true
+     @word = params[:post][:word]
+     if !params[:post][:published].nil? || params[:post][:published] == "0"
+       @published = false
+     end
+     @posts = Post.page(params[:page]).where(user_id: @user.id).where(published: @published).where("content LIKE ?", "%#{params[:post][:word]}%").order(:created_at).reverse_order
+     respond_to do |format|
+      format.js {}
      end
   end
 

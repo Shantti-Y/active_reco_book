@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
    # Routes for static pages
    get '/home', to: 'static_pages#home'
+   get '/search_home', to: 'static_pages#search_home'
    get '/help', to: 'static_pages#help'
    get '/about', to: 'static_pages#about'
    get '/convention', to: 'static_pages#convention'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
    resources 'users'
    get 'users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
    patch 'users/:id/edit_password', to: 'users#update_password', as: 'update_password'
+   get 'search_user/:id', to: 'users#search_user', as: 'search_user'
 
    # Routes for sessions
    get '/login', to: 'sessions#new'

@@ -9,9 +9,7 @@
    <div id="post-option">
       <% if @user == current_user %>
          <div id="search-own-user" class="search content-box">
-            <input type="text" class="search-form">
-            <%= button_tag(class: "search-btn fa fa-search") do %>
-            <% end %>
+            <%= render 'users/search' %>
          </div>
          <div id="toggle-draft" class="content-box">
             <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-book"></i><span>公開中</span></a>
@@ -19,9 +17,7 @@
          </div>
       <% else %>
          <div id="search-another-user" class="search content-box">
-            <input type="text" class="search-form">
-            <%= button_tag(class: "search-btn fa fa-search") do %>
-            <% end %>
+            <%= render 'users/search' %>
          </div>
       <% end %>
    </div>

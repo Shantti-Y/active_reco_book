@@ -6,6 +6,15 @@
    <div id="condition-summary" class="content-box">
       こころチェックの状況を定義
    </div>
+   <div id="post-option">
+         <div id="search-user" class="search content-box">
+            <%= form_for(:post, url: search_home_path, method: :get, remote: true) do |f| %>
+               <%= f.text_field :word, class: "search-form", placeholder: "フリーワード検索しよう！" %>
+               <%= button_tag sanitize('<i class="fa fa-search"></i>'), type: "submit",
+                   class: "search-btn" %>
+            <% end %>
+         </div>
+   </div>
    <div id="posts">
       <%= render 'posts/posts' %>
    </div>
