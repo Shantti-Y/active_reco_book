@@ -10,6 +10,8 @@ User.delete_all
 Post.delete_all
 Comment.delete_all
 Reaction.delete_all
+Question.delete_all
+Condition.delete_all
 
 User.create!(
             name: "例得 升男",
@@ -84,6 +86,23 @@ User.where(employee: true).each do |user|
                   user_id: user.id,
                   post_id: Post.last.id
                    )
+   2.times do |m|
+      Post.create!(
+                  user_id: user.id,
+                  content: "「心の状態」は周囲には見えにくく、一方で変わりやすいもの。タイミングよく適切なフォローが重要です。",
+                  condition: "blank",
+                  post_type: "condition",
+                  published: true
+                  )
+      10.times do |n|
+         Condition.create!(
+                           user_id: user.id,
+                           post_id: user.posts.last.id,
+                           category: n + 1,
+                           point: 0
+                           )
+      end
+   end
 end
 
 Question.create!( content: "仕事が面白いと感じる",

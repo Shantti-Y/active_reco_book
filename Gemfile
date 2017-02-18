@@ -19,6 +19,8 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'react-rails'
 gem 'jquery-turbolinks'
 gem 'kaminari'
+gem 'animate-rails'
+gem 'chartjs-ror'
 
 group :development, :test do
   gem 'sqlite3',                      '~> 1.3.11'

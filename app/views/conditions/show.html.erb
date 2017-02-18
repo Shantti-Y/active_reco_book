@@ -1,0 +1,158 @@
+<div id="container-left">
+   <%= render('shared/user_status') %>
+</div>
+
+<div id="container-right">
+   <div id="condition-notice" class="content-box">
+      <div id="condition-frame">
+         <p>
+            <i class="fa fa-heartbeat animated infinite rubberBand"></i>
+            <i class="fa fa-check"></i>
+         </p>
+         <ul class="notice-line">
+            <li><h1>こころチェック</h1></li>
+            <li><h1>回答期間です</h1></li>
+         </ul>
+         <ul class="notice-line">
+            <li><h2>回答期間： </h2></li>
+            <li><h2>2017/02/15</h2></li>
+            <li><h2> ～ </h2></li>
+            <li><h2>2017/02/28</h2></li>
+         </ul>
+         <a href="#" class="btn">回答する</a>
+      </div>
+   </div>
+
+   <div id="condition-result" class="content-box">
+      <div class="content-header">
+         <p>最新のチェック結果</p>
+      </div>
+      <div id="condition-top">
+         <p id="condition-date">回答日: 2017年1月29日</p>
+         <div id="toggle-draft">
+            <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-table"></i><span>最新</span></a>
+            <%= link_to user_path(@user, published: "0"), id: 'toggled-draft', class: "toggle-button", remote: true do %><i class="fa fa-line-chart"></i><span>推移</span><% end %>
+         </div>
+
+      </div>
+      <ul id="condition-header">
+         <li id="condition-title"><span>イキイキ </span><%= image_tag('info.png') %></li>
+         <li class="post-reaction">
+            <a href="#"><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span>2</span></a>
+            <a href="#"><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span>4</span></a>
+         </li>
+      </ul>
+      <div id="condition-description">
+         <h1>若干疲れの出ている状態</h1>
+         <p>
+            仕事や職場に対する不安や負荷をある程度感じていますが、前回と比べて前向きさが改善され、自分の力をある程度発揮できていると感じています。
+            総じて悪い状態ではなくなってきていますが、気になることがあれば周囲と話し合い、早めに解決していくよう心がけましょう。
+            仕事の量は適度であるものの、難易度は高いと感じている状態です。
+         </p>
+      </div>
+      <div id="condition-comment">
+         <!-- Put comment layout and relative events and actions later -->
+      </div>
+
+      <div id="condition-main-content">
+         <div id="condition-radar-chart">
+            <%= radar_chart radar_params, radar_option %>
+         </div>
+         <div id="condition-summary">
+            <p id="motivation" class="summary-header">モチベーション</p>
+            <table>
+               <tr>
+                  <th><span>前回</span></th>
+                  <th></th>
+                  <th><span>今回</span></th>
+               </tr>
+               <tr>
+                  <td class="summary-info"><i class="fa fa-check-square-o"></i></td>
+                  <td></td>
+                  <td class="summary-info"><i class="fa fa-square-o"></i></td>
+               </tr>
+               <tr>
+                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td><i class="fa fa-arrow-right"></i></td>
+                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+               </tr>
+               <tr>
+                  <td class="summary-danger"><i class="fa fa-square-o"></i></td>
+                  <td></td>
+                  <td class="summary-danger"><i class="fa fa-check-square-o"></i></td>
+               </tr>
+            </table>
+
+            <p id="burden" class="summary-header">負担感</p>
+            <table>
+               <tr>
+                  <th><span>前回</span></th>
+                  <th></th>
+                  <th><span>今回</span></th>
+               </tr>
+               <tr>
+                  <td class="summary-info"><i class="fa fa-check-square-o"></i></td>
+                  <td></td>
+                  <td class="summary-info"><i class="fa fa-square-o"></i></td>
+               </tr>
+               <tr>
+                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td><i class="fa fa-arrow-right"></i></td>
+                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+               </tr>
+               <tr>
+                  <td class="summary-danger"><i class="fa fa-square-o"></i></td>
+                  <td></td>
+                  <td class="summary-danger"><i class="fa fa-check-square-o"></i></td>
+               </tr>
+            </table>
+         </div>
+      </div>
+
+      <div id="condition-words">
+         <div id="words-list">
+            <ul>
+               <li>a.仕事の忙しさ</li>
+               <li>b.プレッシャー</li>
+               <li>c.周囲の支え</li>
+               <li>d.働く環境</li>
+               <li>e.職場への適応</li>
+            </ul>
+            <ul>
+               <li>f.仕事への意欲</li>
+               <li>g.成果への挑戦</li>
+               <li>h.成長実感</li>
+               <li>i.自己研鑽</li>
+               <li>j.将来展望</li>
+            </ul>
+         </div>
+         <div id="words-description">
+            <h1><i class="fa fa-file-text"></i>a.仕事の忙しさ</h1>
+            <h2>やるべきことが多く、時間的負荷を感じている度合い</h2>
+            <ul>
+               <li>
+                  <p>この結果が「<span class="words-info">良好</span>」又は「<span class="words-info">高</span>」の時は...</p>
+                  <p><span class="words-info">----------------------------------</span></p>
+                  <p>仕事をため込まずに進められている状態です。</p>
+               </li>
+               <li>
+                  <p>この結果が「<span class="words-danger">注意</span>」又は「<span class="words-danger">低</span>」の時は...</p>
+                  <p><span class="words-danger">----------------------------------</span></p>
+                  <p>仕事を抱え込み過ぎて、身動きが取れない状態かもしれません。
+                     例えば、ここ一週間の間にやった仕事と、割いた時間を書き出してみましょう。
+                     冷静に見ると時間をかけ過ぎていた仕事や、あなたがやらなくてもよかった仕事があるかもしれません。
+                     上司や周囲の先輩に、客観的なアドバイスをもらうのもよいでしょう。</p>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div id="condition-download" class="content-box">
+      <div id="download-frame">
+         <p>今回の結果をダウンロード(pdfファイル)</p>
+         <a href="#" class="btn">ダウンロード</a>
+      </div>
+   </div>
+
+
+</div>
