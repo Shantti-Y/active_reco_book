@@ -4,6 +4,13 @@ class AccountManagementsController < ApplicationController
       user = User.find_by(email: params[:email])
       if user && user.authenticated?('activate', params[:id]) && !user.activated?
          user.update_attribute(:activated, true)
+         2.times do |m|
+               post = user.posts.build(post_template("condition"))
+            10.times do |n|
+               condition = user.conditions.build({post_id: post.id, category: n + 1, point: 0})
+               condition.save
+            end
+         end
          flash['info'] = "ようこそ、ActiveRecoBookへ！"
          login(user)
          redirect_to home_url

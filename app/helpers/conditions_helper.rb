@@ -88,6 +88,7 @@ module ConditionsHelper
       elsif burden_point >= 85 && burden_point <= 100
          burden_result = "良好"
       else
+         burden_result = "なし"
       end
 
       motivations = post.conditions.order(:category).reverse_order.limit(5)
@@ -103,6 +104,7 @@ module ConditionsHelper
       elsif motivation_point >= 77 && motivation_point <= 100
          motivation_result = "高"
       else
+         motivation_result = "なし"
       end
 
       result = {}
@@ -114,7 +116,7 @@ module ConditionsHelper
                   subtitle: "心身ともに限界の状態",
                   description: ""
                   }
-      elsif burden_result == "注意" && (motivation_result == "中" || motivation_result == "高")
+      elsif burden_result == "注意" && (motivation_result == "中" || motivation_result == "低")
          result = {
                   class: "aggressive",
                   title: "ギリギリ",
@@ -122,7 +124,7 @@ module ConditionsHelper
                   subtitle: "ギリギリな状態",
                   description: ""
                   }
-      elsif (burden_result == "ふつう" || burden_result == "良好" ) && motivation_result == "低"
+      elsif (burden_result == "ふつう" || burden_result == "良好") && motivation_result == "低"
          result = {
                   class: "gloomy",
                   title: "モヤモヤ",
@@ -130,7 +132,8 @@ module ConditionsHelper
                   subtitle: "モヤモヤな状態",
                   description: ""
                   }
-      elsif burden_result == "良好" && motivation_result == "高"
+      elsif (burden_result != "注意" && motivation_result != "低") &&
+            (burden_result != "なし" && motivation_result != "なし")
          result = {
                   class: "vivacious",
                   title: "イキイキ",

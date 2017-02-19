@@ -23,7 +23,7 @@
       </div>
    </div>
 
-   <div id="condition-result" class="content-box">
+   <div id="post-<%= @current_post.id %>" class="content-box condition-result">
       <div class="content-header">
          <p>最新のチェック結果</p>
       </div>
@@ -40,17 +40,10 @@
             <span class="condition-<%= condition_summary('class', @current_post) %>"><%= condition_summary("title", @current_post) %> </span>
             <%= image_tag(condition_summary("image", @current_post)) %>
          </li>
-         <li class="post-reaction">
-            <a href="#"><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span>2</span></a>
-            <a href="#"><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span>4</span></a>
-         </li>
       </ul>
       <div id="condition-description">
          <h1><%= condition_summary("subtitle", @current_post) %></h1>
          <p><%= condition_summary("description", @current_post) %></p>
-      </div>
-      <div id="condition-comment">
-         <!-- Put comment layout and relative events and actions later -->
       </div>
 
       <div id="condition-main-content">
@@ -147,6 +140,23 @@
                </li>
             </ul>
          </div>
+      </div>
+      <div class="post-reaction">
+         <% if condition_summary("class", @current_post) != "nothing" %>
+            <% if @current_post.reactions.find_by(user_id: current_user.id).nil? %>
+               <%= link_to reaction_path(@current_post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= @current_post.reactions.count %></span><% end %>
+            <% else %>
+               <%= link_to reaction_path(@current_post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= @current_post.reactions.count %></span><% end %>
+            <% end %>
+            <% if @current_post.reactions.count >= 1 %>
+            <ul class="post-reaction-list">
+               <% @current_post.reactions.each do |reaction| %>
+               <li><%= reaction.user.name %></li>
+               <% end %>
+            </ul>
+            <% end %>
+            <%= link_to new_comment_path(@current_post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= @current_post.comments.count %></span><% end %>
+         <% end %>
       </div>
    </div>
    <div id="condition-download" class="content-box">
