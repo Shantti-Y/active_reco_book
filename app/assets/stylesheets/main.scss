@@ -1257,10 +1257,24 @@ a { text-decoration: none; }
       padding: 24px 8px;
       background-color: #b3ecff;
       border-radius: 4px;
-      p {
-         font-size: 18px;
-         font-weight: bold;
-         color: $info;
+      * { color: $info; }
+      .notice-line {
+         margin-bottom: 12px;
+         li {
+            margin-bottom: 5px;
+            h1 {
+               font-size: 16px;
+               font-weight: bold;
+            }
+         }
+      }
+      .btn {
+         display: inline-block;
+         color: #ededed;
+         background-color: $info;
+         border: 1px solid $info;
+         padding: 12px 30px;
+         &:hover { background-color: #80cde5; }
       }
    }
 }
@@ -1448,12 +1462,24 @@ a { text-decoration: none; }
       border-top: 1px solid #dedede;
       padding-top: 16px;
       #words-list {
-         padding: 9px;
+         h1 {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+         }
          ul {
-            li {
-               font-size: 15px;
+            display: inline-block;
+            margin-right: 21px;
+            h2 {
+               font-size: 13px;
                font-weight: bold;
-               margin-bottom: 8px;
+               border-bottom: 1px solid #dedede;
+               padding-bottom: 4px;
+               margin-bottom: 7px;
+            }
+            li {
+               font-size: 12px;
+               margin-bottom: 12px;
                &:hover {
                   cursor: pointer;
                   color: #cdcdcd;
@@ -1478,7 +1504,7 @@ a { text-decoration: none; }
          }
          ul {
             li {
-               margin-top: 12px;
+               margin-top: 34px;
                p {
                   margin: 3px;
                   span { font-weight: bold; }
@@ -1540,12 +1566,16 @@ a { text-decoration: none; }
          overflow: hidden;
          #words-list {
             float: left;
-            width: 150px;
+            width: 130px;
+            ul {
+               margin: 17px 0 0 0;
+               display: block;
+            }
          }
          #words-description {
             margin-top: 0;
             float: right;
-            width: calc(100% - 170px - 22px);
+            width: calc(100% - 150px - 22px);
          }
       }
 

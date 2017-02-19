@@ -111,7 +111,9 @@
 
       <div id="condition-words">
          <div id="words-list">
+            <h1>内訳と説明</h1>
             <ul>
+               <h2 class="list-section">負担感</h2>
                <li>a.仕事の忙しさ</li>
                <li>b.プレッシャー</li>
                <li>c.周囲の支え</li>
@@ -119,6 +121,7 @@
                <li>e.職場への適応</li>
             </ul>
             <ul>
+               <h2 class="list-section">モチベーション</h2>
                <li>f.仕事への意欲</li>
                <li>g.成果への挑戦</li>
                <li>h.成長実感</li>
@@ -127,18 +130,18 @@
             </ul>
          </div>
          <div id="words-description">
-            <h1><i class="fa fa-file-text"></i>a.仕事の忙しさ</h1>
-            <h2>やるべきことが多く、時間的負荷を感じている度合い</h2>
+            <h1 id="description-title">a.仕事の忙しさ</h1>
+            <h2 id="description-summary">やるべきことが多く、時間的負荷を感じている度合い</h2>
             <ul>
                <li>
-                  <p>この結果が「<span class="words-info">良好</span>」又は「<span class="words-info">高</span>」の時は...</p>
-                  <p><span class="words-info">----------------------------------</span></p>
-                  <p>仕事をため込まずに進められている状態です。</p>
+                  <p>この結果が「<span class="words-info">良好</span>」「<span class="words-info">高</span>」の時は</p>
+                  <p><span class="words-info">---------------------------------</span></p>
+                  <p id="description-info">仕事をため込まずに進められている状態です。</p>
                </li>
                <li>
-                  <p>この結果が「<span class="words-danger">注意</span>」又は「<span class="words-danger">低</span>」の時は...</p>
-                  <p><span class="words-danger">----------------------------------</span></p>
-                  <p>仕事を抱え込み過ぎて、身動きが取れない状態かもしれません。
+                  <p>この結果が「<span class="words-danger">注意</span>」「<span class="words-danger">低</span>」の時は</p>
+                  <p><span class="words-danger">---------------------------------</span></p>
+                  <p id="description-danger">仕事を抱え込み過ぎて、身動きが取れない状態かもしれません。
                      例えば、ここ一週間の間にやった仕事と、割いた時間を書き出してみましょう。
                      冷静に見ると時間をかけ過ぎていた仕事や、あなたがやらなくてもよかった仕事があるかもしれません。
                      上司や周囲の先輩に、客観的なアドバイスをもらうのもよいでしょう。</p>
@@ -149,7 +152,10 @@
    </div>
    <div id="condition-download" class="content-box">
       <div id="download-frame">
-         <p>今回の結果をダウンロード(pdfファイル)</p>
+         <ul class="notice-line">
+            <li><h1>今回の結果をダウンロード</h1></li>
+            <li><h1>(pdfファイル)</h1></li>
+         </ul>
          <a href="#" class="btn">ダウンロード</a>
       </div>
    </div>
