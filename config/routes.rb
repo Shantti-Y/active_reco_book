@@ -42,7 +42,8 @@ Rails.application.routes.draw do
    resources 'reactions', only: [:destroy]
    get '/reactions/:id', to: 'reactions#create', as: "new_reaction"
 
-   resources 'conditions', only: [:show, :edit, :create, :update]
+   resources 'conditions', only: [:show, :edit, :update]
+   post '/conditions/new', to: 'conditions#create', as: "new_condition"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

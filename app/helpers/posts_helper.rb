@@ -77,4 +77,20 @@ module PostsHelper
       return post.content.slice(0, 140)
    end
 
+   def post_template(type)
+      case type
+      when "condition"
+         return {
+               content: "「心の状態」は周囲には見えにくく、一方で変わりやすいもの。
+                        タイミングよく適切なフォローが重要です。",
+               condition: "blank",
+               post_type: "condition",
+               published: false
+                }
+      when "learning"
+         return ""
+      else
+      end
+   end
+
 end

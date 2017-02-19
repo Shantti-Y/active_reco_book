@@ -3,17 +3,50 @@ class ConditionsController < ApplicationController
 
    def show
       @user = current_user
+      @posts = current_user.posts.where(post_type: "condition").where(published: true)
+               .order(:created_at).reverse_order.limit(2)
+               @current_post = @posts.first
+               @previous_post = @posts.last
    end
 
    def edit
-
+      @user = current_user
+      @condition = Condition.find(params[:id])
+      @question = Question.find_by(question_number: params[:question_number])
    end
 
    def create
-
+      @post = current_user.posts.build(post_template("condition"))
+      respond_to do |format|
+         if @post.save
+            10.times do |n|
+               condition = current_user.conditions.build({post_id: @post.id, category: n + 1, point: 0})
+               condition.save
+            end
+            @question = Question.find_by(question_number: 1)
+            @condition = @post.conditions.find_by(category: @question.category)
+            format.html { redirect_to edit_condition_url(@condition, question_number: 1) }
+         end
+      end
    end
 
    def update
-
+      @post = current_user.posts.where(post_type: "condition").last
+      @condition = Condition.find(params[:id])
+      @question_count = question_max?(params[:question_number])
+      respond_to do |format|
+         if @condition.update_attribute(:point, @condition.point + params[:point].to_i)
+            if @question_count.nil?
+               @post.update_attribute(:published, true)
+               format.html { redirect_to condition_url(@post) }
+               format.js { render 'conditions/update' }
+            else
+               @question = Question.find_by(question_number: @question_count)
+               @condition = @post.conditions.find_by(category: @question.category)
+               format.html { redirect_to edit_condition_url(@condition, question_number: @question_count) }
+               format.js { render 'conditions/update' }
+            end
+         end
+      end
    end
 end

@@ -1,0 +1,12 @@
+<div id="questions-edit" class="content-box">
+   <p id="question-sentence">
+      <%= @question.question_number %>：<%= @question.content %>
+   </p>
+   <ul id="question-answers">
+      <li><%= button_to "あてはまる", condition_path(@condition, question_number: @question.question_number, point: 5), method: :put, class: 'btn', remote: true %></li>
+      <li><%= button_to "どちらかというとあてはまる", condition_path(@condition, question_number: @question.question_number, point: 4), method: :put, class: 'btn', remote: true %></li>
+      <li><%= button_to "どちらともいえない", condition_path(@condition, question_number: @question.question_number, point: 3), method: :put, class: 'btn', remote: true %></li>
+      <li><%= button_to "どちらかというとあてはまらない", condition_path(@condition, question_number: @question.question_number, point: 2), method: :put, class: 'btn', remote: true %></li>
+      <li><%= button_to "あてはまらない", condition_path(@condition, question_number: @question.question_number, point: 1), method: :put, class: 'btn', remote: true %></li>
+   </ul>
+</div>

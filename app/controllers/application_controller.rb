@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include PostsHelper
   include ConditionsHelper
+  include QuestionsHelper
 
   def is_logged_in?
      unless is_logged?

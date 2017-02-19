@@ -1,0 +1,5 @@
+<% if @question_count.nil?%>
+   window.location.replace("<%= condition_path(@post) %>");
+<% else %>
+   $('#container-single').html("<%= escape_javascript(render('conditions/form'))%>");
+<% end %>

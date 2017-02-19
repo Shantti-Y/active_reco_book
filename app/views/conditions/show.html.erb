@@ -19,7 +19,7 @@
             <li><h2> ～ </h2></li>
             <li><h2>2017/02/28</h2></li>
          </ul>
-         <a href="#" class="btn">回答する</a>
+         <%= link_to "回答する", new_condition_path, class: 'btn', method: :post %>
       </div>
    </div>
 
@@ -28,7 +28,7 @@
          <p>最新のチェック結果</p>
       </div>
       <div id="condition-top">
-         <p id="condition-date">回答日: 2017年1月29日</p>
+         <p id="condition-date">更新日: <%= @current_post.updated_at.strftime("%Y年%m日%d日") %></p>
          <div id="toggle-draft">
             <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-table"></i><span>最新</span></a>
             <%= link_to user_path(@user, published: "0"), id: 'toggled-draft', class: "toggle-button", remote: true do %><i class="fa fa-line-chart"></i><span>推移</span><% end %>
@@ -36,19 +36,18 @@
 
       </div>
       <ul id="condition-header">
-         <li id="condition-title"><span>イキイキ </span><%= image_tag('info.png') %></li>
+         <li id="condition-title">
+            <span class="condition-<%= condition_summary('class', @current_post) %>"><%= condition_summary("title", @current_post) %> </span>
+            <%= image_tag(condition_summary("image", @current_post)) %>
+         </li>
          <li class="post-reaction">
             <a href="#"><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span>2</span></a>
             <a href="#"><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span>4</span></a>
          </li>
       </ul>
       <div id="condition-description">
-         <h1>若干疲れの出ている状態</h1>
-         <p>
-            仕事や職場に対する不安や負荷をある程度感じていますが、前回と比べて前向きさが改善され、自分の力をある程度発揮できていると感じています。
-            総じて悪い状態ではなくなってきていますが、気になることがあれば周囲と話し合い、早めに解決していくよう心がけましょう。
-            仕事の量は適度であるものの、難易度は高いと感じている状態です。
-         </p>
+         <h1><%= condition_summary("subtitle", @current_post) %></h1>
+         <p><%= condition_summary("description", @current_post) %></p>
       </div>
       <div id="condition-comment">
          <!-- Put comment layout and relative events and actions later -->
@@ -56,7 +55,7 @@
 
       <div id="condition-main-content">
          <div id="condition-radar-chart">
-            <%= radar_chart radar_params, radar_option %>
+            <%= radar_chart radar_params(@current_post, @previous_post), radar_option %>
          </div>
          <div id="condition-summary">
             <p id="motivation" class="summary-header">モチベーション</p>
@@ -67,19 +66,19 @@
                   <th><span>今回</span></th>
                </tr>
                <tr>
-                  <td class="summary-info"><i class="fa fa-check-square-o"></i></td>
+                  <td class="summary-info"><%= fa_icon(condition_fa('motivation', 'info', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-info"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-info"><%= fa_icon(condition_fa('motivation', 'info', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @previous_post)) %></td>
                   <td><i class="fa fa-arrow-right"></i></td>
-                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-danger"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-danger"><i class="fa fa-check-square-o"></i></td>
+                  <td class="summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @current_post)) %></td>
                </tr>
             </table>
 
@@ -91,19 +90,19 @@
                   <th><span>今回</span></th>
                </tr>
                <tr>
-                  <td class="summary-info"><i class="fa fa-check-square-o"></i></td>
+                  <td class="summary-info"><%= fa_icon(condition_fa('burden', 'info', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-info"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-info"><%= fa_icon(condition_fa('burden', 'info', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @previous_post)) %></td>
                   <td><i class="fa fa-arrow-right"></i></td>
-                  <td class="summary-warning"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-danger"><i class="fa fa-square-o"></i></td>
+                  <td class="summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-danger"><i class="fa fa-check-square-o"></i></td>
+                  <td class="summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @current_post)) %></td>
                </tr>
             </table>
          </div>
