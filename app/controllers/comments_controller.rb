@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
    before_action :is_logged_in?
+   before_action :url_log
 
    def new
       @user = current_user
@@ -23,15 +24,15 @@ class CommentsController < ApplicationController
 
    def create
       @user = current_user
-      @post = Post.find(comment_params[:post_id])  
+      @post = Post.find(comment_params[:post_id])
       @comment = current_user.comments.build(comment_params)
       respond_to do |format|
          if @comment.save
             flash[:success] = "新しいコメントを投稿しました。"
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'comments/create' }
          else
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'comments/create' }
          end
       end
@@ -44,10 +45,10 @@ class CommentsController < ApplicationController
       respond_to do |format|
          if @comment.update_attributes(comment_params)
             flash[:success] = "コメントを再投稿しました。"
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'comments/update' }
          else
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'comments/update' }
          end
       end
@@ -58,10 +59,10 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
       if @comment.destroy
          flash[:info] = "コメントを削除しました"
-         redirect_to home_url
+         redirect_back_to(root_url)
       else
          flash[:danger] = "入力情報に不備があります"
-         redirect_to home_url
+         redirect_back_to(root_url)
       end
    end
 

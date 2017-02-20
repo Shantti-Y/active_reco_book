@@ -53,7 +53,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                          } }
       end
       assert flash['success']
-      assert_redirected_to home_url
+      assert_redirected_to root_url
    end
 
    test "should not create a user with invalid information" do
@@ -85,7 +85,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                                    } }
       assert_equal "営業部企画課", @employee.reload.division
       assert flash['success']
-      assert_redirected_to home_url
+      assert_redirected_to root_url
    end
 
    test "should be failed to update the user with invalid parameters" do
@@ -103,7 +103,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_difference 'User.count', -1 do
          delete user_path(@employee)
       end
-         assert_redirected_to home_url
+         assert_redirected_to root_url
    end
 
    test "should get edit password" do
@@ -120,7 +120,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_not_equal @employee.password_digest, @employee.reload.password_digest
       assert_not @employee.reload.password_reset?
       assert flash[:success]
-      assert_redirected_to home_url
+      assert_redirected_to root_url
    end
 
    test "should not change user password with invalid information" do

@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
    before_action :is_logged_in?, only: [:home]
+   before_action :url_log, only: [:home]
 
   def home
       @user = current_user

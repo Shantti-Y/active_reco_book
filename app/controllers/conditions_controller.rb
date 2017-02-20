@@ -1,5 +1,7 @@
 class ConditionsController < ApplicationController
    before_action :is_logged_in?
+   before_action :interrupted?, only: [:show]
+   before_action :url_log
 
    def show
       @user = User.find(params[:id])
@@ -60,4 +62,12 @@ class ConditionsController < ApplicationController
          end
       end
    end
+
+   private
+      def interrupted?
+         unanswered_condition = current_user.posts.where(post_type: "condition").find_by(published: false)
+          if unanswered_condition
+             unanswered_condition.destroy
+          end
+      end
 end

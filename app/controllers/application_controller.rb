@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
      end
   end
 
+  def url_log
+    store_location
+  end
+
 end

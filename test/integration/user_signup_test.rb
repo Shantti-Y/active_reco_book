@@ -46,7 +46,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
      end
      user = assigns(:user)
      assert flash['success']
-     assert_redirected_to home_url
+     assert_redirected_to root_url
 
      assert_equal 1, ActionMailer::Base.deliveries.size
 

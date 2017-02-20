@@ -60,6 +60,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
          delete comment_path(@re_morning)
       end
       assert flash[:info]
-      assert_redirected_to home_url
+      assert_redirected_to root_url
    end
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
    before_action :is_logged_in?
+   before_action :url_log
 
   def index
      @users = User.all
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
         @user.update_attribute(:password_reset_sent_at, Time.now)
         flash['success'] = "本登録のメールを送信しました。
         届いたメール内に記載されたURLをクリックして登録を完了してください"
-        redirect_to home_url
+        redirect_back_to(root_url)
      else
         flash['danger'] = "入力情報に不備があります"
         render 'users/new'
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       if @user.update_attributes(user_params)
          flash['success'] = "ユーザー情報を更新しました"
-         redirect_to home_url
+         redirect_back_to(root_url)
       else
          flash['danger'] = "入力情報に不備があります"
          render 'users/edit'
@@ -67,9 +68,9 @@ class UsersController < ApplicationController
   def destroy
      @user = User.find(params[:id])
      if @user.destroy
-         redirect_to home_url
+         redirect_back_to(root_url)
      else
-        redirect_to home_url
+        redirect_back_to(root_url)
      end
   end
 
@@ -84,7 +85,7 @@ class UsersController < ApplicationController
         if @user.update_attribute(:password_digest, User.digest(params[:password][:new_password]))
            @user.update_attribute(:password_reset, false)
            flash[:success] = "パスワードの変更を完了しました"
-           redirect_to home_url
+           redirect_back_to(root_url)
         else
            flash['danger'] = "新しいパスワードが有効ではありません"
            render 'users/edit_password'

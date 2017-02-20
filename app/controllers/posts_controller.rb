@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
    before_action :is_logged_in?
+   before_action :url_log
 
   def new
      @user = current_user
@@ -31,10 +32,10 @@ class PostsController < ApplicationController
      respond_to do |format|
         if @post.save
            flash[:success] = "新しい記録を投稿しました。"
-           format.html { redirect_to home_url }
+           format.html { redirect_back_to(root_url) }
            format.js { render 'posts/create' }
         else
-           format.html { redirect_to home_url }
+           format.html { redirect_back_to(root_url) }
            format.js { render 'posts/create' }
         end
      end
@@ -47,10 +48,10 @@ class PostsController < ApplicationController
       respond_to do |format|
          if @post.update_attributes(post_params)
             flash[:success] = "記録を再投稿しました。"
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'posts/update' }
          else
-            format.html { redirect_to home_url }
+            format.html { redirect_back_to(root_url) }
             format.js { render 'posts/update' }
          end
       end
@@ -61,10 +62,10 @@ class PostsController < ApplicationController
      @post = Post.find(params[:id])
      if @post.destroy
         flash[:info] = "記録を削除しました。"
-        redirect_to home_url
+        redirect_back_to(root_url)
      else
         flash[:danger] = "この投稿は削除できません"
-        redirect_to home_url
+        redirect_back_to(root_url)
      end
   end
 

@@ -75,6 +75,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
          delete post_path(@morning)
       end
       assert flash[:info]
-      assert_redirected_to home_url
+      assert_redirected_to root_url
    end
 end

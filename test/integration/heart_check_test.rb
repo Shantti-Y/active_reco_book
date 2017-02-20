@@ -106,7 +106,9 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
       get condition_path(@another_employee)
       assert_select '#condition-notice', 0
 
-      post new_condition_path
+      assert_no_difference 'Post.count' do
+         post new_condition_path
+      end
       assert flash[:danger]
       assert_redirected_to condition_path(@another_employee)
 
@@ -139,9 +141,33 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
       assert_select '#condition-notice', 0
       assert_select '.post-reaction'
 
-      post new_condition_path
+      assert_no_difference 'Post.count' do
+         post new_condition_path
+      end
       assert flash[:danger]
       assert_redirected_to condition_path(@another_employee)
+   end
+
+   test "interrupt in the checking questions" do
+      login_as(@employee)
+      check_term = Date.new(Date.today.year, Date.today.month, 15)
+      Timecop.travel(check_term)
+      get condition_path(@employee)
+
+      post new_condition_path
+      post = @employee.posts.where(post_type: "condition").order(:created_at).last
+      condition = post.conditions.find_by(category: 1)
+      assert_redirected_to edit_condition_url(condition, question_number: 1)
+
+      assert_difference 'Post.count', -1 do
+         get condition_path(@employee)
+      end
+
+      assert_select '#condition-notice'
+      post new_condition_path
+      post = @employee.posts.where(post_type: "condition").order(:created_at).last
+      condition = post.conditions.find_by(category: 1)
+      assert_redirected_to edit_condition_url(condition, question_number: 1)
 
    end
 end
