@@ -6,6 +6,8 @@ class AccountManagementsController < ApplicationController
          user.update_attribute(:activated, true)
          2.times do |m|
                post = user.posts.build(post_template("condition"))
+               post.created_at = 1.year.ago
+               post.save
             10.times do |n|
                condition = user.conditions.build({post_id: post.id, category: n + 1, point: 0})
                condition.save

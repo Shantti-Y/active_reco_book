@@ -2,8 +2,8 @@ class ConditionsController < ApplicationController
    before_action :is_logged_in?
 
    def show
-      @user = current_user
-      @posts = current_user.posts.where(post_type: "condition").where(published: true)
+      @user = User.find(params[:id])
+      @posts = @user.posts.where(post_type: "condition").where(published: true)
                .order(:created_at).reverse_order.limit(2)
                @current_post = @posts.first
                @previous_post = @posts.last
@@ -18,7 +18,8 @@ class ConditionsController < ApplicationController
    def create
       @post = current_user.posts.build(post_template("condition"))
       respond_to do |format|
-         if @post.save
+         if time_to_answer?(current_user) == true
+            @post.save
             10.times do |n|
                condition = current_user.conditions.build({post_id: @post.id, category: n + 1, point: 0})
                condition.save
@@ -26,6 +27,16 @@ class ConditionsController < ApplicationController
             @question = Question.find_by(question_number: 1)
             @condition = @post.conditions.find_by(category: @question.category)
             format.html { redirect_to edit_condition_url(@condition, question_number: 1) }
+         else
+            case time_to_answer?(current_user)
+            when 1
+               flash[:danger] = "次回の回答期間までこころチェック回答を制限しております。"
+            when 0
+               flash[:danger] = "回答期間外のこころチェック回答は受け付けておりません。"
+            else
+               flash[:danger] = "こころチェックの回答が制限されております"
+            end
+            format.html { redirect_to condition_url(current_user) }
          end
       end
    end
@@ -38,7 +49,7 @@ class ConditionsController < ApplicationController
          if @condition.update_attribute(:point, @condition.point + params[:point].to_i)
             if @question_count.nil?
                @post.update_attribute(:published, true)
-               format.html { redirect_to condition_url(@post) }
+               format.html { redirect_to condition_url(current_user) }
                format.js { render 'conditions/update' }
             else
                @question = Question.find_by(question_number: @question_count)

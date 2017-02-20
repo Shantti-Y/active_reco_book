@@ -34,7 +34,7 @@ employer:
    employee_number: 12345689
    division: 人事部採用課
    gender: 男
-   started_at: <%= 10.year.ago %>
+   started_at: <%= 10.years.ago %>
    birthday: <%= 40.years.ago %>
    employee: false
    password_digest: <%= User.digest('password') %>

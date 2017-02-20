@@ -3,25 +3,27 @@
 </div>
 
 <div id="container-right">
-   <div id="condition-notice" class="content-box">
-      <div id="condition-frame">
-         <p>
-            <i class="fa fa-heartbeat animated infinite rubberBand"></i>
-            <i class="fa fa-check"></i>
-         </p>
-         <ul class="notice-line">
-            <li><h1>こころチェック</h1></li>
-            <li><h1>回答期間です</h1></li>
-         </ul>
-         <ul class="notice-line">
-            <li><h2>回答期間： </h2></li>
-            <li><h2>2017/02/15</h2></li>
-            <li><h2> ～ </h2></li>
-            <li><h2>2017/02/28</h2></li>
-         </ul>
-         <%= link_to "回答する", new_condition_path, class: 'btn', method: :post %>
+   <% if time_to_answer?(current_user) == true %>
+      <div id="condition-notice" class="content-box">
+         <div id="condition-frame">
+            <p>
+               <i class="fa fa-heartbeat animated infinite rubberBand"></i>
+               <i class="fa fa-check"></i>
+            </p>
+            <ul class="notice-line">
+               <li><h1>こころチェック</h1></li>
+               <li><h1>回答期間です</h1></li>
+            </ul>
+            <ul class="notice-line">
+               <li><h2>回答期間： </h2></li>
+               <li><h2><%= Date.new(Date.today.year, Date.today.month, 15).strftime("%Y/%m/%d") %></h2></li>
+               <li><h2> ～ </h2></li>
+               <li><h2><%= Date.new(Date.today.year, Date.today.month, -1).strftime("%Y/%m/%d") %></h2></li>
+            </ul>
+            <%= link_to "回答する", new_condition_path, class: 'btn', method: :post %>
+         </div>
       </div>
-   </div>
+   <% end %>
 
    <div id="post-<%= @current_post.id %>" class="content-box condition-result">
       <div class="content-header">
@@ -52,50 +54,50 @@
          </div>
          <div id="condition-summary">
             <p id="motivation" class="summary-header">モチベーション</p>
-            <table>
+            <table id="motivation-table">
                <tr>
                   <th><span>前回</span></th>
                   <th></th>
                   <th><span>今回</span></th>
                </tr>
                <tr>
-                  <td class="summary-info"><%= fa_icon(condition_fa('motivation', 'info', @previous_post)) %></td>
+                  <td class="previous summary-info"><%= fa_icon(condition_fa('motivation', 'info', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-info"><%= fa_icon(condition_fa('motivation', 'info', @current_post)) %></td>
+                  <td class="current summary-info"><%= fa_icon(condition_fa('motivation', 'info', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @previous_post)) %></td>
+                  <td class="previous summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @previous_post)) %></td>
                   <td><i class="fa fa-arrow-right"></i></td>
-                  <td class="summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @current_post)) %></td>
+                  <td class="current summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @previous_post)) %></td>
+                  <td class="previous summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @current_post)) %></td>
+                  <td class="current summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @current_post)) %></td>
                </tr>
             </table>
 
             <p id="burden" class="summary-header">負担感</p>
-            <table>
+            <table id="burden-table">
                <tr>
                   <th><span>前回</span></th>
                   <th></th>
                   <th><span>今回</span></th>
                </tr>
                <tr>
-                  <td class="summary-info"><%= fa_icon(condition_fa('burden', 'info', @previous_post)) %></td>
+                  <td class="previous summary-info"><%= fa_icon(condition_fa('burden', 'info', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-info"><%= fa_icon(condition_fa('burden', 'info', @current_post)) %></td>
+                  <td class="current summary-info"><%= fa_icon(condition_fa('burden', 'info', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @previous_post)) %></td>
+                  <td class="previous summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @previous_post)) %></td>
                   <td><i class="fa fa-arrow-right"></i></td>
-                  <td class="summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @current_post)) %></td>
+                  <td class="current summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @current_post)) %></td>
                </tr>
                <tr>
-                  <td class="summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @previous_post)) %></td>
+                  <td class="previous summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @previous_post)) %></td>
                   <td></td>
-                  <td class="summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @current_post)) %></td>
+                  <td class="current summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @current_post)) %></td>
                </tr>
             </table>
          </div>
@@ -141,8 +143,8 @@
             </ul>
          </div>
       </div>
-      <div class="post-reaction">
-         <% if condition_summary("class", @current_post) != "nothing" %>
+      <% if condition_summary("class", @current_post) != "nothing" %>
+            <div class="post-reaction">
             <% if @current_post.reactions.find_by(user_id: current_user.id).nil? %>
                <%= link_to reaction_path(@current_post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= @current_post.reactions.count %></span><% end %>
             <% else %>
@@ -156,8 +158,8 @@
             </ul>
             <% end %>
             <%= link_to new_comment_path(@current_post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= @current_post.comments.count %></span><% end %>
-         <% end %>
-      </div>
+         </div>
+      <% end %>
    </div>
    <div id="condition-download" class="content-box">
       <div id="download-frame">

@@ -25,7 +25,7 @@ class ConditionTest < ActiveSupport::TestCase
 
    test "should be associated with the relative question" do
       question = Question.find_by(category: @condition.category)
-      assert_equal "What are you doing?", question.content
+      assert_equal "What", question.content
    end
 
    test "user id should be present" do

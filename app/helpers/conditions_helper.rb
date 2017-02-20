@@ -205,6 +205,28 @@ module ConditionsHelper
             return 'square-o'
          end
       end
+   end
 
+   # Regulate to answer questionnaires if user does not meet conditions
+   def time_to_answer?(user)
+      term_current = Date.today
+      term_start = Date.new(term_current.year, term_current.month, 15)
+      term_end = Date.new(term_current.year, term_current.month, -1)
+
+      if term_current >= term_start && term_current <= term_end
+         user_latest_post = user.posts.where(post_type: "condition").order(:created_at).last
+
+         if user_latest_post.created_at.month != term_current.month && user_latest_post.created_at.year != term_current.year
+            return true
+         else
+            if user.posts.where(post_type: "condition").count == 2
+               return true
+            else
+               return 1
+            end
+         end
+      else
+         return 0
+      end
    end
 end

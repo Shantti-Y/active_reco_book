@@ -12,7 +12,7 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       # Post something
       login_as(@employee)
       get home_path
-      first_posts_count = Post.where(published: true).count
+      first_posts_count = Post.where(published: true).count - 4
       assert_select '.post', first_posts_count
 
       get new_post_path, xhr: true
@@ -61,7 +61,7 @@ class PostAndChatTest < ActionDispatch::IntegrationTest
       # Show drafts
       login_as(@employee)
       get user_path(@employee)
-      published_posts_count = Post.where(published: true).count
+      published_posts_count = Post.where(published: true).count - 4
       assert_select '#toggled-publish.toggle-active'
       assert_select '.post', published_posts_count
 

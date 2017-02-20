@@ -71,7 +71,11 @@ class UserSignupTest < ActionDispatch::IntegrationTest
      assert_not is_logged_in?
 
      # Succeed to activate
-     get account_activation_path(id: user.activate_token, email: user.email)
+     assert_difference 'Post.count', 2 do
+        assert_difference 'Condition.count', 20 do
+           get account_activation_path(id: user.activate_token, email: user.email)
+        end
+     end
      assert is_logged_in?
      assert user.reload.activated?
      assert_redirected_to home_url

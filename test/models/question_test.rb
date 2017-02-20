@@ -6,7 +6,7 @@ class QuestionTest < ActiveSupport::TestCase
       @question = Question.new(
                               content: "Are you a user?",
                               category: 1,
-                              question_number: 1
+                              question_number: 41
                               )
    end
 

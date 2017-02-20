@@ -1,0 +1,61 @@
+
+
+first:
+   user: employee
+   post: condition
+   category: 1
+   point: 20
+
+second:
+   user: employee
+   post: condition
+   category: 2
+   point: 20
+
+third:
+   user: employee
+   post: condition
+   category: 3
+   point: 20
+
+fourth:
+   user: employee
+   post: condition
+   category: 4
+   point: 20
+
+fifth:
+   user: employee
+   post: condition
+   category: 5
+   point: 20
+
+sixth:
+   user: employee
+   post: condition
+   category: 6
+   point: 20
+
+seventh:
+   user: employee
+   post: condition
+   category: 7
+   point: 20
+
+eighth:
+   user: employee
+   post: condition
+   category: 8
+   point: 20
+
+nineth:
+   user: employee
+   post: condition
+   category: 9
+   point: 20
+
+tenth:
+   user: employee
+   post: condition
+   category: 10
+   point: 20

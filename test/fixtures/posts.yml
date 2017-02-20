@@ -33,3 +33,42 @@ draft:
    condition: success
    post_type: daily
    published: false
+
+condition:
+      user: employee
+      content: Condition
+      condition: blank
+      post_type: condition
+      published: true
+
+condition_dammy:
+      user: employee
+      content: Condition
+      condition: blank
+      post_type: condition
+      published: true
+      created_at: <%= 1.year.ago %>
+
+condition_second_dammy:
+      user: employee
+      content: Condition
+      condition: blank
+      post_type: condition
+      published: true
+      created_at: <%= 1.year.ago %>
+
+condition_third_dammy:
+      user: another_employee
+      content: Condition
+      condition: blank
+      post_type: condition
+      published: true
+      created_at: <%= 1.year.ago %>
+
+condition_fourth_dammy:
+      user: another_employee
+      content: Condition
+      condition: blank
+      post_type: condition
+      published: true
+      created_at: <%= 1.year.ago %>

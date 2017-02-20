@@ -1,13 +1,201 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-what:
-   content: "What are you doing?"
+q_1_1:
+   content: "What"
    category: 1
+   question_number: 1
 
-who:
-   content: "who do you like to talk with?"
+q_1_2:
+   content: "What"
+   category: 1
+   question_number: 2
+
+q_1_3:
+   content: "What"
+   category: 1
+   question_number: 3
+
+q_1_4:
+   content: "What"
+   category: 1
+   question_number: 4
+
+q_2_1:
+   content: "What"
    category: 2
+   question_number: 5
 
-which:
-   content: "Which do you prefer to eat a sandwich or a cake?"
+q_2_2:
+   content: "What"
+   category: 2
+   question_number: 6
+
+q_2_3:
+   content: "What"
+   category: 2
+   question_number: 7
+
+q_2_4:
+   content: "What"
+   category: 2
+   question_number: 8
+
+q_3_1:
+   content: "What"
    category: 3
+   question_number: 9
+
+q_3_2:
+   content: "What"
+   category: 3
+   question_number: 10
+
+q_3_3:
+   content: "What"
+   category: 3
+   question_number: 11
+
+q_3_4:
+   content: "What"
+   category: 3
+   question_number: 12
+
+q_4_1:
+   content: "What"
+   category: 4
+   question_number: 13
+
+q_4_2:
+   content: "What"
+   category: 4
+   question_number: 14
+
+q_4_3:
+   content: "What"
+   category: 4
+   question_number: 15
+
+q_4_4:
+   content: "What"
+   category: 4
+   question_number: 16
+
+q_5_1:
+   content: "What"
+   category: 5
+   question_number: 17
+
+q_5_2:
+   content: "What"
+   category: 5
+   question_number: 18
+
+q_5_3:
+   content: "What"
+   category: 5
+   question_number: 19
+
+q_5_4:
+   content: "What"
+   category: 5
+   question_number: 20
+
+q_6_1:
+   content: "What"
+   category: 6
+   question_number: 21
+
+q_6_2:
+   content: "What"
+   category: 6
+   question_number: 22
+
+q_6_3:
+   content: "What"
+   category: 6
+   question_number: 23
+
+q_6_4:
+   content: "What"
+   category: 6
+   question_number: 24
+
+q_7_1:
+   content: "What"
+   category: 7
+   question_number: 25
+
+q_7_2:
+   content: "What"
+   category: 7
+   question_number: 26
+
+q_7_3:
+   content: "What"
+   category: 7
+   question_number: 27
+
+q_7_4:
+   content: "What"
+   category: 7
+   question_number: 28
+
+q_8_1:
+   content: "What"
+   category: 8
+   question_number: 29
+
+q_8_2:
+   content: "What"
+   category: 8
+   question_number: 30
+
+q_8_3:
+   content: "What"
+   category: 8
+   question_number: 31
+
+q_8_4:
+   content: "What"
+   category: 8
+   question_number: 32
+
+q_9_1:
+   content: "What"
+   category: 9
+   question_number: 33
+
+q_9_2:
+   content: "What"
+   category: 9
+   question_number: 34
+
+q_9_3:
+   content: "What"
+   category: 9
+   question_number: 35
+
+q_9_4:
+   content: "What"
+   category: 9
+   question_number: 36
+
+q_10_1:
+   content: "What"
+   category: 10
+   question_number: 37
+
+q_10_2:
+   content: "What"
+   category: 10
+   question_number: 38
+
+q_10_3:
+   content: "What"
+   category: 10
+   question_number: 39
+
+q_10_4:
+   content: "What"
+   category: 10
+   question_number: 40
