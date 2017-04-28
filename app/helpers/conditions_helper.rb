@@ -64,12 +64,70 @@ module ConditionsHelper
          }
    end
 
-   def line_params
+   def line_params(posts)
 
+      posts_date = Array.new(12, "")
+      posts_burden = Array.new(12)
+      posts_motivation = Array.new(12)
+      n = 0
+
+      posts.each do |post|
+         posts_date[n] = post.created_at.strftime("%Y%m%d")
+         burdens = post.conditions.order(:category).limit(5)
+         burden_point = 0
+         burdens.each do |burden|
+            burden_point += burden.point
+         end
+         posts_burden[n] = burden_point
+
+         motivations = post.conditions.order(:category).reverse_order.limit(5)
+         motivation_point = 0
+         motivations.each do |motivation|
+            motivation_point += motivation.point
+         end
+         posts_motivation[n] = motivation_point
+         n += 1
+      end
+
+      result = {
+         xLabels: posts_date,
+         datasets: [
+            {
+               label: "負担感(注意・普通・良好)",
+               fill: false,
+               background_color: "rgba(255, 194, 179, 0.6)",
+               border_color: "rgba(255, 71, 26, 0.6)",
+               point_background_color: "rgba(255, 194, 179, 0.6)",
+               data: [20, 50, 70, 76, 75, 78, 81, 69, 65, 54, 78, 80]
+            },
+            {
+               label: "モチベーション(低・中・高)",
+               fill: false,
+               background_color: "rgba(153, 214, 255, 0.6)",
+               border_color: "rgba(51, 173, 255, 0.6)",
+               point_background_color: "rgba(153, 214, 255, 0.6)",
+               data: [55, 54, 56, 34, 67, 77, 80, 79, 71, 67, 61, 70]
+            }
+         ]
+      }
    end
 
    def line_option
-
+      return {
+         tooltips: { enabled: false },
+         maintainAspectRatio: false,
+         span_gaps: true,
+         scales: {
+            yAxes: [{
+               ticks: {
+                  max: 100,
+                  min: 20,
+                  stepSize: 40,
+               },
+               scale_label: '<%= "" + value %>'
+               }]
+         },
+      }
    end
 
    # Recognize data from conditions
@@ -81,12 +139,16 @@ module ConditionsHelper
          burden_point += burden.point
       end
       burden_result = ""
+      burden_class = ""
       if burden_point >= 20 && burden_point <= 36
          burden_result = "注意"
+         burden_class = "danger"
       elsif burden_point >= 37 && burden_point <= 84
          burden_result = "ふつう"
+         burden_class = "warning"
       elsif burden_point >= 85 && burden_point <= 100
          burden_result = "良好"
+         burden_class = "info"
       else
          burden_result = "なし"
       end
@@ -97,17 +159,30 @@ module ConditionsHelper
          motivation_point += motivation.point
       end
       motivation_result = ""
+      motivation_class = ""
       if motivation_point >= 20 && motivation_point <= 44
          motivation_result = "低"
+         motivation_class = "danger"
       elsif motivation_point >= 45 && motivation_point <= 76
          motivation_result = "中"
+         motivation_class = "warning"
       elsif motivation_point >= 77 && motivation_point <= 100
          motivation_result = "高"
+         motivation_class = "info"
       else
          motivation_result = "なし"
       end
 
       result = {}
+
+      if label == "detail"
+         result = {
+                  burden: { class: burden_class, title: burden_result },
+                  motivation: { class: motivation_class, title: motivation_result }
+                  }
+         return result
+      end
+
       if burden_result == "注意" && motivation_result == "低"
          result = {
                   class: "exhausted",
@@ -216,7 +291,7 @@ module ConditionsHelper
       if term_current >= term_start && term_current <= term_end
          user_latest_post = user.posts.where(post_type: "condition").order(:created_at).last
 
-         if user_latest_post.created_at.month != term_current.month && user_latest_post.created_at.year != term_current.year
+         if user_latest_post.created_at.month != term_current.month
             return true
          else
             if user.posts.where(post_type: "condition").count == 2

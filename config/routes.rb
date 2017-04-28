@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
    root  'static_pages#home'
-   
+
    # Routes for static pages
    get '/home', to: 'static_pages#home'
    get '/search_home', to: 'static_pages#search_home'
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
    get '/reactions/:id', to: 'reactions#create', as: "new_reaction"
 
    resources 'conditions', only: [:show, :edit, :update]
+   get '/conditions/:id/index', to: 'conditions#index', as: 'conditions'
    post '/conditions/new', to: 'conditions#create', as: "new_condition"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

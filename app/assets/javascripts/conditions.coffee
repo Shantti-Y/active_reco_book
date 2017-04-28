@@ -133,3 +133,6 @@ $ ->
          changeDescription(i_condition)
    $('#words-list > ul:nth-child(3) > li:nth-child(6)').click ->
          changeDescription(j_condition)
+
+
+# generate a line chart

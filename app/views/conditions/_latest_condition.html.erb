@@ -1,0 +1,167 @@
+<% if time_to_answer?(current_user) == true %>
+   <div id="condition-notice" class="content-box">
+      <div id="condition-frame">
+         <p>
+            <i class="fa fa-heartbeat animated infinite rubberBand"></i>
+            <i class="fa fa-check"></i>
+         </p>
+         <ul class="notice-line">
+            <li><h1>こころチェック</h1></li>
+            <li><h1>回答期間です</h1></li>
+         </ul>
+         <ul class="notice-line">
+            <li><h2>回答期間： </h2></li>
+            <li><h2><%= Date.new(Date.today.year, Date.today.month, 15).strftime("%Y/%m/%d") %></h2></li>
+            <li><h2> ～ </h2></li>
+            <li><h2><%= Date.new(Date.today.year, Date.today.month, -1).strftime("%Y/%m/%d") %></h2></li>
+         </ul>
+         <%= link_to "回答する", new_condition_path, class: 'btn', method: :post %>
+      </div>
+   </div>
+<% end %>
+
+<div id="post-<%= @current_post.id %>" class="content-box condition-result">
+   <div class="content-header">
+      <p>最新のチェック結果</p>
+   </div>
+   <div id="condition-top">
+      <p id="condition-date">更新日: <%= @current_post.updated_at.strftime("%Y年%m日%d日") %></p>
+      <div id="toggle-draft">
+         <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-table"></i><span>最新</span></a>
+         <%= link_to conditions_path(@user), id: 'toggled-draft', class: "toggle-button", remote: true do %><i class="fa fa-line-chart"></i><span>推移</span><% end %>
+      </div>
+
+   </div>
+   <ul id="condition-header">
+      <li id="condition-title">
+         <span class="condition-<%= condition_summary('class', @current_post) %>"><%= condition_summary("title", @current_post) %> </span>
+         <%= image_tag(condition_summary("image", @current_post)) %>
+      </li>
+   </ul>
+   <div id="condition-description">
+      <h1><%= condition_summary("subtitle", @current_post) %></h1>
+      <p><%= condition_summary("description", @current_post) %></p>
+   </div>
+
+   <div id="condition-main-content">
+      <div id="condition-radar-chart">
+         <%= radar_chart radar_params(@current_post, @previous_post), radar_option %>
+      </div>
+      <div id="condition-summary">
+         <p id="motivation" class="summary-header">モチベーション</p>
+         <table id="motivation-table">
+            <tr>
+               <th><span>前回</span></th>
+               <th></th>
+               <th><span>今回</span></th>
+            </tr>
+            <tr>
+               <td class="previous summary-info"><%= fa_icon(condition_fa('motivation', 'info', @previous_post)) %></td>
+               <td></td>
+               <td class="current summary-info"><%= fa_icon(condition_fa('motivation', 'info', @current_post)) %></td>
+            </tr>
+            <tr>
+               <td class="previous summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @previous_post)) %></td>
+               <td><i class="fa fa-arrow-right"></i></td>
+               <td class="current summary-warning"><%= fa_icon(condition_fa('motivation', 'warning', @current_post)) %></td>
+            </tr>
+            <tr>
+               <td class="previous summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @previous_post)) %></td>
+               <td></td>
+               <td class="current summary-danger"><%= fa_icon(condition_fa('motivation', 'danger', @current_post)) %></td>
+            </tr>
+         </table>
+
+         <p id="burden" class="summary-header">負担感</p>
+         <table id="burden-table">
+            <tr>
+               <th><span>前回</span></th>
+               <th></th>
+               <th><span>今回</span></th>
+            </tr>
+            <tr>
+               <td class="previous summary-info"><%= fa_icon(condition_fa('burden', 'info', @previous_post)) %></td>
+               <td></td>
+               <td class="current summary-info"><%= fa_icon(condition_fa('burden', 'info', @current_post)) %></td>
+            </tr>
+            <tr>
+               <td class="previous summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @previous_post)) %></td>
+               <td><i class="fa fa-arrow-right"></i></td>
+               <td class="current summary-warning"><%= fa_icon(condition_fa('burden', 'warning', @current_post)) %></td>
+            </tr>
+            <tr>
+               <td class="previous summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @previous_post)) %></td>
+               <td></td>
+               <td class="current summary-danger"><%= fa_icon(condition_fa('burden', 'danger', @current_post)) %></td>
+            </tr>
+         </table>
+      </div>
+   </div>
+
+   <div id="condition-words">
+      <div id="words-list">
+         <h1>内訳と説明</h1>
+         <ul>
+            <h2 class="list-section">負担感</h2>
+            <li>a.仕事の忙しさ</li>
+            <li>b.プレッシャー</li>
+            <li>c.周囲の支え</li>
+            <li>d.働く環境</li>
+            <li>e.職場への適応</li>
+         </ul>
+         <ul>
+            <h2 class="list-section">モチベーション</h2>
+            <li>f.仕事への意欲</li>
+            <li>g.成果への挑戦</li>
+            <li>h.成長実感</li>
+            <li>i.自己研鑽</li>
+            <li>j.将来展望</li>
+         </ul>
+      </div>
+      <div id="words-description">
+         <h1 id="description-title">a.仕事の忙しさ</h1>
+         <h2 id="description-summary">やるべきことが多く、時間的負荷を感じている度合い</h2>
+         <ul>
+            <li>
+               <p>この結果が「<span class="words-info">良好</span>」「<span class="words-info">高</span>」の時は</p>
+               <p><span class="words-info">---------------------------------</span></p>
+               <p id="description-info">仕事をため込まずに進められている状態です。</p>
+            </li>
+            <li>
+               <p>この結果が「<span class="words-danger">注意</span>」「<span class="words-danger">低</span>」の時は</p>
+               <p><span class="words-danger">---------------------------------</span></p>
+               <p id="description-danger">仕事を抱え込み過ぎて、身動きが取れない状態かもしれません。
+                  例えば、ここ一週間の間にやった仕事と、割いた時間を書き出してみましょう。
+                  冷静に見ると時間をかけ過ぎていた仕事や、あなたがやらなくてもよかった仕事があるかもしれません。
+                  上司や周囲の先輩に、客観的なアドバイスをもらうのもよいでしょう。</p>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <% if condition_summary("class", @current_post) != "nothing" %>
+         <div class="post-reaction">
+         <% if @current_post.reactions.find_by(user_id: current_user.id).nil? %>
+            <%= link_to reaction_path(@current_post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= @current_post.reactions.count %></span><% end %>
+         <% else %>
+            <%= link_to reaction_path(@current_post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= @current_post.reactions.count %></span><% end %>
+         <% end %>
+         <% if @current_post.reactions.count >= 1 %>
+         <ul class="post-reaction-list">
+            <% @current_post.reactions.each do |reaction| %>
+            <li><%= reaction.user.name %></li>
+            <% end %>
+         </ul>
+         <% end %>
+         <%= link_to new_comment_path(@current_post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= @current_post.comments.count %></span><% end %>
+      </div>
+   <% end %>
+</div>
+<div id="condition-download" class="content-box">
+   <div id="download-frame">
+      <ul class="notice-line">
+         <li><h1>今回の結果をダウンロード</h1></li>
+         <li><h1>(pdfファイル)</h1></li>
+      </ul>
+      <a href="#" class="btn">ダウンロード</a>
+   </div>
+</div>

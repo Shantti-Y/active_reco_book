@@ -3,12 +3,26 @@ class ConditionsController < ApplicationController
    before_action :interrupted?, only: [:show]
    before_action :url_log
 
+   def index
+      @user = User.find(params[:id])
+      @posts = @user.posts.where(post_type: "condition").where(published: true)
+                    .order(:created_at).offset(2)
+      respond_to do |format|
+         format.html {}
+         format.js {}
+      end
+   end
+
    def show
       @user = User.find(params[:id])
       @posts = @user.posts.where(post_type: "condition").where(published: true)
-               .order(:created_at).reverse_order.limit(2)
+                    .order(:created_at).reverse_order.limit(2)
                @current_post = @posts.first
                @previous_post = @posts.last
+      respond_to do |format|
+         format.html {}
+         format.js {}
+      end
    end
 
    def edit

@@ -24,7 +24,8 @@ gem 'chartjs-ror'
 
 group :development, :test do
   gem 'sqlite3',                      '~> 1.3.11'
-  gem 'byebug', platform: :mri
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
