@@ -18,4 +18,9 @@
 !/tmp/.keep
 
 # Ignore Byebug command history file.
+
 .byebug_history
+
+# Ignore local gem files
+
+/vendor/bundle
