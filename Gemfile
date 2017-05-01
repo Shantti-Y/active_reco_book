@@ -21,6 +21,7 @@ gem 'jquery-turbolinks'
 gem 'kaminari'
 gem 'animate-rails'
 gem 'chartjs-ror'
+gem 'seed-fu',                       '~> 2.3'
 
 group :development, :test do
   gem 'sqlite3',                      '~> 1.3.11'
