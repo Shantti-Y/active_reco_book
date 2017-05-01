@@ -1521,10 +1521,39 @@ a { text-decoration: none; }
 
 
    #condition-graph {
+
       #condition-graph-chart {
-         canvas {
-            width: 100%;
-            min-height: 150px;
+         position: relative;
+         #graph-y-axes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fafafa;
+            li {
+               margin-top: 70px;
+               &:first-child{ margin-top: 33px; }
+               &:last-child { padding-bottom: 48px; }
+               span {
+                  font-weight: bold;
+                  &:first-child { color: #ff471a; }
+                  &:last-child { color: #33adff; }
+               }
+            }
+         }
+
+         #graph-chart-frame {
+            overflow-x: scroll;
+            float: right;
+            width: calc(100% - 24px);
+            iframe {
+               width: 625px !important;
+               height: 260px !important;
+               overflow: scroll;
+            }
+            canvas {
+               width: 625px !important;
+               height: 260px !important;
+            }
          }
       }
    }
@@ -1644,12 +1673,6 @@ a { text-decoration: none; }
                text-decoration: none;
                display: inline;
             }
-         }
-      }
-
-      #condition-graph {
-         #condition-graph-chart {
-            max-height: 320px;
          }
       }
 

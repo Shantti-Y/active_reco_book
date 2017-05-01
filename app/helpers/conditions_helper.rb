@@ -72,7 +72,7 @@ module ConditionsHelper
       n = 0
 
       posts.each do |post|
-         posts_date[n] = post.created_at.strftime("%Y%m%d")
+         posts_date[n] = [post.created_at.strftime("%Y年"), post.created_at.strftime("%m月%d日")]
          burdens = post.conditions.order(:category).limit(5)
          burden_point = 0
          burdens.each do |burden|
@@ -98,7 +98,7 @@ module ConditionsHelper
                background_color: "rgba(255, 194, 179, 0.6)",
                border_color: "rgba(255, 71, 26, 0.6)",
                point_background_color: "rgba(255, 194, 179, 0.6)",
-               data: [20, 50, 70, 76, 75, 78, 81, 69, 65, 54, 78, 80]
+               data: posts_burden
             },
             {
                label: "モチベーション(低・中・高)",
@@ -106,7 +106,7 @@ module ConditionsHelper
                background_color: "rgba(153, 214, 255, 0.6)",
                border_color: "rgba(51, 173, 255, 0.6)",
                point_background_color: "rgba(153, 214, 255, 0.6)",
-               data: [55, 54, 56, 34, 67, 77, 80, 79, 71, 67, 61, 70]
+               data: posts_motivation
             }
          ]
       }
@@ -114,18 +114,29 @@ module ConditionsHelper
 
    def line_option
       return {
+         width: 625,
+         height: 260,
          tooltips: { enabled: false },
+         responsive: false,
          maintainAspectRatio: false,
-         span_gaps: true,
+         onResize: false,
+         span_gaps: false,
          scales: {
+            xAxes: [{
+               ticks: {
+                  fontSize: 10,
+                  beginAtZero: true
+               },
+               gridLines: { display: false }
+            }],
             yAxes: [{
                ticks: {
+                  display: false,
                   max: 100,
                   min: 20,
-                  stepSize: 40,
+                  stepSize: 20
                },
-               scale_label: '<%= "" + value %>'
-               }]
+            }]
          },
       }
    end

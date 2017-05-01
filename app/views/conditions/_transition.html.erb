@@ -15,7 +15,14 @@
       <p class="content-section">こころの状態：グラフ</p>
       <p>あなたのこころチェックの回答をもとに、負担感／モチベーション、仕事量の認知の推移を表示しています。</p>
       <div id="condition-graph-chart">
-         <%= line_chart line_params(@posts), line_option %>
+         <ul id="graph-y-axes">
+            <li><span>良好</span>/<span>高</span></li>
+            <li><span>普通</span>/<span>中</span></li>
+            <li><span>注意</span>/<span>低</span></li>
+         </ul>
+         <div id="graph-chart-frame">
+            <%= line_chart line_params(@posts), line_option %>
+         </div>
       </div>
    </div>
 
