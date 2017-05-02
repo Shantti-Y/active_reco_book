@@ -2,6 +2,7 @@
 User.seed do |s|
    s.id                     = 1
    s.name                   = "例得　升男"
+   s.email                  = "example@gmail.com"
    s.employee_number        = 12345678
    s.division               = "技術部開発課"
    s.gender                 = "男"
@@ -17,6 +18,7 @@ end
 User.seed do |s|
    s.id                     = 2
    s.name                   = "例里　久子"
+   s.email                  = "example@yahoo.co.jp"
    s.employee_number        = 23456789
    s.division               = "営業部企画課"
    s.gender                 = "女"
@@ -33,6 +35,7 @@ end
 User.seed do |s|
    s.id                     = 3
    s.name                   = "例部　純太"
+   s.email                  = "example@company.co.jp"
    s.employee_number        = 34567890
    s.division               = "人事部"
    s.gender                 = "男"

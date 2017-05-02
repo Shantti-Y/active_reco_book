@@ -10,9 +10,9 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
    end
 
    test "monthly heartrate check" do
-      login_as(@employee)
       check_term = Date.new(Date.today.year, Date.today.month, 15)
       Timecop.travel(check_term)
+      login_as(@employee)
       get condition_path(@employee)
       assert_select '#condition-notice'
       assert_select '#condition-title > span', "未回答"
@@ -98,11 +98,11 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
    end
 
    test "regulated to answer the heartrate check" do
-      login_as(@another_employee)
 
       # Out of duration
       out_of_term = Date.new(Date.today.year, Date.today.month, 1)
       Timecop.travel(out_of_term)
+      login_as(@another_employee)
       get condition_path(@another_employee)
       assert_select '#condition-notice', 0
 
@@ -117,6 +117,7 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
       # After answered
       check_term = Date.new(Date.today.year, Date.today.month, 15)
       Timecop.travel(check_term)
+      login_as(@another_employee)
       post new_condition_path
       post = @another_employee.posts.where(post_type: "condition").order(:created_at).last
       condition = post.conditions.find_by(category: 1)
@@ -149,9 +150,9 @@ class HeartCheckTest < ActionDispatch::IntegrationTest
    end
 
    test "interrupt in the checking questions" do
-      login_as(@employee)
       check_term = Date.new(Date.today.year, Date.today.month, 15)
       Timecop.travel(check_term)
+      login_as(@employee)
       get condition_path(@employee)
 
       post new_condition_path

@@ -3,7 +3,7 @@
       <p>これまでのチェック結果</p>
    </div>
    <div id="condition-top">
-      <p id="condition-date">更新日: <%= @posts.first.updated_at.strftime("%Y年%m日%d日") %></p>
+      <p id="condition-date">更新日: <% if @posts.count > 0 %><%= @posts.first.updated_at.strftime("%Y年%m日%d日") %><% end %></p>
       <div id="toggle-draft">
          <%= link_to condition_path(@user), id: 'toggled-draft', class: "toggle-button", remote: true do %><i class="fa fa-table"></i><span>最新</span><% end %>
          <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-line-chart"></i><span>推移</span></a>
@@ -40,38 +40,40 @@
             <th class="table-item">モチベーション</th>
          </tr>
 
-         <% @posts.each do |post| %>
-            <tr>
-               <td class="table-date">
-                  <p><%= post.created_at.strftime("%Y年%m月%d日") %></p>
-                  <div class="post-reaction">
-                  <% if post.reactions.find_by(user_id: current_user.id).nil? %>
-                     <%= link_to reaction_path(post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
-                  <% else %>
-                     <%= link_to reaction_path(post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
-                  <% end %>
-                  <% if post.reactions.count >= 1 %>
-                  <ul class="post-reaction-list">
-                     <% post.reactions.each do |reaction| %>
-                     <li><%= reaction.user.name %></li>
+         <% if @posts.count > 0 %>
+            <% @posts.each do |post| %>
+               <tr>
+                  <td class="table-date">
+                     <p><%= post.created_at.strftime("%Y年%m月%d日") %></p>
+                     <div class="post-reaction">
+                     <% if post.reactions.find_by(user_id: current_user.id).nil? %>
+                        <%= link_to reaction_path(post), class: 'reaction-default', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
+                     <% else %>
+                        <%= link_to reaction_path(post), method: :delete, class: 'reaction-reacted', remote: true do %><i class="fa fa-thumbs-o-up"></i><span class="reaction-str">いいね</span><span><%= post.reactions.count %></span><% end %>
                      <% end %>
-                  </ul>
-                  <% end %>
-                  <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
-               </div>
-               </td>
-               <td class="table-result">
-                  <%= image_tag(condition_summary("image", post)) %>
-                  <p class="table-<%= condition_summary('class', post) %>"><%= condition_summary("title", post) %></p>
+                     <% if post.reactions.count >= 1 %>
+                     <ul class="post-reaction-list">
+                        <% post.reactions.each do |reaction| %>
+                        <li><%= reaction.user.name %></li>
+                        <% end %>
+                     </ul>
+                     <% end %>
+                     <%= link_to new_comment_path(post), remote: true do %><i class="fa fa-comment-o"></i><span class="reaction-str">コメント</span><span><%= post.comments.count %></span><% end %>
+                  </div>
+                  </td>
+                  <td class="table-result">
+                     <%= image_tag(condition_summary("image", post)) %>
+                     <p class="table-<%= condition_summary('class', post) %>"><%= condition_summary("title", post) %></p>
 
-               </td>
-               <td class="table-item table-<%= condition_summary("detail", post)[:burden][:class] %>">
-                  <%= condition_summary("detail", post)[:burden][:title] %>
-               </td>
-               <td class="table-item table-<%= condition_summary("detail", post)[:motivation][:class] %>">
-                  <%= condition_summary("detail", post)[:motivation][:title] %>
-               </td>
-            </tr>
+                  </td>
+                  <td class="table-item table-<%= condition_summary("detail", post)[:burden][:class] %>">
+                     <%= condition_summary("detail", post)[:burden][:title] %>
+                  </td>
+                  <td class="table-item table-<%= condition_summary("detail", post)[:motivation][:class] %>">
+                     <%= condition_summary("detail", post)[:motivation][:title] %>
+                  </td>
+               </tr>
+            <% end %>
          <% end %>
       </table>
    </div>

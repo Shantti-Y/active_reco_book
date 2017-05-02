@@ -302,7 +302,8 @@ module ConditionsHelper
       if term_current >= term_start && term_current <= term_end
          user_latest_post = user.posts.where(post_type: "condition").order(:created_at).last
 
-         if user_latest_post.created_at.month != term_current.month
+         if user_latest_post.created_at.month != term_current.month ||
+            user_latest_post.created_at.year != term_current.year
             return true
          else
             if user.posts.where(post_type: "condition").count == 2

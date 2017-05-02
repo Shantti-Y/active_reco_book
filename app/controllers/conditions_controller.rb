@@ -32,6 +32,7 @@ class ConditionsController < ApplicationController
    end
 
    def create
+      @user = current_user
       @post = current_user.posts.build(post_template("condition"))
       respond_to do |format|
          if time_to_answer?(current_user) == true

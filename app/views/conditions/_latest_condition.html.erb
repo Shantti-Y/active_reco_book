@@ -25,7 +25,7 @@
       <p>最新のチェック結果</p>
    </div>
    <div id="condition-top">
-      <p id="condition-date">更新日: <%= @current_post.updated_at.strftime("%Y年%m日%d日") %></p>
+      <p id="condition-date">更新日: <% if @posts.count > 2 %><%= @current_post.updated_at.strftime("%Y年%m日%d日") %><% end %></p>
       <div id="toggle-draft">
          <a href="#" id="toggled-publish" class="toggle-button toggle-active"><i class="fa fa-table"></i><span>最新</span></a>
          <%= link_to conditions_path(@user), id: 'toggled-draft', class: "toggle-button", remote: true do %><i class="fa fa-line-chart"></i><span>推移</span><% end %>

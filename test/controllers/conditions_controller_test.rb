@@ -19,13 +19,18 @@ class ConditionsControllerTest < ActionDispatch::IntegrationTest
    end
 
    test "should create new condition" do
-      posts(:condition).destroy
+      posts(:condition).destroy!
+      check_term = Date.new(Date.today.year, Date.today.month, 15)
+      Timecop.travel(check_term)
+      login_as(@employee)
+
       assert_difference 'Post.count', 1 do
          assert_difference 'Condition.count', 10 do
             post new_condition_path
          end
       end
-      condition = @employee.posts.where(post_type: "condition").last.conditions.find_by(category: 1)
+      post = @employee.posts.where(post_type: "condition").last
+      condition = post.conditions.find_by(category: 1)
       assert_redirected_to edit_condition_url(condition, question_number: 1)
    end
 
@@ -39,7 +44,4 @@ class ConditionsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to edit_condition_url(@condition, question_number: 2)
    end
 
-   test "should not update the condition when not time to check" do
-
-   end
 end
