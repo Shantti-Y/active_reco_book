@@ -5,6 +5,8 @@ class StaticPagesController < ApplicationController
   def home
       @user = current_user
       @posts = Post.page(params[:page]).where(published: true).order(:created_at).reverse_order
+      @conditions = @user.posts.where(post_type: "condition").where(published: true)
+                    .order(:created_at).offset(2)
   end
 
   def search_home

@@ -1302,7 +1302,7 @@ a { text-decoration: none; }
       }
       #toggle-draft {
          float: right;
-         width: 57px;
+         width: 60px;
          .toggle-button {
             float: left;
             display: block;
@@ -1518,46 +1518,6 @@ a { text-decoration: none; }
       }
    }
 
-
-
-   #condition-graph {
-
-      #condition-graph-chart {
-         position: relative;
-         #graph-y-axes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: #fafafa;
-            li {
-               margin-top: 70px;
-               &:first-child{ margin-top: 33px; }
-               &:last-child { padding-bottom: 48px; }
-               span {
-                  font-weight: bold;
-                  &:first-child { color: #ff471a; }
-                  &:last-child { color: #33adff; }
-               }
-            }
-         }
-
-         #graph-chart-frame {
-            overflow-x: scroll;
-            float: right;
-            width: calc(100% - 24px);
-            iframe {
-               width: 625px !important;
-               height: 260px !important;
-               overflow: scroll;
-            }
-            canvas {
-               width: 625px !important;
-               height: 260px !important;
-            }
-         }
-      }
-   }
-
    #condition-table {
       table {
          th, td {
@@ -1616,6 +1576,43 @@ a { text-decoration: none; }
 
 }
 
+      #condition-graph-chart {
+         position: relative;
+         height: 300px;
+         width: 100%;
+         #graph-y-axes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fafafa;
+            li {
+               margin-top: 70px;
+               &:first-child{ margin-top: 33px; }
+               &:last-child { padding-bottom: 48px; }
+               span {
+                  font-weight: bold;
+                  &:first-child { color: #ff471a; }
+                  &:last-child { color: #33adff; }
+               }
+            }
+         }
+
+         #graph-chart-frame {
+            overflow-x: scroll;
+            float: right;
+            width: calc(100% - 24px);
+            iframe {
+               width: 625px !important;
+               height: 260px !important;
+               overflow: scroll;
+            }
+            canvas {
+               width: 625px !important;
+               height: 260px !important;
+            }
+         }
+      }
+
 @media (min-width: $media-phone){
    .condition-result {
       #condition-top {
@@ -1623,7 +1620,7 @@ a { text-decoration: none; }
          #condition-date { margin-left: 10px; }
          #toggle-draft {
             float: right;
-            width: 147px;
+            width: 150px;
             .toggle-button {
                width: 72px;
                i { margin-right: 4px; }

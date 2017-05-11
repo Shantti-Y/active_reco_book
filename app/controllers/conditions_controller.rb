@@ -5,7 +5,7 @@ class ConditionsController < ApplicationController
 
    def index
       @user = User.find(params[:id])
-      @posts = @user.posts.where(post_type: "condition").where(published: true)
+      @conditions = @user.posts.where(post_type: "condition").where(published: true)
                     .order(:created_at).offset(2)
       respond_to do |format|
          format.html {}
